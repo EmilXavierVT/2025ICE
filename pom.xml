@@ -65,7 +65,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                dk.emilxaviervt._2025ice._2025ice/VFX.MainFX
+                                dk.emilxaviervt._2025ice._2025ice/dk.emilxaviervt._2025ice._2025ice.VFX.MainFX
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

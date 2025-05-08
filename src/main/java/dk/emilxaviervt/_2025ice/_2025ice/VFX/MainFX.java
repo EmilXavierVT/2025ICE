@@ -1,4 +1,4 @@
-package VFX;
+package dk.emilxaviervt._2025ice._2025ice.VFX;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
