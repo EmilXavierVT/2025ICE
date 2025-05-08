@@ -1,10 +1,64 @@
 @startuml
 !pragma layout smetana
 'https://plantuml.com/class-diagram
-Class Main
-Class Adventure
-Class Player
-Class User
+
+
+Class Main{
+
++ static void main(String[] args)
+}
+
+
+Class Adventure{
+-Player player
+- User user
+- UserManager um
+- DatabaseManager dm
+-ClientFX clientFX
+
+}
+
+Class Player{
+-String playerName
+-int currentHealth
+-int currentAttack
+- int currentLuck
+-int maxHealth
+-int maxStrength
+-int maxLuck
+-int successRate
+-boolean isEquipped
+-ArrayList<Item> Inventory
+'+ getPlayerName()
+'+ setPlayerName()
+'+ getCurrentHealth()
+'+ setCurrentHealth()
+'+getCurrentAttack()
+'+setCurrentAttack()
+'+getCurrentLuck()
+'+setCurrentLuck()
+'+getMaxHealth()
+'+setMaxHealth()
+'+getMaxStrength()
+'+setMaxStrength()
+'+getMaxLuck()
+'+setMaxLuck()
+'+getIsEquipped()
+'+setIsEquipped()
+'+getInventory()
+'+setInventory()
+'+addToInventory()
+
+
+
+
+}
+
+
+Class User{
+-String name
+-String password
+}
 Class Item
 Class Consumable
 Class Weapon
@@ -14,7 +68,7 @@ Class FileIO
 Class TextUI
 }
 Class Usermanager
-Class Database
+Class DatabaseManager
 Class ClientFX
 Class ActionPoint
 Class ClientControlFX
