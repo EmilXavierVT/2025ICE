@@ -32,25 +32,26 @@ public class DatabaseManager {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        }
-        public void selectItems() {
-            String query = "SELECT * FROM ItemList";
+    }
 
-            try {
-                Statement statement = con.createStatement();
+    public void selectItems() {
+        String query = "SELECT * FROM ItemList";
 
-                ResultSet rs = statement.executeQuery(query);
+        try {
+            Statement statement = con.createStatement();
 
-                while (rs.next()) {
-                    String name = rs.getString("name");
-                    System.out.println(name);
-                }
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
+            ResultSet rs = statement.executeQuery(query);
+
+            while (rs.next()) {
+                String name = rs.getString("name");
+                System.out.println(name);
             }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
+    }
 
-    public void createInventory(int object1,int object2 ,int object3,int object4,int object5) {
+    public void createInventory(int object1, int object2, int object3, int object4, int object5) {
 
         String query = "INSERT INTO inventory(item1,item2,item3,item4,item5) VALUES(object1,object2,object3,object4,object5)";
 
@@ -66,9 +67,9 @@ public class DatabaseManager {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
-    public void getBalanceOfPlayer(String name) {
-        String query = "SELECT balance FROM Players WHERE name = '" + name + "'";
+/*
+    public void getBalanceOfPlayer() {
+        String query = "SELECT balance FROM Players WHERE name = '" +  + "'";
         try {
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -98,4 +99,8 @@ public class DatabaseManager {
         }
 
     }
+
+ */
+    }
 }
+
