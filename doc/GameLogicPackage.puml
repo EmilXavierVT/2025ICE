@@ -1,0 +1,19 @@
+@startuml
+!pragma layout smetana
+'https://plantuml.com/class-diagram
+
+
+class Main
+
+package gameLogic{
+class Adventure
+class Player
+}
+
+
+
+
+
+
+
+@enduml

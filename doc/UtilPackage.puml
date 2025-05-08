@@ -1,0 +1,23 @@
+@startuml
+!pragma layout smetana
+'https://plantuml.com/class-diagram
+
+
+class Main
+
+package util{
+class FileIO{
+
+}
+class TextUI{
+
++ printText()
++ printWelcome()
++ promptText()
+}
+class DatabaseManager
+}
+
+
+
+@enduml

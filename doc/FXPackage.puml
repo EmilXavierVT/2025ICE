@@ -1,0 +1,14 @@
+@startuml
+!pragma layout smetana
+'https://plantuml.com/class-diagram
+
+
+class Main
+
+package VFX{
+class ClientFX
+class ClientControlFX
+}
+
+
+@enduml
