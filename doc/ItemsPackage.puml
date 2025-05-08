@@ -1,0 +1,16 @@
+@startuml
+!pragma layout smetana
+'https://plantuml.com/class-diagram
+
+
+class Main
+
+package Items{
+abstract class Item
+class Consumable
+class Weapon
+class Equipment
+}
+
+
+@enduml

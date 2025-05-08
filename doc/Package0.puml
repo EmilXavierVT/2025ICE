@@ -1,0 +1,44 @@
+@startuml
+!pragma layout smetana
+'https://plantuml.com/class-diagram
+
+
+class Main
+
+package gameLogic{
+class Adventure
+class Player
+}
+
+package userLogic{
+class User
+class Usermanager
+class ActionPoint
+}
+
+package Items{
+class Item
+class Consumable
+class Weapon
+class Equipment
+}
+
+
+package util{
+class FileIO
+class TextUI
+class DatabaseManager
+}
+
+package VFX{
+class ClientFX
+class ClientControlFX
+}
+
+
+
+
+
+
+
+@enduml

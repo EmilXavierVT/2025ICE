@@ -6,4 +6,6 @@ module dk.emilxaviervt._2025ice._2025ice {
 
     opens dk.emilxaviervt._2025ice._2025ice to javafx.fxml;
     exports dk.emilxaviervt._2025ice._2025ice;
+    exports VFX;
+    opens VFX to javafx.fxml;
 }
