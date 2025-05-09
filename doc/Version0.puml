@@ -24,9 +24,8 @@ class Player{
 -int currentAttack
 - int currentLuck
 -int maxHealth
--int maxStrength
+-int maxAttack
 -int maxLuck
--int successRate
 -boolean isEquipped
 -ArrayList<Item> Inventory
 
