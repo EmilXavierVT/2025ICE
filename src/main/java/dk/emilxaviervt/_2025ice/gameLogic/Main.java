@@ -9,7 +9,7 @@ public class Main {
 
         DatabaseManager db = new DatabaseManager();
 //        db.connect();
-        Player player =new Player("Emil",10,10,10,10,10,10,true,"Emil",1);
+        Player player =new Player("Jonas",10,10,10,10,10,10,true,"Emil",1);
         db.savePlayerToDatabase(player);
     }
 }

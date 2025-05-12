@@ -1,0 +1,35 @@
+@startuml
+!pragma layout smetana
+'https://plantuml.com/object-diagram
+
+object Main
+object Controller
+object DatabaseManager
+object Adventure
+object User
+object UserManager
+object Player
+object ActionPoint
+object TextUI
+object FileIO
+object Item
+object Consumable
+object Equipment
+object Weapon
+
+Main --> Adventure
+Main -left-> Controller
+Controller --> DatabaseManager
+Controller --> TextUI
+Controller --> FileIO
+Adventure --> Player
+Adventure --> ActionPoint
+Adventure --> User
+Adventure --> UserManager
+User --> UserManager
+Item --> ActionPoint
+Item -right-> Consumable
+Item --> Equipment
+Equipment --> Weapon
+
+@enduml
