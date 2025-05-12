@@ -4,6 +4,7 @@ module dk.emilxaviervt._2025ice {
 
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
+    requires javafx.graphics;
 
     opens dk.emilxaviervt._2025ice to javafx.fxml;
     exports dk.emilxaviervt._2025ice.VFX;

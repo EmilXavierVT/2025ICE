@@ -92,6 +92,6 @@ ActionPoint *-- Item
 ActionPoint -up-* Adventure
 "util" -right- Adventure
 Adventure *-right- ClientControlFX
-Creature -left-* Adventure
+Creature -up-* Adventure
 
 @enduml

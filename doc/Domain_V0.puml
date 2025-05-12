@@ -4,32 +4,37 @@
 
 object Main
 object Controller
-object DatabaseManager
 object Adventure
+object Creature
+object Player
 object User
 object UserManager
-object Player
 object ActionPoint
-object TextUI
-object FileIO
 object Item
 object Consumable
 object Equipment
 object Weapon
 
-Main --> Adventure
-Main -left-> Controller
-Controller --> DatabaseManager
-Controller --> TextUI
-Controller --> FileIO
-Adventure --> Player
-Adventure --> ActionPoint
-Adventure --> User
-Adventure --> UserManager
-User --> UserManager
-Item --> ActionPoint
+package "util"{
+object TextUI
+object FileIO
+object DatabaseManager
+}
+
+
+Main -down-> Adventure
+Main -right-> Controller
+Adventure -left-> Player
+Adventure -down-> ActionPoint
+Adventure -right-> User
+Adventure -up-> UserManager
+Adventure --> Creature
+Controller -right-> "util"
+User -down-> UserManager
+Item -up-> ActionPoint
 Item -right-> Consumable
 Item --> Equipment
 Equipment --> Weapon
+
 
 @enduml
