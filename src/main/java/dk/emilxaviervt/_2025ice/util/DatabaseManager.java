@@ -69,10 +69,13 @@ public class DatabaseManager  {
             try {
 
                 Statement statement = con.createStatement();
-                ResultSet rs = statement.executeQuery(query);
+                statement.executeUpdate(query);
+
+
             } catch (SQLException e){
                 System.out.println("wonky error "+e.getMessage());
             }
+
         }
 
     }
