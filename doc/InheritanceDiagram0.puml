@@ -1,0 +1,53 @@
+@startuml
+!pragma layout smetana
+'https://plantuml.com/class-diagram
+
+
+class Main
+
+
+class Adventure
+class Player
+
+
+class User
+class UserManager
+
+
+
+
+abstract class Item
+class Consumable
+class Weapon
+class Equipment
+class ActionPoint
+
+
+
+package util{
+class FileIO
+class TextUI
+class DatabaseManager
+}
+
+
+class ClientControlFX
+
+
+
+
+Main *-- Adventure
+Adventure *-left- Player
+UserManager *-- User
+Adventure *-down- UserManager
+DatabaseManager *-- ClientControlFX
+Item <|-- Consumable
+Item <|-- Equipment
+Weapon -up-|> Equipment
+ActionPoint *-- Item
+ActionPoint -up-* Adventure
+"util" -right- Adventure
+Adventure *-right- ClientControlFX
+
+
+@enduml

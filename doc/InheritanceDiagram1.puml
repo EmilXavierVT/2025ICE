@@ -1,0 +1,97 @@
+@startuml
+!pragma layout smetana
+'https://plantuml.com/class-diagram
+
+
+class Main{
++ static void main(String[] args)
+
+}
+
+class Creature{
+-String monsterName
+-int currentHealth
+-int currentAttack
+
+
+}
+class Adventure{
+
+- DatabaseManager dm
+-ClientFX clientFX
++ run()
+- combat(Creature)
++ singleRoll()
++ doubleRoll()
+
+}
+class Player{
+-String playerName
+-int currentHealth
+-int currentAttack
+- int currentLuck
+-int maxHealth
+-int maxAttack
+-int maxLuck
+-boolean isEquipped
+-ArrayList<Item> Inventory
+
++ changeHealth()
++ changeAttack()
++ changeLuck()
++ addToInventory()
++ takeFromInventory()
++ consumeItem()
++ equipItem()
++ takeItem()
++ LuckyCheck()
+}
+
+abstract class Item
+class Consumable
+class Weapon
+class Equipment
+
+class ActionPoint{
+- ID
+- description
+- containItem
+- itemNeeded
+- goldCoins
+- availableActionPoints
+- containedCreature
+- isFinal
+- winnerActionPoint
+- luckRoll
+- changeAttackPoints
+- changeHealthPoints
+
+
+ }
+
+
+
+package util{
+class FileIO
+class TextUI
+class DatabaseManager
+}
+
+class ClientControlFX
+
+
+
+
+Main *-- Adventure
+Adventure *-left- Player
+DatabaseManager *-- ClientControlFX
+Item <|-- Consumable
+Item <|-- Equipment
+Weapon -up-|> Equipment
+ActionPoint *-- Item
+ActionPoint -up-* Adventure
+"util" -right- Adventure
+Adventure *-right- ClientControlFX
+Creature -left-* Adventure
+
+@enduml
