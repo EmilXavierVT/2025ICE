@@ -13,14 +13,15 @@ class Player
 package userLogic{
 class User
 class Usermanager
-class ActionPoint
+
 }
 
-package Items{
-class Item
+package Map{
+abstract class Item
 class Consumable
 class Weapon
 class Equipment
+class ActionPoint
 }
 
 
