@@ -12,8 +12,6 @@ class Player
 
 package userLogic{
 class User
-class Usermanager
-
 }
 
 package Map{

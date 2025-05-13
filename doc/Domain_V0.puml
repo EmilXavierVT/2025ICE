@@ -7,8 +7,6 @@ object Controller
 object Adventure
 object Creature
 object Player
-object User
-object UserManager
 object ActionPoint
 object Item
 object Consumable
@@ -26,12 +24,9 @@ Main -down-> Adventure
 Main -right-> Controller
 Adventure -left-> Player
 Adventure -down-> ActionPoint
-Adventure -right-> User
-Adventure -up-> UserManager
 Adventure --> Creature
 Controller -right-> "util"
-User -down-> UserManager
-Item -up-> ActionPoint
+Item -left-> ActionPoint
 Item -right-> Consumable
 Item --> Equipment
 Equipment --> Weapon
