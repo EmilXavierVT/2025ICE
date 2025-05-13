@@ -1,6 +1,8 @@
 package dk.emilxaviervt._2025ice.util;
 
 import dk.emilxaviervt._2025ice.gameLogic.Player;
+import dk.emilxaviervt._2025ice.userLogic.ActionPoint;
+import javafx.scene.chart.ScatterChart;
 
 import java.sql.*;
 
@@ -113,7 +115,46 @@ public class DatabaseManager  {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-/*
+
+    }
+    public ActionPoint selectActionPoints(int caseId) {
+        String query = "SELECT * FROM ActionPoints";
+        try {
+            Statement statement = con.createStatement();
+
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                if(rs.getInt("id") == caseId ){
+                    ActionPoint actionPoint = new ActionPoint(
+                            rs.getInt("id"),
+                            rs.getString("description"),
+                            rs.getInt("containedItem"),
+                            rs.getInt("itemNeeded"),
+                            rs.getInt("goldCoins"),
+                            rs.getString("availableActionPoints"),
+                            rs.getString("containedCreatures"),
+                            rs.getBoolean("isFinal"),
+                            rs.getBoolean("winnerActionPoint"),
+                            rs.getBoolean("luckRoll"),
+                            rs.getInt("changeAttackPoints"),
+                            rs.getInt("changeHealthPoints"),
+                            rs.getBoolean("dieRoll"),
+                            rs.getInt("event"));
+
+
+                    return actionPoint;
+                }
+
+            }
+
+
+        }catch (SQLException e){
+            System.out.println("Error: " + e.getMessage());
+        }
+        return null;
+    }
+
+    /*
     public void getBalanceOfPlayer() {
         String query = "SELECT balance FROM Players WHERE name = '" +  + "'";
         try {
@@ -147,6 +188,6 @@ public class DatabaseManager  {
     }
 
  */
-    }
+
 }
 
