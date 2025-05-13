@@ -5,11 +5,11 @@ import java.sql.Connection;
 public class ActionPoint {
     private int ID;
     private String description;
-    private String containItem;
-    private boolean itemNeeded;
+    private int containItem;
+    private int itemNeeded;
     private int goldCoins;
-    private int availableActionPoints;
-    private int containedCreature;
+    private String availableActionPoints;
+    private String containedCreature;
     private boolean isFinal;
     private boolean winnerActionPoint;
     private boolean luckRoll;
