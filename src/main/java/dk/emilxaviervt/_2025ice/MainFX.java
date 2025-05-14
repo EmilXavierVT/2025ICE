@@ -10,8 +10,8 @@ import java.io.IOException;
 public class MainFX extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainFX.class.getResource("game-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        FXMLLoader fxmlLoader = new FXMLLoader(MainFX.class.getResource("/clienter/activeGameScreen.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 700, 450);
         stage.setTitle("Dødens Labyrint");
         stage.setScene(scene);
         stage.show();
