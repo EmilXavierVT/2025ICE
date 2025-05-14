@@ -42,7 +42,11 @@ public class DatabaseManager  {
                             rs.getInt("maxLuck"),
                             rs.getBoolean("isEquipped"),
                             rs.getString("inventory_id"),
-                            rs.getInt("currentActionPoint"));
+                            rs.getInt("currentActionPoint"),
+                            rs.getInt("goldCoin"),
+                            rs.getInt("foodRation"),
+                            rs.getInt("starterPotion")
+                    );
                 return player;
                 }
                 return null;
@@ -54,7 +58,7 @@ public class DatabaseManager  {
     }
     public void savePlayerToDatabase(Player player){
         connect();
-        String query = "INSERT INTO Player(name,currentHealth,currentAttack,currentLuck,maxHealth,maxAttack,maxLuck,isEquipped,inventory_id,currentActionPoint) " +
+        String query = "INSERT INTO Players(name,currentHealth,currentAttack,currentLuck,maxHealth,maxAttack,maxLuck,isEquipped,inventory_id,currentActionPoint,goldCoin,foodRation,starterPotion) " +
                 "VALUES(" +
                "'"     +
                player.getName() +"'" +","+
@@ -66,7 +70,10 @@ public class DatabaseManager  {
                player.getMaxLuck()   +  "," +
                player.isEquipped()  +  "," +  "'"+
                player.getName()  + "'" + "," +
-               player.getPlayerLocation()+");";
+               player.getPlayerLocation()+","+
+                player.getGoldCoins()+","+
+                player.getFoodRations()+","+
+                player.getStarterPotion()+");";
               if(con != null){
             try {
 

@@ -15,6 +15,13 @@ public class Player {
     int maxAttack;
     int maxLuck;
 
+
+    int goldCoins;
+    int foodRations;
+    int starterPotion;
+
+
+
     //player inventory
     boolean isEquipped;
     ArrayList<Item> inventory;
@@ -23,7 +30,7 @@ public class Player {
     //player state
     int playerLocation;
 
-    //construckter used to create new player
+    //constructor used to create new player
     Player (String name, int health,int attack,int luck){
         this.name = name;
 
@@ -34,11 +41,13 @@ public class Player {
         this.currentAttack = attack;
         this.currentLuck = luck;
         this.maxLuck = luck;
+
     }
     //constructor used when player is loaded
    public Player (String name, int health, int attack, int luck,
             int maxHealth, int maxAttack, int maxLuck,
-            boolean isEquipped, String inventoryReference, int location){
+            boolean isEquipped, String inventoryReference, int location,
+                  int goldCoins, int foodRations, int starterPotion){
         this.name = name;
         this.currentHealth = health;
         this.currentAttack = attack;
@@ -49,6 +58,9 @@ public class Player {
         this.isEquipped = isEquipped;
         this.inventoryReference = inventoryReference;
         this.playerLocation = location;
+        this.goldCoins = goldCoins;
+        this.foodRations = foodRations;
+        this.starterPotion = starterPotion;
     }
     //used to change player health value
     public void changeHealth(int change){
@@ -58,22 +70,40 @@ public class Player {
     public void changeAttack(int change){
         currentAttack += change;
     }
+
+
     // luck change when luck is used
     public void useLuck(){
         currentLuck -=1;
     }
+
+
     //luck change when luck is alternated
     public void changeLuck(int change){
         currentLuck += change;
     }
+
+
     //add an item to the players inventory
     public void addToInvertory(Item item){
         inventory.add(item);
     }
+
+
     //remove an item from the players inventory
     public void removeFromInventory(Item item){
         inventory.remove(item);
     }
+
+
+    //change gold coins
+    public void changeGoldCoins(int goldCoins) {this.goldCoins += goldCoins;}
+
+
+    //change foodRations
+    public void changeFoodRations(int foodRations) {this.foodRations += foodRations;}
+
+
 //    public void consumeItem(Consumable potion){
 //
 //        int potionID = potion.getID();
