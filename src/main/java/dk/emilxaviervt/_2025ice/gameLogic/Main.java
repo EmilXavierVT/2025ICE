@@ -1,5 +1,6 @@
 package dk.emilxaviervt._2025ice.gameLogic;
 
+import dk.emilxaviervt._2025ice.userLogic.ActionPoint;
 import dk.emilxaviervt._2025ice.util.DatabaseManager;
 
 public class Main {
@@ -9,7 +10,9 @@ public class Main {
 
         DatabaseManager db = new DatabaseManager();
 //        db.connect();
-        Player player =new Player("Jonas",10,10,10,10,10,10,true,"Emil",1);
-        db.savePlayerToDatabase(player);
+//        Player player =new Player("Jonas",10,10,10,10,10,10,true,"Emil",1);
+//        db.savePlayerToDatabase(player);
+        ActionPoint ap = db.selectActionPoints(400);
+        ap.printDescription();
     }
 }
