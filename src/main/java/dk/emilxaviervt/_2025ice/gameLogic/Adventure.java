@@ -51,7 +51,7 @@ public class Adventure extends Thread{
         if (currentPlayer.getCurrentHealth() > currentPlayer.getMaxHealth()) {
 
             currentPlayer.setCurrentHealth(currentPlayer.getMaxHealth());
-            return;
+
 
         }else if (currentPlayer.getCurrentHealth() < currentPlayer.getMaxHealth()) {
             currentPlayer.changeFoodRations(-1);

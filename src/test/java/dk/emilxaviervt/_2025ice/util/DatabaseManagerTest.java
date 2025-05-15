@@ -12,7 +12,7 @@ class DatabaseManagerTest {
     @Test
     void savePlayerToDatabase() {
         DatabaseManager db = new DatabaseManager();
-        Player player =new Player("Emil",10,10,10,10,10,10,true,"Emil",1);
+        Player player =new Player("Emil",10,10,10,10,10,10,true,"Emil",1,1,10,1);
         db.savePlayerToDatabase(player);
     }
 }
