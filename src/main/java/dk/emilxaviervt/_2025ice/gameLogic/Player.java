@@ -31,18 +31,18 @@ public class Player {
     int playerLocation;
 
     //constructor used to create new player
-    Player (String name, int health,int attack,int luck){
-        this.name = name;
-
-        //player stats
-        this.maxHealth = health;
-        this.currentHealth = health;
-        this.maxAttack = attack;
-        this.currentAttack = attack;
-        this.currentLuck = luck;
-        this.maxLuck = luck;
-
-    }
+//    Player (String name, int health,int attack,int luck){
+//        this.name = name;
+//
+//        //player stats
+//        this.maxHealth = health;
+//        this.currentHealth = health;
+//        this.maxAttack = attack;
+//        this.currentAttack = attack;
+//        this.currentLuck = luck;
+//        this.maxLuck = luck;
+//
+//    }
     //constructor used when player is loaded
    public Player (String name, int health, int attack, int luck,
             int maxHealth, int maxAttack, int maxLuck,

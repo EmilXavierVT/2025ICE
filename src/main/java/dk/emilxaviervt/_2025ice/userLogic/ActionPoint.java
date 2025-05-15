@@ -1,6 +1,7 @@
 package dk.emilxaviervt._2025ice.userLogic;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 public class ActionPoint {
     private int ID;
@@ -17,6 +18,7 @@ public class ActionPoint {
     private int changeHealthPoints;
     private boolean dieRoll;
     private int event;
+    private ArrayList<Integer> actionPointList;
 
     Connection con;
 
@@ -30,7 +32,9 @@ public class ActionPoint {
         this.containItem = containItem;
         this.itemNeeded = itemNeeded;
         this.goldCoins = goldCoins;
-        this.availableActionPoints = availableActionPoints;
+        this.actionPointList = actionPointlist(availableActionPoints);
+
+
         this.containedCreature = containedCreature;
         this.isFinal = isFinal;
         this.winnerActionPoint = winnerActionPoint;
@@ -42,6 +46,17 @@ public class ActionPoint {
     }
     //METODER
 
+private ArrayList<Integer> actionPointlist(String list){
+        ArrayList<Integer> actionPointList = new ArrayList<>();
+
+        String [] values = list.split(",");
+        for (String s :values){
+            actionPointList.add(Integer.parseInt(s));
+
+        }
+
+        return actionPointList;
+};
 
 
 
@@ -59,6 +74,11 @@ public class ActionPoint {
 
         System.out.println(goldCoins);
     }
+
+
+
+
+//
 
 
 
@@ -94,4 +114,8 @@ public class ActionPoint {
     public boolean isDieRoll() {return dieRoll;}
 
     public int getEvent() {return event;}
+
+    public ArrayList<Integer> getActionPointList() {
+        return actionPointList;
+    }
 }

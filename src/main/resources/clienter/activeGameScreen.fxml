@@ -57,11 +57,11 @@
             <MenuItem mnemonicParsing="false" text="Lykke" />
         </items>
       </MenuButton>
-      <Button layoutX="13.0" layoutY="108.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="54.0" text="🏃‍♀️‍➡️" />
+      <Button fx:id="runButton" layoutX="13.0" layoutY="108.0" mnemonicParsing="false" onAction="#runFromFight" prefHeight="26.0" prefWidth="54.0" text="🏃‍♀️‍➡️" />
       <Button fx:id="exitButton" layoutX="13.0" layoutY="409.0" mnemonicParsing="false" onAction="#exit" prefHeight="26.0" prefWidth="54.0" text="❌" />
       <StackPane layoutX="86.0" layoutY="311.0" prefHeight="138.0" prefWidth="531.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" translateX="-200.0" translateY="-50.0" visible="false" />
+            <Button fx:id="actionPointButton0" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" translateX="-200.0" translateY="-50.0" visible="false" />
             <Button layoutX="212.0" layoutY="66.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" translateY="-50.0" visible="false" />
             <Button layoutX="212.0" layoutY="66.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" translateX="200.0" translateY="-50.0" visible="false" />
             <Button layoutX="212.0" layoutY="66.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" translateX="-200.0" translateY="50.0" visible="false" />
