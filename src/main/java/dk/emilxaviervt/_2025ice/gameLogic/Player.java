@@ -203,4 +203,12 @@ public class Player {
     public void setPlayerLocation(int playerLocation) {
         this.playerLocation = playerLocation;
     }
+
+    public int getGoldCoins() {return goldCoins;}
+
+    public int getFoodRations() {return foodRations;}
+
+    public int getStarterPotion() {return starterPotion;}
+
+    public void setStarterPotion(int starterPotion) {this.starterPotion = starterPotion;}
 }

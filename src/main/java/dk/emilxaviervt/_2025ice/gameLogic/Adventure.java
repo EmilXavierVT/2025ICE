@@ -1,8 +1,9 @@
 package dk.emilxaviervt._2025ice.gameLogic;
 
-public class Adventure extends Thread{
+import java.util.Random;
 
-//    DataBaseManager dm;
+public class Adventure {
+    //    DataBaseManager dm;
 //    ClientFX clientFX;
     private Player currentPlayer;
     private int health = rollHealth();
@@ -33,15 +34,15 @@ public class Adventure extends Thread{
 
     private void combat(Creature creature) {
 
-            }
+    }
 
-            public void singleRoll(){
+    public void singleRoll() {
 
-            }
+    }
 
-            public void doubleRoll(){
+    public void doubleRoll() {
 
-            }
+    }
 
     public void giveHealthBoost() {
         if (currentPlayer != null) {
