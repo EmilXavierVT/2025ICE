@@ -52,7 +52,7 @@ public class ControllerFX {
     ActionPoint actionPoint;
 
     public ControllerFX(Adventure adventure) {
-        this.adventure = new Adventure();
+        this.adventure = adventure;
         this.actionPoint = adventure.getAp();
     }
 
@@ -71,8 +71,8 @@ public class ControllerFX {
     @FXML
     private void exit(ActionEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        DatabaseManager db = new DatabaseManager();
-        db.savePlayerToDatabase(adventure.getCurrentPlayer());
+       adventure.savePlayerfromAdventure();
+        System.out.println("player saved to database!");
         stage.close();
 
     }
@@ -111,22 +111,22 @@ public class ControllerFX {
         return playerName;
     }
 
-    public void setButtons() {
-        ArrayList<Integer> actionPoints = adventure.getAp().getActionPointList();
-        if (actionPoints.size() == 1)
-            setButtonOne();
-        else if (actionPoints.size() == 2)
-            setButtonTwo();
-        else if (actionPoints.size() == 3)
-            setButtonThree();
-        else if (actionPoints.size() == 4)
-            setButtonFour();
-        else if (actionPoints.size() == 5)
-            setButtonFive();
-        else if (actionPoints.size() == 6)
-            setButtonSix();
-
-        }
+//    public void setButtons() {
+//        ArrayList<Integer> actionPoints = adventure.getAp().getActionPointList();
+//        if (actionPoints.size() == 1)
+//            setButtonOne();
+//        else if (actionPoints.size() == 2)
+//            setButtonTwo();
+//        else if (actionPoints.size() == 3)
+//            setButtonThree();
+//        else if (actionPoints.size() == 4)
+//            setButtonFour();
+//        else if (actionPoints.size() == 5)
+//            setButtonFive();
+//        else if (actionPoints.size() == 6)
+//            setButtonSix();
+//
+//        }
         public void setButtonOne () {
             //button 1 visable
             // butten 2 3 4 5 6 unvisable

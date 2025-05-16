@@ -13,7 +13,7 @@ public class Adventure {
     private int attack = rollAttackAndLuck();
     private int luck = rollAttackAndLuck();
     private ActionPoint ap;
-    private DatabaseManager dm;
+    private DatabaseManager dm = new DatabaseManager();
     private int starterRoom =dm.selectActionPoints(401).getID();
 
     public Adventure() {
@@ -74,6 +74,11 @@ public class Adventure {
 
     public ActionPoint getAp() {
         return ap;
+    }
+
+
+    public void savePlayerfromAdventure() {
+        dm.savePlayerToDatabase(currentPlayer);
     }
 }
 

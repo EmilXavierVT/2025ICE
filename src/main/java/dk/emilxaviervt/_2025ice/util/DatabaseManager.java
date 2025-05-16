@@ -8,7 +8,11 @@ import java.sql.*;
 
 
 public class DatabaseManager  {
-    Connection con;
+    Connection con ;
+
+    public DatabaseManager() {
+        connect();
+    }
 
 
     public void connect() {
@@ -24,7 +28,7 @@ public class DatabaseManager  {
     }
 
     public Player selectPlayers(String name) {
-        String query = "SELECT * FROM Player";
+        String query = "SELECT * FROM Players";
 
         try {
             Statement statement = con.createStatement();
@@ -57,7 +61,7 @@ public class DatabaseManager  {
         return null;
     }
     public void savePlayerToDatabase(Player player){
-        connect();
+//        connect();
         String query = "INSERT INTO Players(name,currentHealth,currentAttack,currentLuck,maxHealth,maxAttack,maxLuck,isEquipped,inventory_id,currentActionPoint,goldCoin,foodRation,starterPotion) " +
                 "VALUES(" +
                "'"     +
