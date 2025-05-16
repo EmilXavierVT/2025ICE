@@ -3,6 +3,9 @@ package dk.emilxaviervt._2025ice.VFX;
 import dk.emilxaviervt._2025ice.gameLogic.Adventure;
 import dk.emilxaviervt._2025ice.userLogic.ActionPoint;
 import dk.emilxaviervt._2025ice.util.DatabaseManager;
+import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
@@ -12,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 
@@ -37,7 +41,13 @@ public class ControllerFX {
     @FXML
     private Button GTButton3;
     @FXML
-    private Button goToActionPoint5;
+    private Button GTButton4;
+    @FXML
+    private Button GTButton5;
+    @FXML
+    private Button GTButton6;
+    @FXML
+    private Label descriptionLabel;
 
     private BooleanProperty loginIsCompleted = new SimpleBooleanProperty(false);
     public String playerName;
@@ -59,15 +69,15 @@ public class ControllerFX {
 
     @FXML
     private void eatOneFood(ActionEvent event) {
-        adventure.giveHealthBoost();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        adventure.giveHealthBoost();
         System.out.println("det virker!");
     }
 
     @FXML
     private void exit(ActionEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-       adventure.savePlayerfromAdventure();
+        adventure.savePlayerfromAdventure();
         System.out.println("player saved to database!");
         stage.close();
 
@@ -83,7 +93,7 @@ public class ControllerFX {
         String name = handleTextField(event);
         adventure.getCurrentPlayer().setName(name);
         loginIsCompleted.set(true);
-        ;
+
     }
 
     @FXML
@@ -107,30 +117,19 @@ public class ControllerFX {
         return playerName;
     }
 
-//    public void setButtons() {
-//        ArrayList<Integer> actionPoints = adventure.getAp().getActionPointList();
-//        if (actionPoints.size() == 1)
-//            setButtonOne();
-//        else if (actionPoints.size() == 2)
-//            setButtonTwo();
-//        else if (actionPoints.size() == 3)
-//            setButtonThree();
-//        else if (actionPoints.size() == 4)
-//            setButtonFour();
-//        else if (actionPoints.size() == 5)
-//            setButtonFive();
-//        else if (actionPoints.size() == 6)
-//            setButtonSix();
-//
-//        }
-        public void setButtonOne () {
-            //button 1 visable
-            // butten 2 3 4 5 6 unvisable
-        }
-        public void setButtonTwo () {
-            //button 1 2 visable
-            // butten  3 4 5 6 unvisable
-        }
+
+    @FXML
+    public void pressOfGoto(ActionEvent event) {
+        setVisibilityonGTButons();
+        Button sourceButton = (Button) event.getSource(); // Get the source and cast it to Button
+        String buttonText = sourceButton.getText();
+        int actionPointID = Integer.parseInt(buttonText);
+        // Get the text on the button
+        System.out.println(buttonText);
+        displayDescription(actionPointID);// For demonstration
+        adventure.actionPointEvents();
+
+
     }
 
     public ActionPoint displayDescription(int pressedAPID) {
@@ -145,7 +144,14 @@ public class ControllerFX {
     }
 
     private void setScrollPaneText(String text) {
-        descriptionLabel.setText(text);
+        //Sets the text to be invisible
+        descriptionLabel.setOpacity(0.0);
+
+        //Typing animation
+        typingAnimation(descriptionLabel, text, 10);
+
+        //Animates the text to be visible
+        animateDescription(descriptionLabel);
 
     }
 
@@ -226,4 +232,33 @@ public class ControllerFX {
         GTButton6.setVisible(false);
    }
 
+
+
+    private void animateDescription(Label label){
+    FadeTransition fade = new FadeTransition(Duration.seconds(5),label);
+    fade.setFromValue(0.0);
+    fade.setToValue(1.0);
+    fade.play();
+    }
+    private void typingAnimation(Label label, String text, double speed){
+        label.setText("");
+
+        Timeline timeline = new Timeline();
+        int[] index = {0};
+
+        KeyFrame keyframe = new KeyFrame(Duration.millis(speed), event ->  {
+            if(index[0] < text.length()){
+                label.setText(label.getText() + text.charAt(index[0]));
+                index[0]++;
+            }
+        });
+        timeline.getKeyFrames().add(keyframe);
+        timeline.setCycleCount(text.length());
+        timeline.play();
+    }
+
+
+
+
 }
+

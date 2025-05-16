@@ -33,8 +33,6 @@ public class ActionPoint {
         this.itemNeeded = itemNeeded;
         this.goldCoins = goldCoins;
         this.actionPointList = actionPointList(availableActionPoints);
-
-
         this.containedCreature = containedCreature;
         this.isFinal = isFinal;
         this.winnerActionPoint = winnerActionPoint;
@@ -65,6 +63,8 @@ public class ActionPoint {
         }
         return actionPointList;
     }
+
+
 
 
 

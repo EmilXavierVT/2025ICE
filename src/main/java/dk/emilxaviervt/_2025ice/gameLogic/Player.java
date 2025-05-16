@@ -3,6 +3,7 @@ package dk.emilxaviervt._2025ice.gameLogic;
 import dk.emilxaviervt._2025ice.Items.Item;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.function.Consumer;
 
 public class Player {
@@ -101,7 +102,20 @@ public class Player {
 
 
     //change foodRations
-    public void changeFoodRations(int foodRations) {this.foodRations += foodRations;}
+    public void changeFoodRations(int foodRations) {
+       this.foodRations += foodRations;
+       if (foodRations >= 100){
+           this.foodRations = 0;
+       }
+
+
+
+   }
+    public void removeOneItemFromInventory(){
+       Random random = new Random();
+        int rdm = random.nextInt(1, inventory.size());
+            inventory.remove(rdm);
+        }
 
 
 //    public void consumeItem(Consumable potion){
