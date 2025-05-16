@@ -102,7 +102,7 @@ public class ActionPoint {
 
     public int getContainItem() {return containItem;}
 
-    public int isItemNeeded() {return itemNeeded;}
+    public int getItemNeeded() {return itemNeeded;}
 
     public int getGoldCoins() {return goldCoins;}
 
@@ -110,21 +110,24 @@ public class ActionPoint {
 
     public String getContainedCreature() {return containedCreature;}
 
-    public boolean isFinal() {return isFinal;}
+    public boolean getIsFinal() {return isFinal;}
 
-    public boolean isWinnerActionPoint() {return winnerActionPoint;}
+    public boolean getWinnerActionPoint() {return winnerActionPoint;}
 
-    public boolean isLuckRoll() {return luckRoll;}
+    public boolean getLuckRoll() {return luckRoll;}
 
     public int getChangeAttackPoints() {return changeAttackPoints;}
 
     public int getChangeHealthPoints() {return changeHealthPoints;}
 
-    public boolean isDieRoll() {return dieRoll;}
+    public boolean getDieRoll() {return dieRoll;}
 
     public int getEvent() {return event;}
+
+
 
     public ArrayList<Integer> getActionPointList() {
         return actionPointList;
     }
 }
+

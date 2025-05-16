@@ -1,5 +1,6 @@
 package dk.emilxaviervt._2025ice.gameLogic;
 
+import dk.emilxaviervt._2025ice.Items.Item;
 import dk.emilxaviervt._2025ice.userLogic.ActionPoint;
 import dk.emilxaviervt._2025ice.util.DatabaseManager;
 

@@ -1,5 +1,6 @@
 package dk.emilxaviervt._2025ice.util;
 
+import dk.emilxaviervt._2025ice.Items.Item;
 import dk.emilxaviervt._2025ice.gameLogic.Player;
 import dk.emilxaviervt._2025ice.userLogic.ActionPoint;
 import javafx.scene.chart.ScatterChart;
@@ -164,6 +165,38 @@ public class DatabaseManager  {
         }
         return null;
     }
+
+
+    public Item selectItem(int caseID){
+        String query = "SELECT * FROM ITEMLIST";
+        try {
+            Statement statement = con.createStatement();
+
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                if(rs.getInt("id") == caseID ){
+                    Item item = new Item(
+                            rs.getInt("id"),
+                            rs.getString("description"),
+                            rs.getString("name"),
+                            rs.getBoolean("consumable"),
+                            rs.getBoolean("equipable"),
+                            rs.getBoolean("potions"),
+                            rs.getInt("potency"));
+
+
+                    return item;
+                }
+
+            }
+
+
+        }catch (SQLException e){
+            System.out.println("Error: " + e.getMessage());
+        }
+        return null;
+    }
+
 
     /*
     public void getBalanceOfPlayer() {
