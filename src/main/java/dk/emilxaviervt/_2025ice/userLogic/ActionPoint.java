@@ -32,7 +32,7 @@ public class ActionPoint {
         this.containItem = containItem;
         this.itemNeeded = itemNeeded;
         this.goldCoins = goldCoins;
-        this.actionPointList = actionPointlist(availableActionPoints);
+        this.actionPointList = actionPointList(availableActionPoints);
 
 
         this.containedCreature = containedCreature;
@@ -46,17 +46,26 @@ public class ActionPoint {
     }
     //METODER
 
-private ArrayList<Integer> actionPointlist(String list){
+    private ArrayList<Integer> actionPointList(String list) {
         ArrayList<Integer> actionPointList = new ArrayList<>();
 
-        String [] values = list.split(",");
-        for (String s :values){
-            actionPointList.add(Integer.parseInt(s));
-
+        if (list != null && !list.trim().isEmpty()) {
+            String[] values = list.split(",");
+            for (String s : values) {
+                s = s.trim();
+                if (!s.isEmpty()) {
+                    try {
+                        actionPointList.add(Integer.parseInt(s));
+                    } catch (NumberFormatException e) {
+                        // Optionally log: Malformed action point ID
+                        System.err.println("Warning: Invalid action point ID '" + s + "' in availableActionPoints.");
+                    }
+                }
+            }
         }
-
         return actionPointList;
-};
+    }
+
 
 
 

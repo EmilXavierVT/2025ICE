@@ -80,6 +80,10 @@ public class Adventure {
     public void savePlayerfromAdventure() {
         dm.savePlayerToDatabase(currentPlayer);
     }
+
+    public DatabaseManager getDm() {
+        return dm;
+    }
 }
 
 

@@ -31,15 +31,11 @@ public class ControllerFX {
     @FXML
     private TextField loginTextField;
     @FXML
-    private Button goToActionPoint0;
+    private Button GTButton1;
     @FXML
-    private Button goToActionPoint1;
+    private Button GTButton2;
     @FXML
-    private Button goToActionPoint2;
-    @FXML
-    private Button goToActionPoint3;
-    @FXML
-    private Button goToActionPoint4;
+    private Button GTButton3;
     @FXML
     private Button goToActionPoint5;
 
@@ -137,3 +133,97 @@ public class ControllerFX {
         }
     }
 
+    public ActionPoint displayDescription(int pressedAPID) {
+        // description
+        // hver gang vi klikker på en knap
+        ActionPoint newAP = adventure.getDm().selectActionPoints(pressedAPID);
+        setScrollPaneText(newAP.getDescription());
+        setNameOfGTButtons(newAP);
+        return newAP;
+
+
+    }
+
+    private void setScrollPaneText(String text) {
+        descriptionLabel.setText(text);
+
+    }
+
+    private void setNameOfGTButtons(ActionPoint newAP) {
+        ArrayList<Integer> AAPList = newAP.getActionPointList();
+
+        for (int i = 0; i <AAPList.size(); i++) {
+            setButtonName((i + 1), AAPList.get(i));
+
+
+        }
+
+
+    }
+
+    private void setButtonName(int id, int displaymessage) {
+        //
+        switch (id) {
+            case 1:
+                GTButton1.setText(displaymessage + "");
+                GTButton1.setVisible(true);
+                break;
+            case 2:
+
+                GTButton2.setText(displaymessage + "");
+                GTButton2.setVisible(true);
+                break;
+            case 3:
+                GTButton3.setText(displaymessage + "");
+                GTButton3.setVisible(true);
+                break;
+            case 4:
+                GTButton4.setText(displaymessage + "");
+                GTButton4.setVisible(true);
+                break;
+            case 5:
+                GTButton5.setText(displaymessage + "");
+                GTButton5.setVisible(true);
+                break;
+            case 6:
+                GTButton6.setText(displaymessage + "");
+                GTButton6.setVisible(true);
+                break;
+            default:
+                System.out.println("Error at switch-case chain in setButtonName() in ControllerFX.java");
+        }
+
+
+//                    if(id == 1){
+//                    );
+//                    }
+//                    else if (i == 2){
+//                        setButtonValues2(nextPoints.get(i-1));
+//                    }
+//                    else if (i == 3){
+//                        setButtonValues3(nextPoints.get(i-1));
+//                    }
+//                     else if (i == 4){
+//                        setButtonValues4(nextPoints.get(i-1));
+//                    } else if (i == 5){
+//                        setButtonValues5(nextPoints.get(i-1));
+//                    } else if (i == 6){
+//                        setButtonValues6(nextPoints.get(i-1));
+//                    }
+//                    else {
+//                        System.out.println("Error at else-if chain in fillNewButtons() in ControllerFX.java");
+//                    }
+//                }
+//    }
+
+    }
+   private void setVisibilityonGTButons(){
+        GTButton1.setVisible(false);
+        GTButton2.setVisible(false);
+        GTButton3.setVisible(false);
+        GTButton4.setVisible(false);
+        GTButton5.setVisible(false);
+        GTButton6.setVisible(false);
+   }
+
+}
