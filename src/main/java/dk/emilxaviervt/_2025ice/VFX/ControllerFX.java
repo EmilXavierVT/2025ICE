@@ -14,10 +14,12 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ControllerFX {
     @FXML
@@ -48,6 +50,34 @@ public class ControllerFX {
     private Button GTButton6;
     @FXML
     private Label descriptionLabel;
+    @FXML
+    private ImageView dice1;
+    @FXML
+    private ImageView dice2;
+    @FXML
+    private ImageView dice3;
+    @FXML
+    private ImageView dice4;
+    @FXML
+    private ImageView dice5;
+    @FXML
+    private ImageView dice6;
+    @FXML
+    private ImageView dice7;
+    @FXML
+    private ImageView dice8;
+    @FXML
+    private ImageView dice9;
+    @FXML
+    private ImageView dice10;
+    @FXML
+    private ImageView dice11;
+    @FXML
+    private ImageView dice12;
+
+
+
+
 
     private BooleanProperty loginIsCompleted = new SimpleBooleanProperty(false);
     public String playerName;
@@ -107,6 +137,84 @@ public class ControllerFX {
 
     }
 
+    public void rollDice(int numberOfDice){
+        Random random = new Random();
+        int rdm;
+        if(numberOfDice == 1){
+            rdm = random.nextInt(1, 7);
+            showDice(rdm);
+        }else if(numberOfDice == 2) {
+            rdm = random.nextInt(2, 13);
+            showDice(rdm);
+        }
+
+    }
+    private void showDice(int diceNumber){
+
+        switch (diceNumber){
+            case 1:
+                dice1.setVisible(true);
+                break;
+            case 2:
+                dice2.setVisible(true);
+                break;
+            case 3:
+                dice3.setVisible(true);
+                break;
+            case 4:
+                dice4.setVisible(true);
+                break;
+            case 5:
+                dice5.setVisible(true);
+                break;
+            case 6:
+                dice6.setVisible(true);
+                break;
+            case 7:
+                dice6.setVisible(true);
+                dice7.setVisible(true);
+                break;
+            case 8:
+                dice6.setVisible(true);
+                dice8.setVisible(true);
+                break;
+            case 9:
+                dice6.setVisible(true);
+                dice9.setVisible(true);
+                break;
+            case 10:
+                dice6.setVisible(true);
+                dice10.setVisible(true);
+                break;
+            case 11:
+                dice6.setVisible(true);
+                dice11.setVisible(true);
+                break;
+            case 12:
+                dice6.setVisible(true);
+                dice12.setVisible(true);
+                break;
+            default:
+                    System.out.println("something went wrong in showDice() in ControllerFX.java, diceNumber:");
+        }
+
+    }
+
+    private void setDiceInvisible(){
+        dice1.setVisible(false);
+        dice2.setVisible(false);
+        dice3.setVisible(false);
+        dice4.setVisible(false);
+        dice5.setVisible(false);
+        dice6.setVisible(false);
+        dice7.setVisible(false);
+        dice8.setVisible(false);
+        dice9.setVisible(false);
+        dice10.setVisible(false);
+        dice11.setVisible(false);
+        dice12.setVisible(false);
+    }
+
     public BooleanProperty loginCompletedProperty() {
         return loginIsCompleted;
     }
@@ -120,13 +228,26 @@ public class ControllerFX {
 
     @FXML
     public void pressOfGoto(ActionEvent event) {
+        setDiceInvisible();
+
         setVisibilityonGTButons();
         Button sourceButton = (Button) event.getSource(); // Get the source and cast it to Button
         String buttonText = sourceButton.getText();
         int actionPointID = Integer.parseInt(buttonText);
+        if(adventure.getDm().selectActionPoints(actionPointID).getLuckRoll()){
+            rollDice(2);
+        } else if (adventure.getDm().selectActionPoints(actionPointID).getEvent()==1) {
+            rollDice(1);
+        } else if (adventure.getDm().selectActionPoints(actionPointID).getEvent()==2) {
+            rollDice(2);
+        }
+        if(adventure.getDm().selectActionPoints(actionPointID).getDieRoll()){
+            rollDice(2);
+        }
         // Get the text on the button
         System.out.println(buttonText);
-        displayDescription(actionPointID);// For demonstration
+        System.out.println(adventure.getDm().selectActionPoints(actionPointID).getDescription());
+        displayDescription(actionPointID);// dnfw.... srsly
         adventure.actionPointEvents();
 
 
@@ -240,20 +361,25 @@ public class ControllerFX {
     fade.setToValue(1.0);
     fade.play();
     }
-    private void typingAnimation(Label label, String text, double speed){
+
+    private void typingAnimation(Label label, String text, double speed) {
         label.setText("");
+        StringBuilder displayedText = new StringBuilder();
 
         Timeline timeline = new Timeline();
         int[] index = {0};
 
-        KeyFrame keyframe = new KeyFrame(Duration.millis(speed), event ->  {
-            if(index[0] < text.length()){
-                label.setText(label.getText() + text.charAt(index[0]));
+        KeyFrame keyframe = new KeyFrame(Duration.millis(speed), event -> {
+            if (index[0] < text.length()) {
+                displayedText.append(text.charAt(index[0]));
+                label.setText(displayedText.toString());
                 index[0]++;
             }
         });
+
         timeline.getKeyFrames().add(keyframe);
         timeline.setCycleCount(text.length());
+        timeline.setOnFinished(event -> label.setText(text));
         timeline.play();
     }
 

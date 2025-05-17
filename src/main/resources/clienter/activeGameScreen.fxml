@@ -32,67 +32,67 @@
       </ImageView>
       <StackPane layoutX="630.0" layoutY="341.0" prefHeight="54.0" prefWidth="62.0" translateY="-20.0">
          <children>
-            <ImageView fx:id="dice1" fitHeight="54.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dice1" fitHeight="54.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../../../../../diceFaces/inverted-dice-1.png" />
+                  <Image url="@../images/inverted-dice-1.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="dice2" fitHeight="54.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dice2" fitHeight="54.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../../../../../diceFaces/inverted-dice-2.png" />
+                  <Image url="@../images/inverted-dice-2.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="dice3" fitHeight="54.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dice3" fitHeight="54.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../../../../../diceFaces/inverted-dice-3.png" />
+                  <Image url="@../images/inverted-dice-3.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="dice4" fitHeight="62.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dice4" fitHeight="62.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../../../../../diceFaces/inverted-dice-4.png" />
+                  <Image url="@../images/inverted-dice-4.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="dice5" fitHeight="77.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dice5" fitHeight="77.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../../../../../diceFaces/inverted-dice-5.png" />
+                  <Image url="@../images/inverted-dice-5.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="dice6" fitHeight="63.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dice6" fitHeight="63.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../../../../../diceFaces/inverted-dice-6.png" />
+                  <Image url="@../images/inverted-dice-6.png" />
                </image>
             </ImageView>
          </children></StackPane>
       <StackPane layoutX="640.0" layoutY="351.0" prefHeight="54.0" prefWidth="62.0" translateX="-10.0" translateY="32.0">
          <children>
-            <ImageView fx:id="dice7" fitHeight="54.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dice7" fitHeight="54.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../../../../../diceFaces/inverted-dice-1.png" />
+                  <Image url="@../images/inverted-dice-1.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="dice8" fitHeight="54.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dice8" fitHeight="54.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../../../../../diceFaces/inverted-dice-2.png" />
+                  <Image url="@../images/inverted-dice-2.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="dice9" fitHeight="54.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dice9" fitHeight="54.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../../../../../diceFaces/inverted-dice-3.png" />
+                  <Image url="@../images/inverted-dice-3.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="dice10" fitHeight="62.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dice10" fitHeight="62.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../../../../../diceFaces/inverted-dice-4.png" />
+                  <Image url="@../images/inverted-dice-4.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="dice11" fitHeight="77.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dice11" fitHeight="77.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../../../../../diceFaces/inverted-dice-5.png" />
+                  <Image url="@../images/inverted-dice-5.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="dice12" fitHeight="63.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dice12" fitHeight="63.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../../../../../diceFaces/inverted-dice-6.png" />
+                  <Image url="@../images/inverted-dice-6.png" />
                </image>
             </ImageView>
          </children>
