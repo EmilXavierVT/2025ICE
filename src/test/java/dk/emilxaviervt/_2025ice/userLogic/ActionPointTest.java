@@ -1,11 +1,8 @@
 package dk.emilxaviervt._2025ice.userLogic;
 
+import dk.emilxaviervt._2025ice.gameLogic.ActionPoint;
 import dk.emilxaviervt._2025ice.util.DatabaseManager;
 import org.junit.jupiter.api.Test;
-
-import java.sql.Connection;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ActionPointTest {
 

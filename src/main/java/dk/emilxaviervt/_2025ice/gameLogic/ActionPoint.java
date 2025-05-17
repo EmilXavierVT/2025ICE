@@ -1,4 +1,6 @@
-package dk.emilxaviervt._2025ice.userLogic;
+package dk.emilxaviervt._2025ice.gameLogic;
+
+import dk.emilxaviervt._2025ice.util.DatabaseManager;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -10,7 +12,7 @@ public class ActionPoint {
     private int itemNeeded;
     private int goldCoins;
     private String availableActionPoints;
-    private String containedCreature;
+
     private boolean isFinal;
     private boolean winnerActionPoint;
     private boolean luckRoll;
@@ -19,6 +21,7 @@ public class ActionPoint {
     private boolean dieRoll;
     private int event;
     private ArrayList<Integer> actionPointList;
+    private ArrayList<Creature> containedCreatures;
 
     Connection con;
 
@@ -33,7 +36,7 @@ public class ActionPoint {
         this.itemNeeded = itemNeeded;
         this.goldCoins = goldCoins;
         this.actionPointList = actionPointList(availableActionPoints);
-        this.containedCreature = containedCreature;
+        this.containedCreatures = creatureListFromString(containedCreature);
         this.isFinal = isFinal;
         this.winnerActionPoint = winnerActionPoint;
         this.luckRoll = luckRoll;
@@ -66,6 +69,26 @@ public class ActionPoint {
 
 
 
+    private ArrayList<Creature> creatureListFromString(String list) {
+        ArrayList<Creature> creatureArrayList = new ArrayList<>();
+        DatabaseManager dm = new DatabaseManager();
+
+        if (list != null && !list.trim().isEmpty()) {
+            String[] values = list.split(",");
+            for (String s : values) {
+                s = s.trim();
+                if (!s.isEmpty()) {
+                    try {
+                        creatureArrayList.add(dm.selectCreature(Integer.parseInt(s)));
+                    } catch (NumberFormatException e) {
+                        // Optionally log: Malformed action point ID
+                        System.err.println("Warning: Invalid action point ID '" + s + "' in availableActionPoints.");
+                    }
+                }
+            }
+        }
+        return creatureArrayList;
+    }
 
 
 
@@ -108,7 +131,7 @@ public class ActionPoint {
 
     public String getAvailableActionPoints() {return availableActionPoints;}
 
-    public String getContainedCreature() {return containedCreature;}
+    public ArrayList<Creature> getContainedCreatures() {return containedCreatures;}
 
     public boolean getIsFinal() {return isFinal;}
 

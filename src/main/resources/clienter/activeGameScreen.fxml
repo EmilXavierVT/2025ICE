@@ -173,9 +173,11 @@
       <Label layoutX="13.0" layoutY="147.0" prefHeight="42.0" prefWidth="54.0" text="Health:" textFill="WHITE" wrapText="true" />
       <Label layoutX="13.0" layoutY="190.0" prefHeight="42.0" prefWidth="54.0" text="Attack:" textFill="WHITE" wrapText="true" />
       <Label layoutX="13.0" layoutY="232.0" prefHeight="42.0" prefWidth="54.0" text="Luck:" textFill="WHITE" wrapText="true" />
-      <Button layoutX="5.0" layoutY="274.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="70.0" text="Test Luck" wrapText="true" />
       <Button layoutX="633.0" layoutY="381.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="62.0" text="Test Invisible" visible="false" wrapText="true" />
       <Button layoutX="14.0" layoutY="325.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Dice1: " />
       <Button layoutX="14.0" layoutY="367.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Dice2:" />
+      <Label fx:id="healthAmount" layoutX="13.0" layoutY="180.0" scaleY="1.2" textFill="#37a82d" />
+      <Label fx:id="attackAmount" layoutX="14.0" layoutY="223.0" textFill="#da283d" />
+      <Label fx:id="luckAmount" layoutX="14.0" layoutY="274.0" textFill="#b273f2" />
    </children>
 </AnchorPane>

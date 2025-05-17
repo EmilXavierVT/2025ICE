@@ -1,9 +1,9 @@
 package dk.emilxaviervt._2025ice.util;
 
 import dk.emilxaviervt._2025ice.Items.Item;
+import dk.emilxaviervt._2025ice.gameLogic.Creature;
 import dk.emilxaviervt._2025ice.gameLogic.Player;
-import dk.emilxaviervt._2025ice.userLogic.ActionPoint;
-import javafx.scene.chart.ScatterChart;
+import dk.emilxaviervt._2025ice.gameLogic.ActionPoint;
 
 import java.sql.*;
 
@@ -91,8 +91,23 @@ public class DatabaseManager  {
             }
 
         }
-
     }
+
+
+    // Learning curve for mig, daniel
+//    du skal tage alle items fra Itemlist table du skal bruge SQL for at tage dem ud af databasen .
+//
+
+//    for at gøre dette skal du lave en metode der returnerer en arraylist af items.
+//    du skal også lave en constructor til items så du kan retunere et Item af items fra databasen.
+//    din metode skal retunere et Item af items fra databasen.
+//    se selectPlayerfromDatabase
+
+
+//     senere skal du lave en metode som kalder denne metode i adventure eller actionPoint classen og laver en arrayliste som vi kan manipulere i adventure eller actionPoint classen.
+
+
+
 
     public void selectItems() {
         String query = "SELECT * FROM ItemList";
@@ -165,6 +180,40 @@ public class DatabaseManager  {
         }
         return null;
     }
+
+
+    public Creature selectCreature(int caseId) {
+        String query = "SELECT * FROM Creatures";
+        try {
+            Statement statement = con.createStatement();
+
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                if(rs.getInt("id") == caseId ){
+                    Creature creature = new Creature(
+                            rs.getInt("id"),
+                            rs.getString("name"),
+                            rs.getInt("endurance"),
+                            rs.getInt("combatPower"));
+
+
+                    return creature;
+                }
+
+            }
+
+
+        }catch (SQLException e){
+            System.out.println("Error: " + e.getMessage());
+        }
+        return null;
+    }
+
+
+
+
+
+
 
 
     public Item selectItem(int caseID){
