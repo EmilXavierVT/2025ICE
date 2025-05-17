@@ -134,7 +134,6 @@ public class ControllerFX {
     @FXML
     private String handleTextField(ActionEvent event) {
         return loginTextField.getText();
-
     }
 
     public void rollDice(int numberOfDice){

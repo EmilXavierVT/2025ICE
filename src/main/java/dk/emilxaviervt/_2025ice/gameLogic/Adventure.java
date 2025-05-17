@@ -70,7 +70,7 @@ public class Adventure {
 
                     if (currentPlayer.getInventory().contains(dm.selectItem(17))){
                         currentPlayer.removeFromInventory(dm.selectItem(17));
-                    };
+                    }
                     break;
                 case 10:
                     if(currentPlayer.isEquipped){
@@ -233,21 +233,21 @@ public class Adventure {
 
     public int dieRoll(){
         Random random = new Random();
-        int rs = random.nextInt(1, 6);
+        int rs = random.nextInt(1, 7);
         return rs;
     }
 // metode til at skabe nye spilere
 
     private int rollHealth() {
         Random random = new Random();
-        int rs = random.nextInt(1, 6);
-        int rs2 = random.nextInt(1, 6);
+        int rs = random.nextInt(1, 7);
+        int rs2 = random.nextInt(1, 7);
         return rs +rs2+ 12;
     }
 
     private int rollAttackAndLuck() {
         Random random = new Random();
-        int rs = random.nextInt(1, 6);
+        int rs = random.nextInt(1, 7);
         return rs + 6;
     }
 
