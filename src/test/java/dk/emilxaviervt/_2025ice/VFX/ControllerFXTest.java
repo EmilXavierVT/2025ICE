@@ -9,9 +9,8 @@ class ControllerFXTest {
 
     @Test
     void displayDescription() {
-        ControllerFX cfx = new ControllerFX(new Adventure());
-
-
+        ControllerFX cfx = new ControllerFX();
+        cfx.setAdventure(new Adventure());
 
     }
 }

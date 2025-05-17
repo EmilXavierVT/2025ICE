@@ -53,4 +53,12 @@ package dk.emilxaviervt._2025ice.Items;
         public String getName() {return name;}
 
         public String getDescription() {return description;}
+
+
+        @Override
+        public String toString() {
+            return "Item{" +
+                    "name='" + name + '\'' +
+                    '}';
+        }
     }

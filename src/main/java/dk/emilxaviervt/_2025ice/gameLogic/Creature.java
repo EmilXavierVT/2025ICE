@@ -49,6 +49,16 @@ public class Creature {
     public void changeCurrentHealth(int i) {
         this.currentHealth += i;
     }
+
+    @Override
+    public String toString() {
+        return "Creature{" +
+                "id=" + id +
+                ", creatureName='" + creatureName + '\'' +
+                ", currentHealth=" + currentHealth +
+                ", currentAttack=" + currentAttack +
+                '}';
+    }
 }
 
 

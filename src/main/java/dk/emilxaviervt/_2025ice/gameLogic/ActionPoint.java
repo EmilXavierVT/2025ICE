@@ -1,5 +1,6 @@
 package dk.emilxaviervt._2025ice.gameLogic;
 
+import dk.emilxaviervt._2025ice.Items.Item;
 import dk.emilxaviervt._2025ice.util.DatabaseManager;
 
 import java.sql.Connection;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 public class ActionPoint {
     private int ID;
     private String description;
-    private int containItem;
+    private Item containItem;
     private int itemNeeded;
     private int goldCoins;
     private String availableActionPoints;
@@ -20,15 +21,15 @@ public class ActionPoint {
     private int changeHealthPoints;
     private boolean dieRoll;
     private int event;
-    private ArrayList<Integer> actionPointList;
-    private ArrayList<Creature> containedCreatures;
+    private ArrayList<Integer> actionPointList= new ArrayList<>();
+    private ArrayList<Creature> containedCreatures = new ArrayList<>();
 
     Connection con;
 
 
 
-    public ActionPoint(int ID, String description, int containItem, int itemNeeded, int goldCoins,
-                       String availableActionPoints, String containedCreature, boolean isFinal, boolean winnerActionPoint,
+    public ActionPoint(int ID, String description, Item containItem, int itemNeeded, int goldCoins,
+                       String availableActionPoints, ArrayList<Creature> containedCreatures, boolean isFinal, boolean winnerActionPoint,
                        boolean luckRoll, int changeAttackPoints, int changeHealthPoints, boolean dieRoll, int event) {
         this.ID = ID;
         this.description = description;
@@ -36,7 +37,7 @@ public class ActionPoint {
         this.itemNeeded = itemNeeded;
         this.goldCoins = goldCoins;
         this.actionPointList = actionPointList(availableActionPoints);
-        this.containedCreatures = creatureListFromString(containedCreature);
+        this.containedCreatures = containedCreatures;
         this.isFinal = isFinal;
         this.winnerActionPoint = winnerActionPoint;
         this.luckRoll = luckRoll;
@@ -69,26 +70,26 @@ public class ActionPoint {
 
 
 
-    private ArrayList<Creature> creatureListFromString(String list) {
-        ArrayList<Creature> creatureArrayList = new ArrayList<>();
-        DatabaseManager dm = new DatabaseManager();
-
-        if (list != null && !list.trim().isEmpty()) {
-            String[] values = list.split(",");
-            for (String s : values) {
-                s = s.trim();
-                if (!s.isEmpty()) {
-                    try {
-                        creatureArrayList.add(dm.selectCreature(Integer.parseInt(s)));
-                    } catch (NumberFormatException e) {
-                        // Optionally log: Malformed action point ID
-                        System.err.println("Warning: Invalid action point ID '" + s + "' in availableActionPoints.");
-                    }
-                }
-            }
-        }
-        return creatureArrayList;
-    }
+//    private ArrayList<Creature> creatureListFromString(String list) {
+//        ArrayList<Creature> creatureArrayList = new ArrayList<>();
+//        DatabaseManager dm = new DatabaseManager();
+//
+//        if (list != null && !list.trim().isEmpty()) {
+//            String[] values = list.split(",");
+//            for (String s : values) {
+//                s = s.trim();
+//                if (!s.isEmpty()) {
+//                    try {
+//                        creatureArrayList.add(dm.selectCreature(Integer.parseInt(s)));
+//                    } catch (NumberFormatException e) {
+//                        // Optionally log: Malformed action point ID
+//                        System.err.println("Warning: Invalid action point ID '" + s + "' in availableActionPoints.");
+//                    }
+//                }
+//            }
+//        }
+//        return creatureArrayList;
+//    }
 
 
 
@@ -123,7 +124,7 @@ public class ActionPoint {
 
     public String getDescription() {return description;}
 
-    public int getContainItem() {return containItem;}
+    public Item getContainItem() {return containItem;}
 
     public int getItemNeeded() {return itemNeeded;}
 

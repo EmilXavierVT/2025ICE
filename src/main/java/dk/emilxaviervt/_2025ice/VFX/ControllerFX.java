@@ -1,15 +1,14 @@
 package dk.emilxaviervt._2025ice.VFX;
 
-import dk.emilxaviervt._2025ice.Items.Item;
 import dk.emilxaviervt._2025ice.gameLogic.Adventure;
-import dk.emilxaviervt._2025ice.gameLogic.Player;
 import dk.emilxaviervt._2025ice.gameLogic.ActionPoint;
-import dk.emilxaviervt._2025ice.util.DatabaseManager;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -82,19 +81,20 @@ public class ControllerFX {
     private Label attackAmount;
     @FXML
     private Label luckAmount;
-
-
+    @FXML
+    private ImageView combatSwordImage;
+    @FXML
+    private Label goldAmount;
     private BooleanProperty loginIsCompleted = new SimpleBooleanProperty(false);
     public String playerName;
-
-
-    Stage stage;
-    Adventure adventure;
     ActionPoint actionPoint;
+    Adventure adventure;
+    Stage stage;
 
-    public ControllerFX(Adventure adventure) {
-        this.adventure = adventure;
-        this.actionPoint = adventure.getAp();
+
+
+    public ControllerFX() {
+
     }
 
     @FXML
@@ -106,7 +106,8 @@ public class ControllerFX {
     private void eatOneFood(ActionEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         adventure.giveHealthBoost();
-        System.out.println("det virker!");
+        setStatsAmount();
+        System.out.println("Eat Button has been pressed, player health boosted!");
     }
 
     @FXML
@@ -127,6 +128,7 @@ public class ControllerFX {
     private void login(ActionEvent event) {
         String name = handleTextField(event);
         adventure.getCurrentPlayer().setName(name);
+
         loginIsCompleted.set(true);
 
     }
@@ -144,17 +146,40 @@ public class ControllerFX {
     public int rollDice(int numberOfDice){
         Random random = new Random();
         int rdm=0;
+
+
         if(numberOfDice == 1){
             rdm = random.nextInt(1, 7);
+            for(int i= 0; i< 8;i++){
+                showDice(random.nextInt(1, 7));
+//                try {
+//                    Thread.sleep(500);
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
+            }
             showDice(rdm);
         }else if(numberOfDice == 2) {
             rdm = random.nextInt(2, 13);
+            for(int i= 0; i< 8;i++){
+                showDice(random.nextInt(1, 7));
+                showDice(random.nextInt(7, 13));
+//                try {
+//                    Thread.sleep(500);
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
+
+            }
             showDice(rdm);
         }
         return rdm;
 
     }
     private void showDice(int diceNumber){
+
+
+
 
         switch (diceNumber){
             case 1:
@@ -235,31 +260,38 @@ public class ControllerFX {
 
     @FXML
     public void pressOfGoto(ActionEvent event) {
-        setStatsAmount();
-        setDiceInvisible();
 
+        setDiceInvisible();
+        setCombatSwordImagetoInvisible();
         setVisibilityonGTButons();
         Button sourceButton = (Button) event.getSource(); // Get the source and cast it to Button
         String buttonText = sourceButton.getText();
         int actionPointID = Integer.parseInt(buttonText);
-        if(adventure.getDm().selectActionPoints(actionPointID).getLuckRoll()){
-            rollDice(2);
-        } else if (adventure.getDm().selectActionPoints(actionPointID).getEvent()==1) {
-            rollDice(1);
-        } else if (adventure.getDm().selectActionPoints(actionPointID).getEvent()==2) {
-            rollDice(2);
-        }
-        if(adventure.getDm().selectActionPoints(actionPointID).getDieRoll()){
-            rollDice(2);
-        }
+        adventure.setAp(actionPointID);
+
+        adventure.setActionPointToGUI();
+
+
+        setStatsAmount();
+        adventure.actionPointEvents();
+
         // Get the text on the button
-        System.out.println(buttonText);
-        System.out.println(adventure.getDm().selectActionPoints(actionPointID).getDescription());
+//        System.out.println(buttonText);
+//        System.out.println(adventure.getDm().selectActionPoints(actionPointID).getDescription());
         displayDescription(actionPointID);// dnfw.... srsly
-        actionPointEvents();
+
 
 
     }
+
+    public void setCombatSwordImagetoVisable(){
+        combatSwordImage.setVisible(true);
+    }
+    public void setCombatSwordImagetoInvisible(){
+        combatSwordImage.setVisible(false);
+    }
+
+
 
     public ActionPoint displayDescription(int pressedAPID) {
         // description
@@ -278,6 +310,7 @@ public class ControllerFX {
         healthAmount.setText(adventure.getCurrentPlayer().getCurrentHealth() + "");
         attackAmount.setText(adventure.getCurrentPlayer().getCurrentAttack() + "");
         luckAmount.setText(adventure.getCurrentPlayer().getCurrentLuck() + "");
+        goldAmount.setText(adventure.getCurrentPlayer().getGoldCoins()+"");
 
 
     }
@@ -287,7 +320,7 @@ public class ControllerFX {
         descriptionLabel.setOpacity(0.0);
 
         //Typing animation
-        typingAnimation(descriptionLabel, text, 10);
+        typingAnimation(descriptionLabel, text, 1);
 
         //Animates the text to be visible
         animateDescription(descriptionLabel);
@@ -359,7 +392,7 @@ public class ControllerFX {
     fade.play();
     }
     private void typingAnimation(Label label, String text, double speed){
-        label.setText("");
+        label.setText(" ");
 
         Timeline timeline = new Timeline();
         int[] index = {0};
@@ -399,225 +432,14 @@ public class ControllerFX {
     }
 
 
-    public void actionPointEvents() {
-        Random random = new Random();
-        ActionPoint currentActionPoint = adventure.getAp();
-        Player currentPlayer = adventure.getCurrentPlayer();
-        DatabaseManager dm = adventure.getDm();
-
-//        Metode der behandler alle forskelligheder på actionPoint objektet
-//        hvis et AP har et luck roll, et monster osv
-        if (currentActionPoint.getItemNeeded() != 0) {
-        }
-        if (currentActionPoint.getEvent() != 0) {
-            switch (currentActionPoint.getEvent()) {
-                case 1:
-
-                    rollDice(1);
-                    break;
-                case 2:
-                    rollDice(2);
-                    break;
-                case 3:
-                    currentPlayer.changeFoodRations(-100);
-                    break;
-                case 4:
-                    currentPlayer.changeFoodRations(-10);
-                    currentPlayer.removeOneItemFromInventory();
-                    break;
-                case 5:
-                    currentPlayer.changeFoodRations(-1);
-                    break;
-                case 6:
-                    currentPlayer.removeFromInventory(dm.selectItem(17));
-                    break;
-                case 7:
-                    currentPlayer.changeHealth(dieRoll()+dieRoll());
-                    currentPlayer.changeLuck(-2);
-                    break;
-                case 8:
-                    changeGT1visibility(new ActionEvent(),false);
-                    if(currentPlayer.getInventory().contains(dm.selectItem(35))) {
-//                        set visibility of currentActionPoint to visible
-
-                        changeGT1visibility(new ActionEvent(), true);
-                    }
-                    break;
-                case 9:
-
-                    if (currentPlayer.getInventory().contains(dm.selectItem(17))){
-                        currentPlayer.removeFromInventory(dm.selectItem(17));
-                    }
-                    break;
-                case 10:
-
-                    changeGT1visibility(new ActionEvent(),false);
-                    if(currentPlayer.isEquipped()) {
-
-                        changeGT1visibility(new ActionEvent(), true);}
-                    break;
-                case 11:
-                    currentPlayer.changeFoodRations(-2);
-                    break;
-                case 12:
-                    int rs = dieRoll()+1;
-                    currentPlayer.changeHealth(rs);
-                    break;
-                case 13:
-                    rs = dieRoll()+dieRoll();
-                    currentPlayer.changeHealth(rs);
-                    break;
-                case 14:
-                    adventure.combat(currentActionPoint.getContainedCreatures());
-                    break;
-                case 15:
-//                    kræver combat
-                    break;
-                case 16:
-                    int rdm = random.nextInt(1, 3);
-                    int juvel=rdm;
-                    if(rdm==1){juvel=13;}
-                    else if(rdm==2){juvel=23;}
-                    else if(rdm==3){juvel=25;}
-                    if(currentActionPoint.getID() ==357){currentPlayer.getInventory().remove(dm.selectItem(juvel));}
-                    if(currentActionPoint.getID()==332){currentPlayer.getInventory().remove(dm.selectItem(juvel));}
-                    if(currentActionPoint.getID()==271){currentPlayer.getInventory().remove(dm.selectItem(17));}
-                    if(currentActionPoint.getID()==261){currentPlayer.getInventory().remove(dm.selectItem(32));}
-
-                    break;
-                case 17:
-
-                    changeGT1visibility(new ActionEvent(),false);
-                    if (dieRoll() +dieRoll() == 8) {
-                        changeGT1visibility(new ActionEvent(), true);
-                    }
-
-                    break;
-                case 18:
-                    currentActionPoint.getLuckRoll();
-                    break;
-                case 19:
-
-                    currentPlayer.removeOneItemFromInventory();
-                    currentPlayer.changeLuck(-1);
-                    break;
-                case 20:
-                    ArrayList<Item> inventory = currentPlayer.getInventory();
-                    for(Item i : inventory){
-                        currentPlayer.removeFromInventory(i);
-                    }
-                    currentPlayer.changeLuck(-2);
-                    currentPlayer.changeFoodRations(-10);
-                    break;
-                case 21:
-                    currentPlayer.addToInvertory(dm.selectItem(33));
-                    currentPlayer.changeLuck(1);
-                    break;
-                case 22:
-                    currentPlayer.changeLuck(1);
-                    currentPlayer.addToInvertory(dm.selectItem(12));
-                    currentPlayer.addToInvertory(dm.selectItem(7));
-                    break;
-                case 23:
-                    //Combat metode her (hvis spejldæmon vinder 1 gang over player, gå til AP 8)
-                    break;
-                case 24:
-                    currentPlayer.changeLuck(-2);
-                    break;
-                case 25:
-                    currentPlayer.changeLuck(2);
-                    break;
-                case 26:
-                    currentPlayer.changeHealth(dieRoll()*-1);
-                    break;
-                case 27:
-                    rdm = random.nextInt(1, 3);
-                    if(rdm==1){currentPlayer.changeGoldCoins(-1);}
-                    if(rdm==2){currentPlayer.changeFoodRations(-1);}
-                    if(rdm==3){currentPlayer.removeOneItemFromInventory();}
-                    break;
-                case 28:
-                    changeGT1visibility(new ActionEvent(),false);
-                    currentPlayer.changeLuck(-2);
-                    if(dieRoll()+dieRoll()<= currentPlayer.getCurrentHealth()){
-                    changeGT1visibility(new ActionEvent(), true);
-                        //55
-                    }
-
-                    break;
-                case 29:
-//                    no need for Method
-                    break;
-                case 30:
-                    currentPlayer.removeOneItemFromInventory();
-                    break;
-                case 31:
-                    currentPlayer.changeLuck(-1);
-                    currentPlayer.changeHealth(dieRoll()*-2);
-                    break;
-                case 32:
-                    currentPlayer.changeLuck(1);
-                    break;
-                case 33:
-                    currentPlayer.changeHealth((dieRoll()+2)*-1);
-                    break;
-                case 34:
-                    currentPlayer.addToInvertory(dm.selectItem(26));
-                    currentPlayer.addToInvertory(dm.selectItem(27));
-                    break;
-                default:
-                    System.out.println("Error at switch-case chain in actionPointEvents() in Adventure.java");
-                    break;
-
-            }
-            if (currentActionPoint.getChangeHealthPoints() != 0) {
-                currentPlayer.changeHealth(currentActionPoint.getChangeHealthPoints());
-            }
-            if (currentActionPoint.getChangeAttackPoints() != 0) {
-                currentPlayer.changeAttack(currentActionPoint.getChangeAttackPoints());
-            }
-            if (currentActionPoint.getContainedCreatures() != null) {
-                adventure.combat(currentActionPoint.getContainedCreatures());
-
-
-            }
-
-            if (currentActionPoint.getLuckRoll() == true) {
-
-                changeGT1visibility(new ActionEvent(),false);
-                int rdm =rollDice(2);
-
-                if(rdm < currentPlayer.getCurrentLuck()){changeGT1visibility(new ActionEvent(), true);}
-
-//                gui interface
-
-            }
-            if (currentActionPoint.getContainItem() != 0) {
-                currentPlayer.addToInvertory(dm.selectItem(currentActionPoint.getContainItem()));
-            }
-            if (currentActionPoint.getGoldCoins() != 0) {
-                currentPlayer.changeGoldCoins(currentActionPoint.getGoldCoins());
-            }
-            if (currentActionPoint.getDieRoll() == true) {
-//                GUI interface
-            }
-            if (currentActionPoint.getIsFinal() == true) {
-
-//                end game GUI interface
-            }
-            if (currentActionPoint.getWinnerActionPoint() == true) {
-                System.out.println("Congratz you won!");
-            }
-
-        }
+    public Adventure getAdventure() {
+        return adventure;
     }
 
-    public int dieRoll(){
-        Random random = new Random();
-        int rs = random.nextInt(1, 7);
-        return rs;
+    public void setAdventure(Adventure adventure) {
+        this.adventure = adventure;
+        this.actionPoint = adventure.getAp();
+
     }
-
-
 }
 

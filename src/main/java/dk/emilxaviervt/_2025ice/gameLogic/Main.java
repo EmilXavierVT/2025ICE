@@ -11,7 +11,12 @@ public class Main {
 //        db.connect();
 //        Player player =new Player("Jonas",10,10,10,10,10,10,true,"Emil",1);
 //        db.savePlayerToDatabase(player);
-        ActionPoint ap = db.selectActionPoints(400);
-        ap.printDescription();
+//        ActionPoint ap = db.selectActionPoints(400);
+//        ap.printDescription();
+        for(int i = 0; i <= db.getAllItemsInArrayList().size()-1; i++)
+        System.out.println(i +" "+ db.getAllItemsInArrayList().get(i).getName());
     }
 }
+
+
+

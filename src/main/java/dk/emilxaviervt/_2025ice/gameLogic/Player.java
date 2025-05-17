@@ -4,7 +4,6 @@ import dk.emilxaviervt._2025ice.Items.Item;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.function.Consumer;
 
 public class Player {
     String name;
@@ -25,7 +24,7 @@ public class Player {
 
     //player inventory
     boolean isEquipped;
-    ArrayList<Item> inventory;
+    ArrayList<Item> inventory = new ArrayList<>();
     String inventoryReference;
 
     //player state
@@ -86,8 +85,10 @@ public class Player {
 
 
     //add an item to the players inventory
-    public void addToInvertory(Item item){
-        inventory.add(item);
+    public void addToInventory(Item item){
+       if (inventory != null) {
+           inventory.add(item);
+       }
     }
 
 
@@ -194,7 +195,7 @@ public class Player {
         this.maxLuck = maxLuck;
     }
 
-    public boolean isEquipped() {
+    public boolean getIsEquipped() {
         return isEquipped;
     }
 

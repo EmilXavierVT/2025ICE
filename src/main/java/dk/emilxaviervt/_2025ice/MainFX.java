@@ -15,7 +15,8 @@ public class MainFX extends Application {
         FXMLLoader fxmlLogin = new FXMLLoader(MainFX.class.getResource("/clienter/view-login.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(MainFX.class.getResource("/clienter/activeGameScreen.fxml"));
 
-        ControllerFX controller = new ControllerFX(new Adventure());
+        ControllerFX controller = new ControllerFX();
+        controller.setAdventure(new Adventure());
         fxmlLogin.setController(controller);
         fxmlLoader.setController(controller);
         Scene scene2 = new Scene(fxmlLogin.load(), 700, 450);
@@ -38,7 +39,5 @@ public class MainFX extends Application {
     }
 
 
-    public static void main(String[] args) {
-        launch();
-    }
+    public static void main(String[] args) {launch();}
 }
