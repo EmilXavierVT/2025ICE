@@ -200,39 +200,24 @@ public class ControllerFX {
         Random random = new Random();
         int rdm=0;
 
-
         if(numberOfDice == 1){
             rdm = random.nextInt(1, 7);
-            for(int i= 0; i< 8;i++){
-                showDice(random.nextInt(1, 7));
-//                try {
-//                    Thread.sleep(500);
-//                } catch (InterruptedException e) {
-//                    throw new RuntimeException(e);
-//                }
-            }
+            animateDiceRoll();
             showDice(rdm);
+
         }else if(numberOfDice == 2) {
             rdm = random.nextInt(2, 13);
-            for(int i= 0; i< 8;i++){
-                showDice(random.nextInt(1, 7));
-                showDice(random.nextInt(7, 13));
-//                try {
-//                    Thread.sleep(500);
-//                } catch (InterruptedException e) {
-//                    throw new RuntimeException(e);
-//                }
-
-            }
-            showDice(rdm);
+            animateTwoDiceRoll();
+            showTwoDice(rdm);
         }
+
         return rdm;
 
     }
+
     private void showDice(int diceNumber){
 
-
-
+        setDiceInvisible();
 
         switch (diceNumber){
             case 1:
@@ -282,12 +267,71 @@ public class ControllerFX {
         }
 
     }
+    private void showTwoDice(int diceNumber){
+
+        setDiceInvisible();
+        switch (diceNumber){
+            case 1:
+                dice1.setVisible(true);
+                break;
+            case 2:
+                dice1.setVisible(true);
+                dice7.setVisible(true);
+                break;
+            case 3:
+                dice2.setVisible(true);
+                dice7.setVisible(true);
+                break;
+            case 4:
+                dice2.setVisible(true);
+                dice8.setVisible(true);
+                break;
+            case 5:
+                dice3.setVisible(true);
+                dice8.setVisible(true);
+                break;
+            case 6:
+                dice3.setVisible(true);
+                dice9.setVisible(true);
+                break;
+            case 7:
+                dice4.setVisible(true);
+                dice9.setVisible(true);
+                break;
+            case 8:
+                dice6.setVisible(true);
+                dice8.setVisible(true);
+                break;
+            case 9:
+                dice5.setVisible(true);
+                dice10.setVisible(true);
+                break;
+            case 10:
+                dice5.setVisible(true);
+                dice11.setVisible(true);
+                break;
+            case 11:
+                dice5.setVisible(true);
+                dice12.setVisible(true);
+                break;
+            case 12:
+                dice6.setVisible(true);
+                dice12.setVisible(true);
+                break;
+            default:
+                System.out.println("something went wrong in showDice() in ControllerFX.java, diceNumber:");
+        }
+
+    }
+
+
 
 
 
 
 
     private void displayInventory(){
+        setItemLabelInvisible();
        if(!adventure.getCurrentPlayer().getInventory().isEmpty()){
            for(int i=0; i<adventure.getCurrentPlayer().getInventory().size();i++){
                System.out.println("Item in inventory: "+adventure.getCurrentPlayer().getInventory().get(i).getName()+"from displayInventory"+"\n");
@@ -349,6 +393,48 @@ public class ControllerFX {
         dice12.setVisible(false);
     }
 
+
+
+    private void animateDiceRoll() {
+        final int animationFrames = 20;         // Number of frames
+        final int frameIntervalMs = 60;         // Milliseconds between frames
+        final Random random = new Random();
+        Timeline timeline = new Timeline();
+
+        for (int i = 0; i < animationFrames; i++) {
+            timeline.getKeyFrames().add(
+                    new KeyFrame(Duration.millis(i * frameIntervalMs), e -> {
+                        int face = 1 + random.nextInt(6);
+                        showDice(face);
+                    })
+            );
+        }
+
+        timeline.play();
+    }
+    private void animateTwoDiceRoll() {
+        final int animationFrames = 20;
+        final int frameIntervalMs = 60;         // Milliseconds between frames
+        final Random random = new Random();
+        Timeline timeline = new Timeline();
+
+        for (int i = 0; i < animationFrames; i++) {
+            timeline.getKeyFrames().add(
+                    new KeyFrame(Duration.millis(i * frameIntervalMs), e -> {
+                        int face = 1 + random.nextInt(2,13);
+                        showTwoDice(face);
+                    })
+            );
+        }
+
+        timeline.play();
+    }
+
+
+
+
+
+
     public BooleanProperty loginCompletedProperty() {
         return loginIsCompleted;
     }
@@ -362,10 +448,7 @@ public class ControllerFX {
 
     @FXML
     public void pressOfGoto(ActionEvent event) {
-
-        setDiceInvisible();
-        setItemLabelInvisible();
-        setVisibilityonGTButons();
+        setVisibilityOnGTButtons();
         Button sourceButton = (Button) event.getSource(); // Get the source and cast it to Button
         String buttonText = sourceButton.getText();
         int actionPointID = Integer.parseInt(buttonText);
@@ -396,7 +479,7 @@ public class ControllerFX {
 
 
 
-    public ActionPoint displayDescription(int pressedAPID) {
+    private ActionPoint displayDescription(int pressedAPID) {
         // description
         // hver gang vi klikker på en knap
         ActionPoint newAP = adventure.getDm().selectActionPoints(pressedAPID);
@@ -432,6 +515,8 @@ public class ControllerFX {
 
     private void setNameOfGTButtons(ActionPoint newAP) {
         ArrayList<Integer> AAPList = newAP.getActionPointList();
+
+
 
         for (int i = 0; i <AAPList.size(); i++) {
             setButtonName((i + 1), AAPList.get(i));
@@ -477,7 +562,7 @@ public class ControllerFX {
 
 
     }
-   private void setVisibilityonGTButons(){
+   private void setVisibilityOnGTButtons(){
         GTButton1.setVisible(false);
         GTButton2.setVisible(false);
         GTButton3.setVisible(false);
@@ -558,8 +643,9 @@ public class ControllerFX {
 
             if(rdm < currentPlayer.getCurrentLuck()){getGTButton1().setVisible(true);};
 
-//                gui interface
+        showDice(rdm);
 
+        System.out.println("luck roll: "+rdm);
         }
         if (ap.getContainItem() != null) {
             if (currentPlayer.getInventory() != null) {
