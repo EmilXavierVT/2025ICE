@@ -64,7 +64,7 @@ public class DatabaseManager  {
     }
     public void savePlayerToDatabase(Player player) {
 //        connect();
-        String query = "INSERT INTO Players(name,currentHealth,currentAttack,currentLuck,maxHealth,maxAttack,maxLuck,isEquipped,inventory_id,currentActionPoint,goldCoin,foodRation,starterPotion) " +
+        final String query = "INSERT INTO Players(name,currentHealth,currentAttack,currentLuck,maxHealth,maxAttack,maxLuck,isEquipped,inventory_id,currentActionPoint,goldCoin,foodRation,starterPotion) " +
                 "VALUES(" +
                 "'" +
                 player.getName() + "'" + "," +
@@ -287,7 +287,8 @@ public class DatabaseManager  {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 if(rs.getInt("id") == caseID ){
-                    Item item = new Item(
+
+                    return new Item(
                             rs.getInt("id"),
                             rs.getString("description"),
                             rs.getString("name"),
@@ -295,9 +296,6 @@ public class DatabaseManager  {
                             rs.getBoolean("equipable"),
                             rs.getBoolean("potions"),
                             rs.getInt("potency"));
-
-
-                    return item;
                 }
 
             }

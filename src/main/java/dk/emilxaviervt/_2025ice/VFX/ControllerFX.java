@@ -9,22 +9,21 @@ import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 
+import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Random;
 
 public class ControllerFX {
@@ -191,10 +190,7 @@ public class ControllerFX {
 
     @FXML
     private void exit(ActionEvent event) {
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        adventure.savePlayerfromAdventure();
-        System.out.println("player saved to database!");
-        stage.close();
+        showDeathPopUp();
 
     }
 
@@ -226,12 +222,18 @@ public class ControllerFX {
 
     @FXML
     private void dice1ButtonPress(ActionEvent event) {
-        rollDice(1);
+        if(!adventure.getAp().getDieRoll()) {
+            rollDice(1);
+        }
+
+
     }
 
     @FXML
     private void dice2ButtonPress(ActionEvent event) {
-        rollDice(2);
+        if(!actionPoint.getDieRoll()) {
+            rollDice(2);
+        }
     }
 
     @FXML
@@ -254,11 +256,14 @@ public class ControllerFX {
         if(adventure.getCurrentPlayer().getCurrentAttack()< adventure.getCurrentPlayer().getMaxAttack()){
             adventure.getCurrentPlayer().setCurrentAttack(adventure.getCurrentPlayer().getMaxAttack());
             adventure.getCurrentPlayer().setStarterPotion(0);
-            System.out.println("potion drunk!");
         }
     }
 
 
+    @FXML
+    private void changeGT1visibility(ActionEvent event, boolean visible) {
+        GTButton1.setVisible(visible);
+    }
 
 
 
@@ -415,16 +420,10 @@ public class ControllerFX {
         setItemLabelInvisible();
        if(!adventure.getCurrentPlayer().getInventory().isEmpty()){
            for(int i=0; i<adventure.getCurrentPlayer().getInventory().size();i++){
-               System.out.println("Item in inventory: "+adventure.getCurrentPlayer().getInventory().get(i).getName()+"from displayInventory"+"\n");
                displayItemLabel(i);
-
            }
        }
     }
-
-
-
-
 
 
 
@@ -484,8 +483,8 @@ public class ControllerFX {
 
         for (int i = 0; i < animationFrames; i++) {
             timeline.getKeyFrames().add(
-                    new KeyFrame(Duration.millis(i * frameIntervalMs), e -> {
-                        int face = 1 + random.nextInt(6);
+                    new KeyFrame(Duration.millis(i * frameIntervalMs),
+                            e -> {int face = 1 + random.nextInt(6);
                         showDice(face);
                     })
             );
@@ -529,27 +528,26 @@ public class ControllerFX {
 
     @FXML
     public void pressOfGoto(ActionEvent event) {
+        int actionPointID = getPressedAPID(event);
+
+
         setDiceInvisible();
         setVisibilityOnGTButtons();
-        Button sourceButton = (Button) event.getSource(); // Get the source and cast it to Button
-        String buttonText = sourceButton.getText();
-        int actionPointID = Integer.parseInt(buttonText);
         adventure.setAp(actionPointID);
-
-      setActionPointToGUI();
-
-
-        setStatsAmount();
-        adventure.actionPointEvents();
-
-        // Get the text on the button
-//        System.out.println(buttonText);
-//        System.out.println(adventure.getDm().selectActionPoints(actionPointID).getDescription());
         displayDescription(actionPointID);// dnfw.... srsly
+        setActionPointToGUI();
+        setStatsAmount();
+//        adventure.actionPointEvents();
         displayInventory();
 
 
 
+    }
+
+    private int getPressedAPID(ActionEvent event){
+        Button sourceButton = (Button) event.getSource(); // Get the source and cast it to Button
+        String buttonText = sourceButton.getText();
+        return Integer.parseInt(buttonText);
     }
 
     public void setCombatSwordImagetoVisable(){
@@ -572,10 +570,6 @@ public class ControllerFX {
         checkCreatures.setCycleCount(Timeline.INDEFINITE);
         checkCreatures.play();
     }
-    public void setCombatSwordImagetoInvisible(){
-        combatSwordImage.setVisible(false);
-    }
-
 
 
     private ActionPoint displayDescription(int pressedAPID) {
@@ -604,11 +598,10 @@ public class ControllerFX {
     private void setScrollPaneText(String text) {
         //Sets the text to be invisible
 
-
         descriptionLabel.setOpacity(0.0);
 
         //Typing animation
-        typingAnimation(descriptionLabel, text, 1);
+        typingAnimation(descriptionLabel, text, 10);
 
         //Animates the text to be visible
         animateDescription(descriptionLabel);
@@ -618,16 +611,11 @@ public class ControllerFX {
     private void setNameOfGTButtons(ActionPoint newAP) {
         ArrayList<Integer> AAPList = newAP.getActionPointList();
 
-
-
         for (int i = 0; i <AAPList.size(); i++) {
             setButtonName((i + 1), AAPList.get(i));
-
-
         }
-
-
     }
+
 
     private void setButtonName(int id, int displaymessage) {
         //
@@ -660,10 +648,10 @@ public class ControllerFX {
             default:
                 System.out.println("Error at switch-case chain in setButtonName() in ControllerFX.java");
         }
-
-
-
     }
+
+
+
    private void setVisibilityOnGTButtons(){
         GTButton1.setVisible(false);
         GTButton2.setVisible(false);
@@ -681,8 +669,16 @@ public class ControllerFX {
     fade.setToValue(1.0);
     fade.play();
     }
+
+
     private void typingAnimation(Label label, String text, double speed){
-        label.setText(" ");
+
+        Timeline previousTimeline = (Timeline) label.getUserData();
+        if (previousTimeline != null) {
+            previousTimeline.stop();
+        }
+
+        label.setText("");
 
         Timeline timeline = new Timeline();
         int[] index = {0};
@@ -695,6 +691,9 @@ public class ControllerFX {
         });
         timeline.getKeyFrames().add(keyframe);
         timeline.setCycleCount(text.length());
+        timeline.setOnFinished(e -> label.setUserData(null)); // Clean up reference
+        label.setUserData(timeline); // Store reference for next call
+
         timeline.play();
     }
 
@@ -716,12 +715,6 @@ public class ControllerFX {
     }
 
 
-    @FXML
-    private void changeGT1visibility(ActionEvent event, boolean visible) {
-        GTButton1.setVisible(visible);
-    }
-
-
     public Adventure getAdventure() {
         return adventure;
     }
@@ -735,51 +728,45 @@ public class ControllerFX {
         ActionPoint ap = adventure.getAp();
         Player currentPlayer = adventure.getCurrentPlayer();
 
-        if (ap.getChangeHealthPoints() != 0) {adventure.getCurrentPlayer().changeHealth(ap.getChangeHealthPoints());}
+        if(currentPlayer.getCurrentHealth() < 0){showDeathPopUp();}
+        if (ap.getChangeHealthPoints() != 0) {currentPlayer.changeHealth(ap.getChangeHealthPoints());}
         if (ap.getChangeAttackPoints() != 0) {currentPlayer.changeAttack(ap.getChangeAttackPoints());}
         if (ap.getContainedCreatures() !=null) {combat();}
+        if (ap.getLuckRoll()) {rollForLuck();}
+        if (ap.getGoldCoins() != 0) {currentPlayer.changeGoldCoins(ap.getGoldCoins());}
+        if (ap.getDieRoll()) {rollDice(2);}
+        if (ap.getIsFinal()) {showDeathPopUp();}
+        if (ap.getWinnerActionPoint()) {System.out.println("Congratz you won!");}
+
         setPlayersStarterPointVFX(currentPlayer.getStarterPotion());
-        if (ap.getLuckRoll()) {
-
-            getGTButton1().setVisible(false);
-            int rdm =rollDice(2);
-
-            if(rdm < currentPlayer.getCurrentLuck()){getGTButton1().setVisible(true);};
-
-        showDice(rdm);
-
-        System.out.println("luck roll: "+rdm);
-        }
-        if (ap.getContainItem() != null) {
-            if (currentPlayer.getInventory() != null) {
-                currentPlayer.addToInventory(ap.getContainItem());
-                System.out.println("Item added to inventory"+currentPlayer.getInventory());
-            }
-        }
-        if (ap.getGoldCoins() != 0) {
-            currentPlayer.changeGoldCoins(ap.getGoldCoins());
-        }
-        if (ap.getDieRoll()) {
-            rollDice(2);
-//                GUI interface
-        }
-        if (ap.getIsFinal()) {
-
-//                end game GUI interface
-        }
-        if (ap.getWinnerActionPoint()) {
-            System.out.println("Congratz you won!");
-        }
         adventure.actionPointEvents();
+
 
     }
 
-    public void combat() {
-        int combatRound = 0;
 
+    private void rollForLuck(){
+        int rdm =rollDice(2);
+
+        getGTButton1().setVisible(false);
+
+        if(rdm < adventure.getCurrentPlayer().getCurrentLuck()){
+            getGTButton1().setVisible(true);
+        };
+
+        showDice(rdm);
+
+           if(adventure.getAp().getContainItem() != null) {
+               if (adventure.getCurrentPlayer().getInventory() != null) {
+                   adventure.getCurrentPlayer().addToInventory(adventure.getAp().getContainItem());
+
+               }
+           }
+    }
+
+    public void combat() {
         ActionPoint ap = adventure.getAp();
         Player currentPlayer = adventure.getCurrentPlayer();
-
 
         for (Creature creature : ap.getContainedCreatures()) {
             setCombatSwordImagetoVisable();
@@ -789,32 +776,38 @@ public class ControllerFX {
                 int playerAttack = currentPlayer.getCurrentAttack() + adventure.dieRoll();
                 int creatureAttack = creature.getCurrentAttack() + adventure.dieRoll();
 
-
-
-                if (playerAttack > creatureAttack) {
-                    creature.changeCurrentHealth(-2);
-                } else if (creatureAttack > playerAttack) {
-                    currentPlayer.changeHealth(-2);
-
-                }
-                combatRound++;
+                if (playerAttack > creatureAttack) {creature.changeCurrentHealth(-2);}
+                else if (creatureAttack > playerAttack) {currentPlayer.changeHealth(-2);}
             }
-
-            System.out.println( "Combat started "+ creature.getCreatureName()+"     Creature Health: "+creature.getCurrentHealth() + " \n" +
-                    "Player health" + currentPlayer.getCurrentHealth() + " " + combatRound);
         }
-        combatRound = 0;
-
-
     }
 
 
-    public ActionPoint getActionPoint() {
-        return actionPoint;
-    }
+    private void showDeathPopUp(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("dit eventyr slutter her!");
+        alert.setContentText("vil du spille igen eller afslutte spillet her ? ");
 
-    public void setActionPoint(ActionPoint actionPoint) {
-        this.actionPoint = actionPoint;
+// Set custom button types
+        ButtonType leftButton  = new ButtonType("Spil igen!");
+        ButtonType rightButton = new ButtonType("Afslut spillet");
+
+        alert.getButtonTypes().setAll(leftButton, rightButton);
+
+// Show the alert and wait for a response
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent()) {
+            if (result.get() == leftButton) {
+                setVisibilityOnGTButtons();
+                adventure.createNewPlayer();
+                adventure.setAp(401);
+                displayDescription(401);
+            } else if (result.get() == rightButton) {
+                adventure.savePlayerfromAdventure();
+                Platform.exit();
+            }
+        }
     }
 }
 

@@ -47,13 +47,14 @@ public class Adventure {
     }
 
 
+    public void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
 
 
-
-
-
-
-
+    public void createNewPlayer(){
+        new Player(currentPlayer.getName(), health, attack, luck, health, attack, luck, true, currentPlayer.getName(), 1,0,10,2);
+    }
 
     public void actionPointEvents() {
         Random random = new Random();
@@ -82,7 +83,7 @@ public class Adventure {
                     currentPlayer.removeFromInventory(allItems.get(15)); // index starter på 0 vi starter på 1 i db
                     break;
                 case 7:
-                    currentPlayer.changeHealth(dieRoll() + dieRoll());
+                    currentPlayer.changeHealth(-dieRoll()+dieRoll());
                     currentPlayer.changeLuck(-2);
                     break;
                 case 8:
