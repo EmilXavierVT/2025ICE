@@ -62,25 +62,25 @@ public class DatabaseManager  {
         }
         return null;
     }
-    public void savePlayerToDatabase(Player player){
+    public void savePlayerToDatabase(Player player) {
 //        connect();
         String query = "INSERT INTO Players(name,currentHealth,currentAttack,currentLuck,maxHealth,maxAttack,maxLuck,isEquipped,inventory_id,currentActionPoint,goldCoin,foodRation,starterPotion) " +
                 "VALUES(" +
-               "'"     +
-               player.getName() +"'" +","+
-               player.getCurrentHealth() +  "," +
-               player.getCurrentAttack() + "," +
-               player.getCurrentLuck()   +  "," +
-               player.getMaxHealth()   +  "," +
-               player.getMaxAttack()  +  "," +
-               player.getMaxLuck()   +  "," +
-               player.isEquipped()  +  "," +  "'"+
-               player.getName()  + "'" + "," +
-               player.getPlayerLocation()+","+
-                player.getGoldCoins()+","+
-                player.getFoodRations()+","+
-                player.getStarterPotion()+");";
-              if(con != null){
+                "'" +
+                player.getName() + "'" + "," +
+                player.getCurrentHealth() + "," +
+                player.getCurrentAttack() + "," +
+                player.getCurrentLuck() + "," +
+                player.getMaxHealth() + "," +
+                player.getMaxAttack() + "," +
+                player.getMaxLuck() + "," +
+                player.getIsEquipped() + "," + "'" +
+                player.getName() + "'" + "," +
+                player.getPlayerLocation() + "," +
+                player.getGoldCoins() + "," +
+                player.getFoodRations() + "," +
+                player.getStarterPotion() + ");";
+        if (con != null) {
             try {
 
                 Statement statement = con.createStatement();
@@ -88,8 +88,8 @@ public class DatabaseManager  {
                 statement.executeUpdate(query);
 
 
-            } catch (SQLException e){
-                System.out.println("wonky error "+e.getMessage());
+            } catch (SQLException e) {
+                System.out.println("wonky error " + e.getMessage());
             }
 
         }
