@@ -471,7 +471,24 @@ public class ControllerFX {
     }
 
     public void setCombatSwordImagetoVisable(){
-        combatSwordImage.setVisible(true);
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(1.0), e -> combatSwordImage.setVisible(true)),
+                new KeyFrame(Duration.seconds(2.0), e -> combatSwordImage.setVisible(false))
+        );
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+
+        // Create a timeline check to stop the animation
+        Timeline checkCreatures = new Timeline(
+                new KeyFrame(Duration.seconds(0.1), e -> {
+                    if (adventure.getAp().getContainedCreatures().isEmpty()) {
+                        timeline.stop();
+                        combatSwordImage.setVisible(false);
+                    }
+                })
+        );
+        checkCreatures.setCycleCount(Timeline.INDEFINITE);
+        checkCreatures.play();
     }
     public void setCombatSwordImagetoInvisible(){
         combatSwordImage.setVisible(false);
