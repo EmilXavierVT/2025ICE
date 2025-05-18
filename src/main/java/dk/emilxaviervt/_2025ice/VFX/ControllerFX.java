@@ -1,5 +1,6 @@
 package dk.emilxaviervt._2025ice.VFX;
 
+import dk.emilxaviervt._2025ice.Items.Item;
 import dk.emilxaviervt._2025ice.gameLogic.Adventure;
 import dk.emilxaviervt._2025ice.gameLogic.ActionPoint;
 import dk.emilxaviervt._2025ice.gameLogic.Creature;
@@ -7,10 +8,10 @@ import dk.emilxaviervt._2025ice.gameLogic.Player;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.concurrent.Task;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -25,20 +26,28 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ControllerFX {
-    @FXML
-    private Label welcomeText;
-    @FXML
-    private Button eatButton;
-    @FXML
-    private Button exitButton;
-    @FXML
-    private Button runButton;
+
+
+//    the login and create new player scene buttons and text field
+
     @FXML
     private Button loginButton;
     @FXML
     private Button createNewPlayerButton;
     @FXML
     private TextField loginTextField;
+
+//    the player and game changing buttons
+
+    @FXML
+    private Button eatButton;
+    @FXML
+    private Button exitButton;
+    @FXML
+    private Button runButton;
+
+//    The Goto Buttons
+
     @FXML
     private Button GTButton1;
     @FXML
@@ -51,8 +60,14 @@ public class ControllerFX {
     private Button GTButton5;
     @FXML
     private Button GTButton6;
+
+//    the Description of the ActionPoint is sent to this Label
+
     @FXML
     private Label descriptionLabel;
+
+//    Dice faces for visual satisfaction of the dice roll
+
     @FXML
     private ImageView dice1;
     @FXML
@@ -77,6 +92,10 @@ public class ControllerFX {
     private ImageView dice11;
     @FXML
     private ImageView dice12;
+
+//    Labels for the player stats: Health - Attack - Luck - Gold coins
+
+
     @FXML
     private Label healthAmount;
     @FXML
@@ -84,13 +103,48 @@ public class ControllerFX {
     @FXML
     private Label luckAmount;
     @FXML
-    private ImageView combatSwordImage;
-    @FXML
     private Label goldAmount;
+
+//  Image to show the combat
+
+    @FXML
+    private ImageView combatSwordImage;
+
+//   Labels for Inventory items
+
+    @FXML
+    private Label itemLabel0;
+    @FXML
+    private Label itemLabel1;
+    @FXML
+    private Label itemLabel2;
+    @FXML
+    private Label itemLabel3;
+    @FXML
+    private Label itemLabel4;
+    @FXML
+    private Label itemLabel5;
+    @FXML
+    private Label itemLabel6;
+    @FXML
+    private Label itemLabel7;
+    @FXML
+    private Label itemLabel8;
+    @FXML
+    private Label itemLabel9;
+
+//    Login boolean to skip from the login page to the game scene
+
     private BooleanProperty loginIsCompleted = new SimpleBooleanProperty(false);
-    public String playerName;
-    ActionPoint actionPoint;
-    Adventure adventure;
+
+//    The name the user inputs in the login scene
+
+    private String playerName;
+
+//    Declaration used for the current ActionPoint
+
+    private ActionPoint actionPoint;
+    private Adventure adventure;
     Stage stage;
 
 
@@ -99,10 +153,7 @@ public class ControllerFX {
 
     }
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
+
 
     @FXML
     private void eatOneFood(ActionEvent event) {
@@ -234,6 +285,55 @@ public class ControllerFX {
 
 
 
+
+
+    private void displayInventory(){
+       if(!adventure.getCurrentPlayer().getInventory().isEmpty()){
+           for(int i=0; i<adventure.getCurrentPlayer().getInventory().size();i++){
+               System.out.println("Item in inventory: "+adventure.getCurrentPlayer().getInventory().get(i).getName()+"from displayInventory"+"\n");
+               displayItemLabel(i);
+
+           }
+       }
+    }
+
+
+
+
+
+
+
+
+
+    private void displayItemLabel(int i){
+        ArrayList<Item> inventory = adventure.getCurrentPlayer().getInventory();
+        if(i == 0 ){itemLabel0.setText(inventory.getFirst().getName()); itemLabel0.setVisible(true);}
+        if(i == 1 ){itemLabel1.setText(inventory.get(1).getName()); itemLabel1.setVisible(true);}
+        if(i == 2 ){itemLabel2.setText(inventory.get(2).getName()); itemLabel2.setVisible(true);}
+        if(i == 3 ){itemLabel3.setText(inventory.get(3).getName()); itemLabel3.setVisible(true);}
+        if(i == 4 ){itemLabel4.setText(inventory.get(4).getName()); itemLabel4.setVisible(true);}
+        if(i == 5 ){itemLabel5.setText(inventory.get(5).getName()); itemLabel5.setVisible(true);}
+        if(i == 6 ){itemLabel6.setText(inventory.get(6).getName()); itemLabel6.setVisible(true);}
+        if(i == 7 ){itemLabel7.setText(inventory.get(7).getName()); itemLabel7.setVisible(true);}
+        if(i == 8 ){itemLabel8.setText(inventory.get(8).getName()); itemLabel8.setVisible(true);}
+        if(i == 9 ){itemLabel9.setText(inventory.get(9).getName()); itemLabel9.setVisible(true);}
+
+    }
+    private void setItemLabelInvisible(){
+        itemLabel0.setVisible(false);
+        itemLabel1.setVisible(false);
+        itemLabel2.setVisible(false);
+        itemLabel3.setVisible(false);
+        itemLabel4.setVisible(false);
+        itemLabel5.setVisible(false);
+        itemLabel6.setVisible(false);
+        itemLabel7.setVisible(false);
+        itemLabel8.setVisible(false);
+        itemLabel9.setVisible(false);
+    }
+
+
+
     private void setDiceInvisible(){
         dice1.setVisible(false);
         dice2.setVisible(false);
@@ -264,7 +364,7 @@ public class ControllerFX {
     public void pressOfGoto(ActionEvent event) {
 
         setDiceInvisible();
-//        setCombatSwordImagetoInvisible();
+        setItemLabelInvisible();
         setVisibilityonGTButons();
         Button sourceButton = (Button) event.getSource(); // Get the source and cast it to Button
         String buttonText = sourceButton.getText();
@@ -281,6 +381,7 @@ public class ControllerFX {
 //        System.out.println(buttonText);
 //        System.out.println(adventure.getDm().selectActionPoints(actionPointID).getDescription());
         displayDescription(actionPointID);// dnfw.... srsly
+        displayInventory();
 
 
 
@@ -519,16 +620,12 @@ public class ControllerFX {
     }
 
 
+    public ActionPoint getActionPoint() {
+        return actionPoint;
+    }
 
-
-
-
-
-
-
-
-
-
-
+    public void setActionPoint(ActionPoint actionPoint) {
+        this.actionPoint = actionPoint;
+    }
 }
 
