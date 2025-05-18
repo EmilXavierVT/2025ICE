@@ -103,11 +103,11 @@ public class Player {
 
 
     //change foodRations
-    public void changeFoodRations(int foodRations) {
-       this.foodRations += foodRations;
-       if (foodRations >= 100){
-           this.foodRations = 0;
-       }
+    public void changeFoodRations(int newFoodRations) {
+       this.foodRations += newFoodRations;
+//       if (foodRations >= 100){
+//           this.foodRations = 0;
+//       }
 
 
 
@@ -117,6 +117,24 @@ public class Player {
         int rdm = random.nextInt(1, inventory.size());
             inventory.remove(rdm);
         }
+
+
+
+    public void giveHealthBoost() {
+
+        if (this.getCurrentHealth() > this.getMaxHealth()) {
+
+            this.changeFoodRations(-1);
+            this.changeHealth(4);
+        }  if (this.getCurrentHealth() > this.getMaxHealth()) {
+
+            this.setCurrentHealth(this.getMaxHealth());
+
+
+        }
+    }
+
+
 
 
 //    public void consumeItem(Consumable potion){
@@ -226,4 +244,7 @@ public class Player {
     public int getStarterPotion() {return starterPotion;}
 
     public void setStarterPotion(int starterPotion) {this.starterPotion = starterPotion;}
+
+
+
 }

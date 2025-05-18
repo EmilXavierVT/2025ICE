@@ -285,19 +285,7 @@ public void setAp(int id) {
 
 
 
-    public void giveHealthBoost() {
 
-        if (currentPlayer.getCurrentHealth() < currentPlayer.getMaxHealth()) {
-
-            currentPlayer.changeFoodRations(-1);
-            currentPlayer.changeHealth(4);
-        }  if (currentPlayer.getCurrentHealth() > currentPlayer.getMaxHealth()) {
-
-            currentPlayer.setCurrentHealth(currentPlayer.getMaxHealth());
-
-
-        }
-    }
 
     public Player getCurrentPlayer() {
         return currentPlayer;

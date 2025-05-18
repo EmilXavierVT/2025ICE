@@ -17,8 +17,10 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -104,6 +106,8 @@ public class ControllerFX {
     private Label luckAmount;
     @FXML
     private Label goldAmount;
+    @FXML
+    private Label foodAmount;
 
 //  Image to show the combat
 
@@ -133,6 +137,21 @@ public class ControllerFX {
     @FXML
     private Label itemLabel9;
 
+//    Buttons for dice
+
+    @FXML
+    private Button dice1Button;
+    @FXML
+    private Button dice2Button;
+
+//    Potion MenuItems
+    @FXML
+    private MenuItem attackPotionMenuItem;
+    @FXML
+    private MenuItem healthPotionMenuItem;
+    @FXML
+    private MenuItem luckPotionMenuItem;
+
 //    Login boolean to skip from the login page to the game scene
 
     private BooleanProperty loginIsCompleted = new SimpleBooleanProperty(false);
@@ -158,9 +177,16 @@ public class ControllerFX {
     @FXML
     private void eatOneFood(ActionEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        adventure.giveHealthBoost();
-        setStatsAmount();
-        System.out.println("Eat Button has been pressed, player health boosted!");
+        if(adventure.getCurrentPlayer().getFoodRations() > 0) {
+            if (adventure.getCurrentPlayer().getCurrentHealth() < adventure.getCurrentPlayer().getMaxHealth()) {
+                if (adventure.getAp().getContainedCreatures().isEmpty()) {
+                    adventure.getCurrentPlayer().giveHealthBoost();
+                    adventure.getCurrentPlayer().changeFoodRations(-1);
+                    setStatsAmount();
+
+                }
+            }
+        }
     }
 
     @FXML
@@ -195,6 +221,47 @@ public class ControllerFX {
     private String handleTextField(ActionEvent event) {
         return loginTextField.getText();
     }
+
+
+
+    @FXML
+    private void dice1ButtonPress(ActionEvent event) {
+        rollDice(1);
+    }
+
+    @FXML
+    private void dice2ButtonPress(ActionEvent event) {
+        rollDice(2);
+    }
+
+    @FXML
+    private void healthPotionPress(ActionEvent event) {
+        if(adventure.getCurrentPlayer().getCurrentHealth() < adventure.getCurrentPlayer().getMaxHealth()){
+            adventure.getCurrentPlayer().setCurrentHealth(adventure.getCurrentPlayer().getMaxHealth());
+            adventure.getCurrentPlayer().setStarterPotion(0);
+        }
+        setStatsAmount();
+    }
+    @FXML
+    private void luckPotionPress(ActionEvent event) {
+        if(adventure.getCurrentPlayer().getCurrentLuck() < adventure.getCurrentPlayer().getMaxLuck()){
+            adventure.getCurrentPlayer().setCurrentLuck(adventure.getCurrentPlayer().getMaxLuck());
+            adventure.getCurrentPlayer().setStarterPotion(0);
+        }
+    }
+    @FXML
+    private void attackPotionPress(ActionEvent event) {
+        if(adventure.getCurrentPlayer().getCurrentAttack()< adventure.getCurrentPlayer().getMaxAttack()){
+            adventure.getCurrentPlayer().setCurrentAttack(adventure.getCurrentPlayer().getMaxAttack());
+            adventure.getCurrentPlayer().setStarterPotion(0);
+            System.out.println("potion drunk!");
+        }
+    }
+
+
+
+
+
 
     public int rollDice(int numberOfDice){
         Random random = new Random();
@@ -263,7 +330,7 @@ public class ControllerFX {
                 dice12.setVisible(true);
                 break;
             default:
-                    System.out.println("something went wrong in showDice() in ControllerFX.java, diceNumber:");
+                    System.out.println("something went wrong in showDice() in ControllerFX.java, Show one dice :");
         }
 
     }
@@ -319,10 +386,24 @@ public class ControllerFX {
                 dice12.setVisible(true);
                 break;
             default:
-                System.out.println("something went wrong in showDice() in ControllerFX.java, diceNumber:");
+                System.out.println("something went wrong in showDice() in ControllerFX.java, show two dice:");
         }
 
     }
+
+
+
+        public void setPlayersStarterPointVFX(int potionID){
+            if(potionID == 0){
+                attackPotionMenuItem.setVisible(false);
+                healthPotionMenuItem.setVisible(false);
+                luckPotionMenuItem.setVisible(false);
+            }
+            if(potionID == 1){attackPotionMenuItem.setVisible(true);}
+            if(potionID == 2){healthPotionMenuItem.setVisible(true);}
+            if(potionID == 3){luckPotionMenuItem.setVisible(true);}
+
+        }
 
 
 
@@ -421,7 +502,7 @@ public class ControllerFX {
         for (int i = 0; i < animationFrames; i++) {
             timeline.getKeyFrames().add(
                     new KeyFrame(Duration.millis(i * frameIntervalMs), e -> {
-                        int face = 1 + random.nextInt(2,13);
+                        int face = 1 + random.nextInt(2,12);
                         showTwoDice(face);
                     })
             );
@@ -448,6 +529,7 @@ public class ControllerFX {
 
     @FXML
     public void pressOfGoto(ActionEvent event) {
+        setDiceInvisible();
         setVisibilityOnGTButtons();
         Button sourceButton = (Button) event.getSource(); // Get the source and cast it to Button
         String buttonText = sourceButton.getText();
@@ -513,13 +595,16 @@ public class ControllerFX {
         healthAmount.setText(adventure.getCurrentPlayer().getCurrentHealth() + "");
         attackAmount.setText(adventure.getCurrentPlayer().getCurrentAttack() + "");
         luckAmount.setText(adventure.getCurrentPlayer().getCurrentLuck() + "");
-        goldAmount.setText(adventure.getCurrentPlayer().getGoldCoins()+"");
+        goldAmount.setText(adventure.getCurrentPlayer().getGoldCoins()+ "");
+        foodAmount.setText(adventure.getCurrentPlayer().getFoodRations()+ "");
 
 
     }
 
     private void setScrollPaneText(String text) {
         //Sets the text to be invisible
+
+
         descriptionLabel.setOpacity(0.0);
 
         //Typing animation
@@ -653,6 +738,7 @@ public class ControllerFX {
         if (ap.getChangeHealthPoints() != 0) {adventure.getCurrentPlayer().changeHealth(ap.getChangeHealthPoints());}
         if (ap.getChangeAttackPoints() != 0) {currentPlayer.changeAttack(ap.getChangeAttackPoints());}
         if (ap.getContainedCreatures() !=null) {combat();}
+        setPlayersStarterPointVFX(currentPlayer.getStarterPotion());
         if (ap.getLuckRoll()) {
 
             getGTButton1().setVisible(false);
