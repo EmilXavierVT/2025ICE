@@ -116,7 +116,7 @@ public class Adventure {
                     currentPlayer.changeHealth(rs);
                     break;
                 case 14:
-                    combat();
+                    cfx.combat();
                     break;
                 case 15:
 //                    kræver combat
@@ -242,43 +242,7 @@ public class Adventure {
     }
 
 
-    public void setActionPointToGUI(){
-        if (ap.getChangeHealthPoints() != 0) {currentPlayer.changeHealth(ap.getChangeHealthPoints());}
-        if (ap.getChangeAttackPoints() != 0) {currentPlayer.changeAttack(ap.getChangeAttackPoints());}
-        if (ap.getContainedCreatures() !=null) {combat();}
-        if (ap.getLuckRoll()) {
 
-            cfx.getGTButton1().setVisible(false);
-            int rdm =cfx.rollDice(2);
-
-            if(rdm < currentPlayer.getCurrentLuck()){cfx.getGTButton1().setVisible(true);};
-
-//                gui interface
-
-        }
-        if (ap.getContainItem() != null) {
-            if (currentPlayer.getInventory() != null) {
-                currentPlayer.addToInventory(ap.getContainItem());
-                System.out.println("Item added to inventory"+currentPlayer.getInventory());
-            }
-        }
-        if (ap.getGoldCoins() != 0) {
-            currentPlayer.changeGoldCoins(ap.getGoldCoins());
-        }
-        if (ap.getDieRoll()) {
-            cfx.rollDice(2);
-//                GUI interface
-        }
-        if (ap.getIsFinal()) {
-
-//                end game GUI interface
-        }
-        if (ap.getWinnerActionPoint()) {
-            System.out.println("Congratz you won!");
-        }
-        actionPointEvents();
-
-    }
 
 
 
@@ -312,53 +276,6 @@ public void setAp(int id) {
 
 
 // vi får lavet en start værdei på spileren gennem en metode og en dertil liggende værdi som vi kan give spilleren
-
-private int combatRound;
-
-
-    public void combat() {
-
-        for (Creature creature : ap.getContainedCreatures()) {
-        while (currentPlayer.getCurrentHealth() > 0 && creature.getCurrentHealth() > 0) {
-
-            // Player attack
-            int playerAttack = currentPlayer.getCurrentAttack() + dieRoll();
-            int creatureAttack = creature.getCurrentAttack() + dieRoll();
-
-
-
-                if (playerAttack > creatureAttack) {
-                    creature.changeCurrentHealth(-2);
-                } else if (creatureAttack > playerAttack) {
-                    currentPlayer.changeHealth(-2);
-
-                }
-                combatRound++;
-            }
-
-            System.out.println( "Combat started "+ creature.getCreatureName()+"     Creature Health: "+creature.getCurrentHealth() + " \n" +
-                    "Player health" + currentPlayer.getCurrentHealth() + " " + combatRound);
-        }
-        combatRound = 0;
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -2,6 +2,8 @@ package dk.emilxaviervt._2025ice.VFX;
 
 import dk.emilxaviervt._2025ice.gameLogic.Adventure;
 import dk.emilxaviervt._2025ice.gameLogic.ActionPoint;
+import dk.emilxaviervt._2025ice.gameLogic.Creature;
+import dk.emilxaviervt._2025ice.gameLogic.Player;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -262,14 +264,14 @@ public class ControllerFX {
     public void pressOfGoto(ActionEvent event) {
 
         setDiceInvisible();
-        setCombatSwordImagetoInvisible();
+//        setCombatSwordImagetoInvisible();
         setVisibilityonGTButons();
         Button sourceButton = (Button) event.getSource(); // Get the source and cast it to Button
         String buttonText = sourceButton.getText();
         int actionPointID = Integer.parseInt(buttonText);
         adventure.setAp(actionPointID);
 
-        adventure.setActionPointToGUI();
+      setActionPointToGUI();
 
 
         setStatsAmount();
@@ -441,5 +443,92 @@ public class ControllerFX {
         this.actionPoint = adventure.getAp();
 
     }
+    public void setActionPointToGUI(){
+        ActionPoint ap = adventure.getAp();
+        Player currentPlayer = adventure.getCurrentPlayer();
+
+        if (ap.getChangeHealthPoints() != 0) {adventure.getCurrentPlayer().changeHealth(ap.getChangeHealthPoints());}
+        if (ap.getChangeAttackPoints() != 0) {currentPlayer.changeAttack(ap.getChangeAttackPoints());}
+        if (ap.getContainedCreatures() !=null) {combat();}
+        if (ap.getLuckRoll()) {
+
+            getGTButton1().setVisible(false);
+            int rdm =rollDice(2);
+
+            if(rdm < currentPlayer.getCurrentLuck()){getGTButton1().setVisible(true);};
+
+//                gui interface
+
+        }
+        if (ap.getContainItem() != null) {
+            if (currentPlayer.getInventory() != null) {
+                currentPlayer.addToInventory(ap.getContainItem());
+                System.out.println("Item added to inventory"+currentPlayer.getInventory());
+            }
+        }
+        if (ap.getGoldCoins() != 0) {
+            currentPlayer.changeGoldCoins(ap.getGoldCoins());
+        }
+        if (ap.getDieRoll()) {
+            rollDice(2);
+//                GUI interface
+        }
+        if (ap.getIsFinal()) {
+
+//                end game GUI interface
+        }
+        if (ap.getWinnerActionPoint()) {
+            System.out.println("Congratz you won!");
+        }
+        adventure.actionPointEvents();
+
+    }
+
+    public void combat() {
+        int combatRound = 0;
+
+        ActionPoint ap = adventure.getAp();
+        Player currentPlayer = adventure.getCurrentPlayer();
+
+
+        for (Creature creature : ap.getContainedCreatures()) {
+            setCombatSwordImagetoVisable();
+            while (currentPlayer.getCurrentHealth() > 0 && creature.getCurrentHealth() > 0) {
+
+                // Player attack
+                int playerAttack = currentPlayer.getCurrentAttack() + adventure.dieRoll();
+                int creatureAttack = creature.getCurrentAttack() + adventure.dieRoll();
+
+
+
+                if (playerAttack > creatureAttack) {
+                    creature.changeCurrentHealth(-2);
+                } else if (creatureAttack > playerAttack) {
+                    currentPlayer.changeHealth(-2);
+
+                }
+                combatRound++;
+            }
+
+            System.out.println( "Combat started "+ creature.getCreatureName()+"     Creature Health: "+creature.getCurrentHealth() + " \n" +
+                    "Player health" + currentPlayer.getCurrentHealth() + " " + combatRound);
+        }
+        combatRound = 0;
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
