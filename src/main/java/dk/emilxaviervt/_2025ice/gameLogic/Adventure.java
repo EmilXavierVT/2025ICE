@@ -30,7 +30,7 @@ public class Adventure {
     ArrayList<Item> allItems = dm.getAllItemsInArrayList();
     
     public Adventure() {
-        this.currentPlayer = new Player("test13", health, attack, luck, health, attack, luck, true, "Emil", 1,0,10,2);
+        this.currentPlayer = new Player("test13", health, attack, luck,health, attack, luck, true, "Emil", 1,0,10,2);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/clienter/activeGameScreen.fxml"));
         loader.setController(new ControllerFX());
 
@@ -53,7 +53,12 @@ public class Adventure {
 
 
     public void createNewPlayer(){
-        new Player(currentPlayer.getName(), health, attack, luck, health, attack, luck, true, currentPlayer.getName(), 1,0,10,2);
+
+        int newHealth = rollHealth();
+        int newAttack = rollAttackAndLuck();
+        int newLuck = rollAttackAndLuck();
+
+        this.currentPlayer = new Player(currentPlayer.getName(), newHealth, newAttack, newLuck, newHealth, newAttack, newLuck, true, currentPlayer.getName(), 1,0,10,2);
     }
 
     public void actionPointEvents() {

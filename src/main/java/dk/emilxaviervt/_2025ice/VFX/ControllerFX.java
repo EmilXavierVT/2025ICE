@@ -813,6 +813,9 @@ public class ControllerFX {
                     System.out.println("test");
                     CombatGiantScorpion();
                     break;
+               /* case 14:
+                    combatBloodBeast();
+                    break;*/
                 case 24:
                     combatMirrorDemon();
                     break;
