@@ -557,9 +557,9 @@ public class ControllerFX {
         setVisibilityOnGTButtons();
         adventure.setAp(actionPointID);
         displayDescription(actionPointID);// dnfw.... srsly
+        setStatsAmount();
         setActionPointToGUI();
         setStatsAmount();
-//        adventure.actionPointEvents();
         displayInventory();
 
 
@@ -748,9 +748,7 @@ public class ControllerFX {
         ActionPoint ap = adventure.getAp();
         Player currentPlayer = adventure.getCurrentPlayer();
 
-        if (currentPlayer.getCurrentHealth() < 0) {
-            showDeathPopUp();
-        }
+
         if (ap.getChangeHealthPoints() != 0) {
             currentPlayer.changeHealth(ap.getChangeHealthPoints());
         }
@@ -762,6 +760,13 @@ public class ControllerFX {
         }
         if (ap.getLuckRoll()) {
             rollForLuck();
+        }
+
+        if (adventure.getAp().getContainItem() != null) {
+            if (adventure.getCurrentPlayer().getInventory() != null) {
+                adventure.getCurrentPlayer().addToInventory(adventure.getAp().getContainItem());
+
+            }
         }
         if (ap.getGoldCoins() != 0) {
             currentPlayer.changeGoldCoins(ap.getGoldCoins());
@@ -776,6 +781,10 @@ public class ControllerFX {
             System.out.println("Congratz you won!");
         }
 
+        if (currentPlayer.getCurrentHealth() < 0) {
+            showDeathPopUp();
+        }
+
         setPlayersStarterPointVFX(currentPlayer.getStarterPotion());
         adventure.actionPointEvents();
 
@@ -783,25 +792,30 @@ public class ControllerFX {
     }
 
 
-    private void rollForLuck() {
+    private int rollForLuck() {
         int rdm = rollDice(2);
 
         getGTButton1().setVisible(false);
 
         if (rdm < adventure.getCurrentPlayer().getCurrentLuck()) {
+            adventure.getCurrentPlayer().changeCurrentLuck(-1);
             getGTButton1().setVisible(true);
         }
 
 
         showDice(rdm);
+    return rdm;
 
-        if (adventure.getAp().getContainItem() != null) {
-            if (adventure.getCurrentPlayer().getInventory() != null) {
-                adventure.getCurrentPlayer().addToInventory(adventure.getAp().getContainItem());
-
-            }
-        }
     }
+
+    private boolean rollForLuckBloodBeast() {
+        return (rollForLuck() < adventure.getCurrentPlayer().getCurrentLuck());
+
+        }
+
+
+
+
 
     public void combat() {
         ActionPoint ap = adventure.getAp();

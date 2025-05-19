@@ -184,7 +184,9 @@ public class Player {
     public int getCurrentLuck() {
         return currentLuck;
     }
-
+    public void changeCurrentLuck(int luckChange){
+       this.currentLuck+=luckChange;
+    }
     public void setCurrentLuck(int currentLuck) {
         this.currentLuck = currentLuck;
     }
