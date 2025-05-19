@@ -812,17 +812,14 @@ public class ControllerFX {
         }
 
         showDice(rdm);
-    return rdm;
+        return rdm;
 
     }
 
     private boolean rollForLuckBloodBeast() {
         return (rollForLuck() < adventure.getCurrentPlayer().getCurrentLuck());
 
-        }
-
-
-
+    }
 
 
     public void combat() {
