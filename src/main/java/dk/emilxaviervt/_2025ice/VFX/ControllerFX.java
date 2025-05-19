@@ -882,6 +882,7 @@ public class ControllerFX {
 
 
                 }
+                break;
 
             }
         }
