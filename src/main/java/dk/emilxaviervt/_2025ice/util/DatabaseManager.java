@@ -300,7 +300,6 @@ public class DatabaseManager  {
 
             }
 
-
         }catch (SQLException e){
             System.out.println("Error: " + e.getMessage());
         }

@@ -18,7 +18,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Font;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -264,6 +264,14 @@ public class ControllerFX {
         GTButton1.setVisible(visible);
     }
 
+    @FXML
+    private void combatSwordPress(MouseEvent event) {
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        if (!adventure.getAp().getContainedCreatures().isEmpty()) {
+            System.out.println("test mouseClick");
+            combat();
+        }
+    }
 
     public int rollDice(int numberOfDice) {
         Random random = new Random();
@@ -756,7 +764,8 @@ public class ControllerFX {
             currentPlayer.changeAttack(ap.getChangeAttackPoints());
         }
         if (ap.getContainedCreatures() != null) {
-            combat();
+//            combat();
+            setCombatSwordImagetoVisable();
         }
         if (ap.getLuckRoll()) {
             rollForLuck();
@@ -821,68 +830,69 @@ public class ControllerFX {
 //
         for (Creature creatureEvent : ap.getContainedCreatures())
 
-            switch (creatureEvent.getId()) {
-                case 8:
-                    System.out.println("test");
-                    CombatGiantScorpion();
-                    break;
-               /* case 14:
-                    combatBloodBeast();
-                    break;*/
-                case 24:
-                    combatMirrorDemon();
-                    break;
-                default:
-                    System.out.println(creatureEvent);
-                    regularCombat();
+            if (creatureEvent.getId() == 8){combatGiantScorpion()   ;}
+            else if(creatureEvent.getId()==14) {combatBloodBeast()  ;}
+            else if(creatureEvent.getId() == 24){combatMirrorDemon();}
 
 
-                    }
+            else if(creatureEvent.getId() == 1){
+                //canFlee
+            }
+            else if(creatureEvent.getId() == 19){}
+
+
+            else                                     regularCombat();
+
+
+
+
             }
 
    private void combatBloodBeast() {
-        ActionPoint ap = adventure.getAp();
-        Player currentPlayer = adventure.getCurrentPlayer();
 
-        for (Creature bloodBeast : ap.getContainedCreatures()) {
+
+        for (Creature bloodBeast : adventure.getAp().getContainedCreatures()) {
             setCombatSwordImagetoVisable();
 
-            int counter = 0;
-                        while (currentPlayer.getCurrentHealth() > 0 && bloodBeast.getCurrentHealth() > 0 || counter ==0) {
-                    int playerAttack = currentPlayer.getCurrentAttack() + adventure.dieRoll();
+            boolean notWonARound = true;
+
+            while (notWonARound) {
+               //while (adventure.getCurrentPlayer().getCurrentHealth() > 0 && bloodBeast.getCurrentHealth() > 0) {
+                    int playerAttack = adventure.getCurrentPlayer().getCurrentAttack() + adventure.dieRoll();
                     int bloodBeastAttack = bloodBeast.getCurrentAttack() + adventure.dieRoll();
 
                     if (bloodBeastAttack > playerAttack) {
-                        //currentPlayer.changeHealth(-2);
+                        adventure.getCurrentPlayer().changeHealth(-2);
 
                     } if (playerAttack > bloodBeastAttack) {
                         counter++;
                     }
 
-                        if (rollForLuckBloodBeast()) {
+                if (rollForLuckBloodBeast()) {
 
-                        int actionPointID = 97;
+                    int actionPointID = 97;
 
-                        setDiceInvisible();
-                            setVisibilityOnGTButtons();
-                            adventure.setAp(actionPointID);
-                            displayDescription(actionPointID);
-                            setStatsAmount();
-                            setActionPointToGUI();
-                            displayInventory();
-                        } else {
-                        int actionPointID = 21;
+                    setDiceInvisible();
+                    setVisibilityOnGTButtons();
+                    adventure.setAp(actionPointID);
+                    displayDescription(actionPointID);
+                    setStatsAmount();
+                    setActionPointToGUI();
+                    displayInventory();
+                } else {
+                    int actionPointID = 21;
 
-                        setDiceInvisible();
-                            setVisibilityOnGTButtons();
-                            adventure.setAp(actionPointID);
-                            displayDescription(actionPointID);
-                            setStatsAmount();
-                            setActionPointToGUI();
+                    setDiceInvisible();
+                    setVisibilityOnGTButtons();
+                    adventure.setAp(actionPointID);
+                    displayDescription(actionPointID);
+                    setStatsAmount();
+                    setActionPointToGUI();
 
-                        displayInventory();
-                        }
-                    }
+                    displayInventory();
+                }
+
+
 
 
         }
@@ -923,7 +933,7 @@ public class ControllerFX {
             }
         }
     }
-    private void CombatGiantScorpion(){
+    private void combatGiantScorpion(){
         ActionPoint ap = adventure.getAp();
         Player currentPlayer = adventure.getCurrentPlayer();
 

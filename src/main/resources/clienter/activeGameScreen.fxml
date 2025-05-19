@@ -176,7 +176,12 @@
                </textFill>
             </Button>
             <Button fx:id="GTButton6" graphicTextGap="0.0" layoutX="212.0" layoutY="66.0" mnemonicParsing="false" onAction="#pressOfGoto" prefHeight="26.0" prefWidth="126.0" translateX="200.0" translateY="50.0" visible="false" />
-            <ImageView fx:id="combatSwordImage" fitHeight="45.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true" translateX="220.0" translateY="-25.0" visible="false">
+            <ImageView fx:id="combatSwordImage" fitHeight="45.0" fitWidth="51.0" onMouseClicked="#combatSwordPress" pickOnBounds="true" preserveRatio="true" translateX="220.0" translateY="-25.0" visible="false">
+               <image>
+                  <Image url="@../images/thunder-blade-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="combatSwordImage1" fitHeight="45.0" fitWidth="51.0" layoutX="253.0" layoutY="57.0" onMousePressed="#combatSwordPress" onTouchPressed="#combatSwordPress" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../images/thunder-blade-removebg-preview.png" />
                </image>

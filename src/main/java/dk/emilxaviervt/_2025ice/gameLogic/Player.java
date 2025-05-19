@@ -122,7 +122,7 @@ public class Player {
 
     public void giveHealthBoost() {
 
-        if (this.getCurrentHealth() > this.getMaxHealth()) {
+        if (this.getCurrentHealth() < this.getMaxHealth()) {
 
             this.changeFoodRations(-1);
             this.changeHealth(4);

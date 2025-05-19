@@ -175,6 +175,8 @@ public class Adventure {
                     currentPlayer.changeFoodRations(-10);
                     break;
                 case 21:
+
+                     cfx.combatBloodBeast2();
 //                    Jeg tror ikke der skal ske noget her ? det er kun case 157 der bruger den og den skal ikke bruge en metode?
 //                    currentPlayer.addToInventory(allItems.get(31));
 //                    currentPlayer.changeLuck(1);
