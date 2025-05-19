@@ -802,7 +802,6 @@ public class ControllerFX {
             getGTButton1().setVisible(true);
         }
 
-
         showDice(rdm);
     return rdm;
 
@@ -864,7 +863,7 @@ public class ControllerFX {
                     setDiceInvisible();
                     setVisibilityOnGTButtons();
                     adventure.setAp(actionPointID);
-                    displayDescription(actionPointID);// dnfw.... srsly
+                    displayDescription(actionPointID);
                     setActionPointToGUI();
                     setStatsAmount();
 //                  adventure.actionPointEvents();
