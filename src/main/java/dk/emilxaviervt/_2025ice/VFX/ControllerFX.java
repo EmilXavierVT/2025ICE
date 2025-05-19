@@ -814,7 +814,7 @@ public class ControllerFX {
                     CombatGiantScorpion();
                     break;
                 case 24:
-                    //combatMirrorDemon();
+                    combatMirrorDemon();
                     break;
                 default:
                     System.out.println(creatureEvent);
@@ -826,20 +826,40 @@ public class ControllerFX {
 
 
 
-//    private void combatMirrorDemon(){
-//        ActionPoint ap = adventure.getAp();
-//        Player currentPlayer = adventure.getCurrentPlayer();
+    private void combatMirrorDemon(){
+        ActionPoint ap = adventure.getAp();
+        Player currentPlayer = adventure.getCurrentPlayer();
 
-//        for (Creature MirrorDemon: ap.getContainedCreatures())
-//          setCombatSwordImagetoVisable();
-//          while(creature.getCurrentHealth() > 0){
-    //      int playerAttack = currentPlayer.getCurrentAttack() + adventure.dieRoll();
-    //      int mirrorDemonAttack =  creatureEvent2.getCurrentAttack() + adventure.dieRoll();
-    //      if (mirrirDemonAttack > playerAttack){
-    //
-    //}
-    //      }
-    //}
+        for (Creature mirrorDemon: ap.getContainedCreatures()) {
+            setCombatSwordImagetoVisable();
+
+            int mirrorDemonHP = mirrorDemon.getCurrentHealth();
+
+            while (mirrorDemonHP > 0) {
+
+                int playerAttack = currentPlayer.getCurrentAttack() + adventure.dieRoll();
+                int mirrorDemonAttack = mirrorDemon.getCurrentAttack() + adventure.dieRoll();
+
+                if (mirrorDemonAttack > playerAttack) {
+                    int actionPointID = 8;
+
+
+                    setDiceInvisible();
+                    setVisibilityOnGTButtons();
+                    adventure.setAp(actionPointID);
+                    displayDescription(actionPointID);// dnfw.... srsly
+                    setActionPointToGUI();
+                    setStatsAmount();
+//                  adventure.actionPointEvents();
+                    displayInventory();
+
+                } else if (mirrorDemonAttack == playerAttack) {
+                } else {
+                    mirrorDemonHP -= 2;
+                }
+            }
+        }
+    }
     private void CombatGiantScorpion(){
         ActionPoint ap = adventure.getAp();
         Player currentPlayer = adventure.getCurrentPlayer();
@@ -935,4 +955,3 @@ public class ControllerFX {
         }
     }
 }
-
