@@ -817,13 +817,14 @@ public class ControllerFX {
     }
 
     private boolean rollForLuckBloodBeast() {
-        return (rollForLuck() < adventure.getCurrentPlayer().getCurrentLuck());
+                return (rollForLuck() < adventure.getCurrentPlayer().getCurrentLuck());
 
     }
 
 
     public void combat() {
         ActionPoint ap = adventure.getAp();
+        System.out.println("test combat");
 //
         for (Creature creatureEvent : ap.getContainedCreatures())
 
@@ -861,9 +862,14 @@ public class ControllerFX {
                     if (bloodBeastAttack > playerAttack) {
                         adventure.getCurrentPlayer().changeHealth(-2);
 
-                    } if (playerAttack > bloodBeastAttack) {
-                        counter++;
                     }
+                    if (playerAttack > bloodBeastAttack) {
+                        notWonARound = false;
+                    }
+                    if(adventure.getCurrentPlayer().getCurrentHealth()<0){showDeathPopUp();}
+
+            }
+
 
                 if (rollForLuckBloodBeast()) {
 
@@ -892,6 +898,58 @@ public class ControllerFX {
 
 
 
+        }
+    }
+    public void combatBloodBeast2() {
+
+
+        for (Creature bloodBeast : adventure.getAp().getContainedCreatures()) {
+            setCombatSwordImagetoVisable();
+
+            boolean notWonARound = true;
+
+            while (notWonARound) {
+                //while (adventure.getCurrentPlayer().getCurrentHealth() > 0 && bloodBeast.getCurrentHealth() > 0) {
+                int playerAttack = adventure.getCurrentPlayer().getCurrentAttack() + adventure.dieRoll();
+                int bloodBeastAttack = bloodBeast.getCurrentAttack() + adventure.dieRoll();
+
+                if (bloodBeastAttack > playerAttack) {
+                    adventure.getCurrentPlayer().changeHealth(-2);
+
+                }
+                if (playerAttack > bloodBeastAttack) {
+                    notWonARound = false;
+                }
+                if (adventure.getCurrentPlayer().getCurrentHealth() < 0) {
+                    showDeathPopUp();
+                }
+
+            }
+
+
+            if (rollForLuckBloodBeast()) {
+
+                int actionPointID = 97;
+
+                setDiceInvisible();
+                setVisibilityOnGTButtons();
+                adventure.setAp(actionPointID);
+                displayDescription(actionPointID);
+                setStatsAmount();
+                setActionPointToGUI();
+                displayInventory();
+            } else {
+                int actionPointID = 116;
+
+                setDiceInvisible();
+                setVisibilityOnGTButtons();
+                adventure.setAp(actionPointID);
+                displayDescription(actionPointID);
+                setStatsAmount();
+                setActionPointToGUI();
+
+                displayInventory();
+            }
         }
     }
 
@@ -961,7 +1019,6 @@ public class ControllerFX {
                     displayDescription(actionPointID);// dnfw.... srsly
                     setActionPointToGUI();
                     setStatsAmount();
-//        adventure.actionPointEvents();
                     displayInventory();
 
 
@@ -977,6 +1034,7 @@ public class ControllerFX {
         for (Creature creature : ap.getContainedCreatures()) {
             setCombatSwordImagetoVisable();
             while (currentPlayer.getCurrentHealth() > 0 && creature.getCurrentHealth() > 0) {
+
 
                 // Player attack
                 int playerAttack = currentPlayer.getCurrentAttack() + adventure.dieRoll();
