@@ -143,7 +143,7 @@ public class ControllerFX {
     @FXML
     private Button dice2Button;
 
-//    Potion MenuItems
+    //    Potion MenuItems
     @FXML
     private MenuItem attackPotionMenuItem;
     @FXML
@@ -166,17 +166,15 @@ public class ControllerFX {
     Stage stage;
 
 
-
     public ControllerFX() {
 
     }
 
 
-
     @FXML
     private void eatOneFood(ActionEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        if(adventure.getCurrentPlayer().getFoodRations() > 0) {
+        if (adventure.getCurrentPlayer().getFoodRations() > 0) {
             if (adventure.getCurrentPlayer().getCurrentHealth() < adventure.getCurrentPlayer().getMaxHealth()) {
                 if (adventure.getAp().getContainedCreatures().isEmpty()) {
                     adventure.getCurrentPlayer().giveHealthBoost();
@@ -219,10 +217,9 @@ public class ControllerFX {
     }
 
 
-
     @FXML
     private void dice1ButtonPress(ActionEvent event) {
-        if(!adventure.getAp().getDieRoll()) {
+        if (!adventure.getAp().getDieRoll()) {
             rollDice(1);
         }
 
@@ -231,29 +228,31 @@ public class ControllerFX {
 
     @FXML
     private void dice2ButtonPress(ActionEvent event) {
-        if(!actionPoint.getDieRoll()) {
+        if (!actionPoint.getDieRoll()) {
             rollDice(2);
         }
     }
 
     @FXML
     private void healthPotionPress(ActionEvent event) {
-        if(adventure.getCurrentPlayer().getCurrentHealth() < adventure.getCurrentPlayer().getMaxHealth()){
+        if (adventure.getCurrentPlayer().getCurrentHealth() < adventure.getCurrentPlayer().getMaxHealth()) {
             adventure.getCurrentPlayer().setCurrentHealth(adventure.getCurrentPlayer().getMaxHealth());
             adventure.getCurrentPlayer().setStarterPotion(0);
         }
         setStatsAmount();
     }
+
     @FXML
     private void luckPotionPress(ActionEvent event) {
-        if(adventure.getCurrentPlayer().getCurrentLuck() < adventure.getCurrentPlayer().getMaxLuck()){
+        if (adventure.getCurrentPlayer().getCurrentLuck() < adventure.getCurrentPlayer().getMaxLuck()) {
             adventure.getCurrentPlayer().setCurrentLuck(adventure.getCurrentPlayer().getMaxLuck());
             adventure.getCurrentPlayer().setStarterPotion(0);
         }
     }
+
     @FXML
     private void attackPotionPress(ActionEvent event) {
-        if(adventure.getCurrentPlayer().getCurrentAttack()< adventure.getCurrentPlayer().getMaxAttack()){
+        if (adventure.getCurrentPlayer().getCurrentAttack() < adventure.getCurrentPlayer().getMaxAttack()) {
             adventure.getCurrentPlayer().setCurrentAttack(adventure.getCurrentPlayer().getMaxAttack());
             adventure.getCurrentPlayer().setStarterPotion(0);
         }
@@ -266,18 +265,16 @@ public class ControllerFX {
     }
 
 
-
-
-    public int rollDice(int numberOfDice){
+    public int rollDice(int numberOfDice) {
         Random random = new Random();
-        int rdm=0;
+        int rdm = 0;
 
-        if(numberOfDice == 1){
+        if (numberOfDice == 1) {
             rdm = random.nextInt(1, 7);
             animateDiceRoll();
             showDice(rdm);
 
-        }else if(numberOfDice == 2) {
+        } else if (numberOfDice == 2) {
             rdm = random.nextInt(2, 13);
             animateTwoDiceRoll();
             showTwoDice(rdm);
@@ -287,11 +284,11 @@ public class ControllerFX {
 
     }
 
-    private void showDice(int diceNumber){
+    private void showDice(int diceNumber) {
 
         setDiceInvisible();
 
-        switch (diceNumber){
+        switch (diceNumber) {
             case 1:
                 dice1.setVisible(true);
                 break;
@@ -335,14 +332,15 @@ public class ControllerFX {
                 dice12.setVisible(true);
                 break;
             default:
-                    System.out.println("something went wrong in showDice() in ControllerFX.java, Show one dice :");
+                System.out.println("something went wrong in showDice() in ControllerFX.java, Show one dice :");
         }
 
     }
-    private void showTwoDice(int diceNumber){
+
+    private void showTwoDice(int diceNumber) {
 
         setDiceInvisible();
-        switch (diceNumber){
+        switch (diceNumber) {
             case 1:
                 dice1.setVisible(true);
                 break;
@@ -397,53 +395,81 @@ public class ControllerFX {
     }
 
 
-
-        public void setPlayersStarterPointVFX(int potionID){
-            if(potionID == 0){
-                attackPotionMenuItem.setVisible(false);
-                healthPotionMenuItem.setVisible(false);
-                luckPotionMenuItem.setVisible(false);
-            }
-            if(potionID == 1){attackPotionMenuItem.setVisible(true);}
-            if(potionID == 2){healthPotionMenuItem.setVisible(true);}
-            if(potionID == 3){luckPotionMenuItem.setVisible(true);}
-
+    public void setPlayersStarterPointVFX(int potionID) {
+        if (potionID == 0) {
+            attackPotionMenuItem.setVisible(false);
+            healthPotionMenuItem.setVisible(false);
+            luckPotionMenuItem.setVisible(false);
+        }
+        if (potionID == 1) {
+            attackPotionMenuItem.setVisible(true);
+        }
+        if (potionID == 2) {
+            healthPotionMenuItem.setVisible(true);
+        }
+        if (potionID == 3) {
+            luckPotionMenuItem.setVisible(true);
         }
 
+    }
 
 
-
-
-
-
-    private void displayInventory(){
+    private void displayInventory() {
         setItemLabelInvisible();
-       if(!adventure.getCurrentPlayer().getInventory().isEmpty()){
-           for(int i=0; i<adventure.getCurrentPlayer().getInventory().size();i++){
-               displayItemLabel(i);
-           }
-       }
+        if (!adventure.getCurrentPlayer().getInventory().isEmpty()) {
+            for (int i = 0; i < adventure.getCurrentPlayer().getInventory().size(); i++) {
+                displayItemLabel(i);
+            }
+        }
     }
 
 
-
-
-
-    private void displayItemLabel(int i){
+    private void displayItemLabel(int i) {
         ArrayList<Item> inventory = adventure.getCurrentPlayer().getInventory();
-        if(i == 0 ){itemLabel0.setText(inventory.getFirst().getName()); itemLabel0.setVisible(true);}
-        if(i == 1 ){itemLabel1.setText(inventory.get(1).getName()); itemLabel1.setVisible(true);}
-        if(i == 2 ){itemLabel2.setText(inventory.get(2).getName()); itemLabel2.setVisible(true);}
-        if(i == 3 ){itemLabel3.setText(inventory.get(3).getName()); itemLabel3.setVisible(true);}
-        if(i == 4 ){itemLabel4.setText(inventory.get(4).getName()); itemLabel4.setVisible(true);}
-        if(i == 5 ){itemLabel5.setText(inventory.get(5).getName()); itemLabel5.setVisible(true);}
-        if(i == 6 ){itemLabel6.setText(inventory.get(6).getName()); itemLabel6.setVisible(true);}
-        if(i == 7 ){itemLabel7.setText(inventory.get(7).getName()); itemLabel7.setVisible(true);}
-        if(i == 8 ){itemLabel8.setText(inventory.get(8).getName()); itemLabel8.setVisible(true);}
-        if(i == 9 ){itemLabel9.setText(inventory.get(9).getName()); itemLabel9.setVisible(true);}
+        if (i == 0) {
+            itemLabel0.setText(inventory.getFirst().getName());
+            itemLabel0.setVisible(true);
+        }
+        if (i == 1) {
+            itemLabel1.setText(inventory.get(1).getName());
+            itemLabel1.setVisible(true);
+        }
+        if (i == 2) {
+            itemLabel2.setText(inventory.get(2).getName());
+            itemLabel2.setVisible(true);
+        }
+        if (i == 3) {
+            itemLabel3.setText(inventory.get(3).getName());
+            itemLabel3.setVisible(true);
+        }
+        if (i == 4) {
+            itemLabel4.setText(inventory.get(4).getName());
+            itemLabel4.setVisible(true);
+        }
+        if (i == 5) {
+            itemLabel5.setText(inventory.get(5).getName());
+            itemLabel5.setVisible(true);
+        }
+        if (i == 6) {
+            itemLabel6.setText(inventory.get(6).getName());
+            itemLabel6.setVisible(true);
+        }
+        if (i == 7) {
+            itemLabel7.setText(inventory.get(7).getName());
+            itemLabel7.setVisible(true);
+        }
+        if (i == 8) {
+            itemLabel8.setText(inventory.get(8).getName());
+            itemLabel8.setVisible(true);
+        }
+        if (i == 9) {
+            itemLabel9.setText(inventory.get(9).getName());
+            itemLabel9.setVisible(true);
+        }
 
     }
-    private void setItemLabelInvisible(){
+
+    private void setItemLabelInvisible() {
         itemLabel0.setVisible(false);
         itemLabel1.setVisible(false);
         itemLabel2.setVisible(false);
@@ -457,8 +483,7 @@ public class ControllerFX {
     }
 
 
-
-    private void setDiceInvisible(){
+    private void setDiceInvisible() {
         dice1.setVisible(false);
         dice2.setVisible(false);
         dice3.setVisible(false);
@@ -474,7 +499,6 @@ public class ControllerFX {
     }
 
 
-
     private void animateDiceRoll() {
         final int animationFrames = 20;         // Number of frames
         final int frameIntervalMs = 60;         // Milliseconds between frames
@@ -484,14 +508,16 @@ public class ControllerFX {
         for (int i = 0; i < animationFrames; i++) {
             timeline.getKeyFrames().add(
                     new KeyFrame(Duration.millis(i * frameIntervalMs),
-                            e -> {int face = 1 + random.nextInt(6);
-                        showDice(face);
-                    })
+                            e -> {
+                                int face = 1 + random.nextInt(6);
+                                showDice(face);
+                            })
             );
         }
 
         timeline.play();
     }
+
     private void animateTwoDiceRoll() {
         final int animationFrames = 20;
         final int frameIntervalMs = 60;         // Milliseconds between frames
@@ -501,7 +527,7 @@ public class ControllerFX {
         for (int i = 0; i < animationFrames; i++) {
             timeline.getKeyFrames().add(
                     new KeyFrame(Duration.millis(i * frameIntervalMs), e -> {
-                        int face = 1 + random.nextInt(2,12);
+                        int face = 1 + random.nextInt(2, 12);
                         showTwoDice(face);
                     })
             );
@@ -509,10 +535,6 @@ public class ControllerFX {
 
         timeline.play();
     }
-
-
-
-
 
 
     public BooleanProperty loginCompletedProperty() {
@@ -541,16 +563,15 @@ public class ControllerFX {
         displayInventory();
 
 
-
     }
 
-    private int getPressedAPID(ActionEvent event){
+    private int getPressedAPID(ActionEvent event) {
         Button sourceButton = (Button) event.getSource(); // Get the source and cast it to Button
         String buttonText = sourceButton.getText();
         return Integer.parseInt(buttonText);
     }
 
-    public void setCombatSwordImagetoVisable(){
+    public void setCombatSwordImagetoVisable() {
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(1.0), e -> combatSwordImage.setVisible(true)),
                 new KeyFrame(Duration.seconds(2.0), e -> combatSwordImage.setVisible(false))
@@ -584,13 +605,13 @@ public class ControllerFX {
     }
 
 
-    private void setStatsAmount(){
+    private void setStatsAmount() {
 
         healthAmount.setText(adventure.getCurrentPlayer().getCurrentHealth() + "");
         attackAmount.setText(adventure.getCurrentPlayer().getCurrentAttack() + "");
         luckAmount.setText(adventure.getCurrentPlayer().getCurrentLuck() + "");
-        goldAmount.setText(adventure.getCurrentPlayer().getGoldCoins()+ "");
-        foodAmount.setText(adventure.getCurrentPlayer().getFoodRations()+ "");
+        goldAmount.setText(adventure.getCurrentPlayer().getGoldCoins() + "");
+        foodAmount.setText(adventure.getCurrentPlayer().getFoodRations() + "");
 
 
     }
@@ -611,7 +632,7 @@ public class ControllerFX {
     private void setNameOfGTButtons(ActionPoint newAP) {
         ArrayList<Integer> AAPList = newAP.getActionPointList();
 
-        for (int i = 0; i <AAPList.size(); i++) {
+        for (int i = 0; i < AAPList.size(); i++) {
             setButtonName((i + 1), AAPList.get(i));
         }
     }
@@ -651,27 +672,25 @@ public class ControllerFX {
     }
 
 
-
-   private void setVisibilityOnGTButtons(){
+    private void setVisibilityOnGTButtons() {
         GTButton1.setVisible(false);
         GTButton2.setVisible(false);
         GTButton3.setVisible(false);
         GTButton4.setVisible(false);
         GTButton5.setVisible(false);
         GTButton6.setVisible(false);
-   }
-
-
-
-    private void animateDescription(Label label){
-    FadeTransition fade = new FadeTransition(Duration.seconds(5),label);
-    fade.setFromValue(0.0);
-    fade.setToValue(1.0);
-    fade.play();
     }
 
 
-    private void typingAnimation(Label label, String text, double speed){
+    private void animateDescription(Label label) {
+        FadeTransition fade = new FadeTransition(Duration.seconds(5), label);
+        fade.setFromValue(0.0);
+        fade.setToValue(1.0);
+        fade.play();
+    }
+
+
+    private void typingAnimation(Label label, String text, double speed) {
 
         Timeline previousTimeline = (Timeline) label.getUserData();
         if (previousTimeline != null) {
@@ -683,8 +702,8 @@ public class ControllerFX {
         Timeline timeline = new Timeline();
         int[] index = {0};
 
-        KeyFrame keyframe = new KeyFrame(Duration.millis(speed), event ->  {
-            if(index[0] < text.length()){
+        KeyFrame keyframe = new KeyFrame(Duration.millis(speed), event -> {
+            if (index[0] < text.length()) {
                 label.setText(label.getText() + text.charAt(index[0]));
                 index[0]++;
             }
@@ -724,19 +743,38 @@ public class ControllerFX {
         this.actionPoint = adventure.getAp();
 
     }
-    public void setActionPointToGUI(){
+
+    public void setActionPointToGUI() {
         ActionPoint ap = adventure.getAp();
         Player currentPlayer = adventure.getCurrentPlayer();
 
-        if(currentPlayer.getCurrentHealth() < 0){showDeathPopUp();}
-        if (ap.getChangeHealthPoints() != 0) {currentPlayer.changeHealth(ap.getChangeHealthPoints());}
-        if (ap.getChangeAttackPoints() != 0) {currentPlayer.changeAttack(ap.getChangeAttackPoints());}
-        if (ap.getContainedCreatures() !=null) {combat();}
-        if (ap.getLuckRoll()) {rollForLuck();}
-        if (ap.getGoldCoins() != 0) {currentPlayer.changeGoldCoins(ap.getGoldCoins());}
-        if (ap.getDieRoll()) {rollDice(2);}
-        if (ap.getIsFinal()) {showDeathPopUp();}
-        if (ap.getWinnerActionPoint()) {System.out.println("Congratz you won!");}
+        if (currentPlayer.getCurrentHealth() < 0) {
+            showDeathPopUp();
+        }
+        if (ap.getChangeHealthPoints() != 0) {
+            currentPlayer.changeHealth(ap.getChangeHealthPoints());
+        }
+        if (ap.getChangeAttackPoints() != 0) {
+            currentPlayer.changeAttack(ap.getChangeAttackPoints());
+        }
+        if (ap.getContainedCreatures() != null) {
+            combat();
+        }
+        if (ap.getLuckRoll()) {
+            rollForLuck();
+        }
+        if (ap.getGoldCoins() != 0) {
+            currentPlayer.changeGoldCoins(ap.getGoldCoins());
+        }
+        if (ap.getDieRoll()) {
+            rollDice(2);
+        }
+        if (ap.getIsFinal()) {
+            showDeathPopUp();
+        }
+        if (ap.getWinnerActionPoint()) {
+            System.out.println("Congratz you won!");
+        }
 
         setPlayersStarterPointVFX(currentPlayer.getStarterPotion());
         adventure.actionPointEvents();
@@ -745,29 +783,112 @@ public class ControllerFX {
     }
 
 
-    private void rollForLuck(){
-        int rdm =rollDice(2);
+    private void rollForLuck() {
+        int rdm = rollDice(2);
 
         getGTButton1().setVisible(false);
 
-        if(rdm < adventure.getCurrentPlayer().getCurrentLuck()){
+        if (rdm < adventure.getCurrentPlayer().getCurrentLuck()) {
             getGTButton1().setVisible(true);
-        };
+        }
+
 
         showDice(rdm);
 
-           if(adventure.getAp().getContainItem() != null) {
-               if (adventure.getCurrentPlayer().getInventory() != null) {
-                   adventure.getCurrentPlayer().addToInventory(adventure.getAp().getContainItem());
+        if (adventure.getAp().getContainItem() != null) {
+            if (adventure.getCurrentPlayer().getInventory() != null) {
+                adventure.getCurrentPlayer().addToInventory(adventure.getAp().getContainItem());
 
-               }
-           }
+            }
+        }
     }
 
     public void combat() {
         ActionPoint ap = adventure.getAp();
+//
+        for (Creature creatureEvent : ap.getContainedCreatures())
+
+            switch (creatureEvent.getId()) {
+                case 8:
+                    System.out.println("test");
+                    CombatGiantScorpion();
+                    break;
+                case 24:
+                    //combatMirrorDemon();
+                    break;
+                default:
+                    System.out.println(creatureEvent);
+                    regularCombat();
+
+
+                    }
+            }
+
+
+
+//    private void combatMirrorDemon(){
+//        ActionPoint ap = adventure.getAp();
+//        Player currentPlayer = adventure.getCurrentPlayer();
+
+//        for (Creature MirrorDemon: ap.getContainedCreatures())
+//          setCombatSwordImagetoVisable();
+//          while(creature.getCurrentHealth() > 0){
+    //      int playerAttack = currentPlayer.getCurrentAttack() + adventure.dieRoll();
+    //      int mirrorDemonAttack =  creatureEvent2.getCurrentAttack() + adventure.dieRoll();
+    //      if (mirrirDemonAttack > playerAttack){
+    //
+    //}
+    //      }
+    //}
+    private void CombatGiantScorpion(){
+        ActionPoint ap = adventure.getAp();
         Player currentPlayer = adventure.getCurrentPlayer();
 
+        for (Creature creatureEvent2 : ap.getContainedCreatures()) {
+            setCombatSwordImagetoVisable();
+            while (currentPlayer.getCurrentHealth() > 0 && creatureEvent2.getCurrentHealth() > 0) {
+
+                // Player attack
+                int creatureAttack1 = 22;
+                int creatureAttack = 0;
+
+                /*
+
+                int playerAttack = currentPlayer.getCurrentAttack() + adventure.dieRoll();
+                int creatureAttack = creatureEvent2.getCurrentAttack() + adventure.dieRoll();
+                int creatureAttack1 = creatureEvent2.getCurrentAttack() + adventure.dieRoll();
+
+
+                if (playerAttack > creatureAttack && playerAttack > creatureAttack1) {
+                    creatureEvent2.changeCurrentHealth(-2);
+                } else if (creatureAttack > playerAttack || creatureAttack1 > playerAttack) {
+                    currentPlayer.changeHealth(-2);
+
+                }
+
+                 */
+                if (creatureAttack + creatureAttack1 == 22) {
+                    int actionPointID = 2;
+
+
+                    setDiceInvisible();
+                    setVisibilityOnGTButtons();
+                    adventure.setAp(actionPointID);
+                    displayDescription(actionPointID);// dnfw.... srsly
+                    setActionPointToGUI();
+                    setStatsAmount();
+//        adventure.actionPointEvents();
+                    displayInventory();
+
+
+                }
+
+            }
+        }
+    }
+    private void regularCombat() {
+        ActionPoint ap = adventure.getAp();
+        Player currentPlayer = adventure.getCurrentPlayer();
         for (Creature creature : ap.getContainedCreatures()) {
             setCombatSwordImagetoVisable();
             while (currentPlayer.getCurrentHealth() > 0 && creature.getCurrentHealth() > 0) {
@@ -776,20 +897,23 @@ public class ControllerFX {
                 int playerAttack = currentPlayer.getCurrentAttack() + adventure.dieRoll();
                 int creatureAttack = creature.getCurrentAttack() + adventure.dieRoll();
 
-                if (playerAttack > creatureAttack) {creature.changeCurrentHealth(-2);}
-                else if (creatureAttack > playerAttack) {currentPlayer.changeHealth(-2);}
+                if (playerAttack > creatureAttack) {
+                    creature.changeCurrentHealth(-2);
+                } else if (creatureAttack > playerAttack) {
+                    currentPlayer.changeHealth(-2);
+
+                }
             }
         }
     }
 
-
-    private void showDeathPopUp(){
+    private void showDeathPopUp() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("dit eventyr slutter her!");
         alert.setContentText("vil du spille igen eller afslutte spillet her ? ");
 
 // Set custom button types
-        ButtonType leftButton  = new ButtonType("Spil igen!");
+        ButtonType leftButton = new ButtonType("Spil igen!");
         ButtonType rightButton = new ButtonType("Afslut spillet");
 
         alert.getButtonTypes().setAll(leftButton, rightButton);
