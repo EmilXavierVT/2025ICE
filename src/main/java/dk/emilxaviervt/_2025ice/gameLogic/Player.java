@@ -139,7 +139,7 @@ public class Player {
 
 //    public void consumeItem(Consumable potion){
 //
-//        int potionID = potion.getID();
+ //     int potionID = potion.getID();
 //        //health potion
 //        if (potionID == 3) {
 //            this.currentHealth = this.maxHealth;

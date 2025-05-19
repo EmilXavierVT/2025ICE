@@ -1020,8 +1020,7 @@ public class ControllerFX {
                     displayInventory();
 
                 } else if (mirrorDemonAttack == playerAttack) {
-                } else {
-                    mirrorDemonHP -= 2;
+                } else { mirrorDemonHP -= 2;
                 }
             }
         }
@@ -1045,7 +1044,7 @@ public class ControllerFX {
                 } else if (creatureAttack > playerAttack || creatureAttack1 > playerAttack) {
                     currentPlayer.changeHealth(-2);
 
-                }
+                }else if(currentPlayer.getCurrentHealth()<=0){showDeathPopUp();}
 
                 if (creatureAttack + creatureAttack1 == 22) {
                     int actionPointID = 2;
