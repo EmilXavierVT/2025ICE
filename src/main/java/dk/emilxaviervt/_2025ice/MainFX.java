@@ -3,7 +3,10 @@ package dk.emilxaviervt._2025ice;
 import dk.emilxaviervt._2025ice.VFX.ControllerFX;
 import dk.emilxaviervt._2025ice.gameLogic.Adventure;
 import javafx.application.Application;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -23,8 +26,12 @@ public class MainFX extends Application {
         fxmlLoader.setController(controller);
         Scene scene2 = new Scene(fxmlLogin.load(), 700, 450);
 
-        Scene scene = new Scene(fxmlLoader.load(), 700, 470);
+        Parent rootGame = fxmlLoader.load();
+        Parent root = fxmlLogin.load();
 
+        Scene sceneLogin = new Scene(root, designWidth, designHeight);
+
+        Scene sceneGame = new Scene(rootGame, designWidth, designHeight);
 
         stage.setTitle("Dødens Labyrint");
 
@@ -34,11 +41,12 @@ public class MainFX extends Application {
 
         controller.loginCompletedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
-                stage.setScene(scene);
+                controller.setLoadedPlayer();
+                stage.setScene(sceneGame);
+
             }
-
-
         });
+
     }
 
 

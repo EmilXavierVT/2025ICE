@@ -197,12 +197,34 @@ public class ControllerFX {
     private void runFromFight(ActionEvent event) {
 
     }
+    public Player newPlayer;
+
+    public void setLoadedPlayer(){
+
+            int actionPointID = adventure.getAp().getID();
+            setDiceInvisible();
+            setVisibilityOnGTButtons();
+            adventure.setAp(actionPointID);
+            System.out.println(actionPointID);
+            displayDescription(actionPointID);// dnfw.... srsly
+            setStatsAmount();
+            setActionPointToGUI();
+//        setStatsAmount();
+            displayInventory();
+            loginIsCompleted.set(true);
+
+
+
+    }
 
     @FXML
     private void login(ActionEvent event) {
         String name = handleTextField(event);
-        adventure.getCurrentPlayer().setName(name);
+        newPlayer = adventure.getDm().selectPlayers(name);
 
+
+//        adventure.getCurrentPlayer().setName(name);
+//
         loginIsCompleted.set(true);
 
     }
@@ -563,10 +585,13 @@ public class ControllerFX {
         if (actionPointID == 1) {
             choosePotion();
         }
-
+        if(adventure.getAp().getID() ==91 && actionPointID==257){
+            adventure.getCurrentPlayer().changeAttack(4);
+        }
         setDiceInvisible();
         setVisibilityOnGTButtons();
         adventure.setAp(actionPointID);
+        System.out.println(actionPointID);
         displayDescription(actionPointID);// dnfw.... srsly
         setStatsAmount();
         setActionPointToGUI();
@@ -697,7 +722,7 @@ public class ControllerFX {
 
 
     private void animateDescription(Label label) {
-        FadeTransition fade = new FadeTransition(Duration.seconds(5), label);
+        FadeTransition fade = new FadeTransition(Duration.seconds(1), label);
         fade.setFromValue(0.0);
         fade.setToValue(1.0);
         fade.play();
@@ -830,9 +855,8 @@ public class ControllerFX {
 
     public void combat() {
         ActionPoint ap = adventure.getAp();
-        System.out.println("test combat");
-//
-        for (Creature creatureEvent : ap.getContainedCreatures()){
+
+        for (Creature creatureEvent : ap.getContainedCreatures()) {
 
             if (creatureEvent.getId() == 8) {
                 combatGiantScorpion();
