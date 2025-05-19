@@ -840,6 +840,53 @@ public class ControllerFX {
                     }
             }
 
+   private void combatBloodBeast() {
+        ActionPoint ap = adventure.getAp();
+        Player currentPlayer = adventure.getCurrentPlayer();
+
+        for (Creature bloodBeast : ap.getContainedCreatures()) {
+            setCombatSwordImagetoVisable();
+
+            int counter = 0;
+                        while (currentPlayer.getCurrentHealth() > 0 && bloodBeast.getCurrentHealth() > 0 || counter ==0) {
+                    int playerAttack = currentPlayer.getCurrentAttack() + adventure.dieRoll();
+                    int bloodBeastAttack = bloodBeast.getCurrentAttack() + adventure.dieRoll();
+
+                    if (bloodBeastAttack > playerAttack) {
+                        //currentPlayer.changeHealth(-2);
+
+                    } if (playerAttack > bloodBeastAttack) {
+                        counter++;
+                    }
+
+                        if (rollForLuckBloodBeast()) {
+
+                        int actionPointID = 97;
+
+                        setDiceInvisible();
+                            setVisibilityOnGTButtons();
+                            adventure.setAp(actionPointID);
+                            displayDescription(actionPointID);
+                            setStatsAmount();
+                            setActionPointToGUI();
+                            displayInventory();
+                        } else {
+                        int actionPointID = 21;
+
+                        setDiceInvisible();
+                            setVisibilityOnGTButtons();
+                            adventure.setAp(actionPointID);
+                            displayDescription(actionPointID);
+                            setStatsAmount();
+                            setActionPointToGUI();
+
+                        displayInventory();
+                        }
+                    }
+
+
+        }
+    }
 
 
     private void combatMirrorDemon(){
@@ -885,11 +932,6 @@ public class ControllerFX {
             while (currentPlayer.getCurrentHealth() > 0 && creatureEvent2.getCurrentHealth() > 0) {
 
                 // Player attack
-                int creatureAttack1 = 22;
-                int creatureAttack = 0;
-
-                /*
-
                 int playerAttack = currentPlayer.getCurrentAttack() + adventure.dieRoll();
                 int creatureAttack = creatureEvent2.getCurrentAttack() + adventure.dieRoll();
                 int creatureAttack1 = creatureEvent2.getCurrentAttack() + adventure.dieRoll();
@@ -902,7 +944,6 @@ public class ControllerFX {
 
                 }
 
-                 */
                 if (creatureAttack + creatureAttack1 == 22) {
                     int actionPointID = 2;
 
