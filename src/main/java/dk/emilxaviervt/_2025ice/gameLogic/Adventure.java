@@ -67,30 +67,44 @@ public class Adventure {
 
         if (ap.getEvent() != 0) {
             switch (ap.getEvent()) {
-                case 1:
+
+                case 1: //roll one die
 
                     cfx.rollDice(1);
                     break;
-                case 2:
+
+
+                case 2: //roll two dies
                     cfx.rollDice(2);
                     break;
-                case 3:
-                    currentPlayer.changeFoodRations(-100);
+
+
+                case 3: //lose all rations
+                    currentPlayer.changeFoodRations(-getCurrentPlayer().foodRations);
                     break;
-                case 4:
-                    currentPlayer.changeFoodRations(-10);
+
+
+                case 4: // lose rations and one item
+                    currentPlayer.changeFoodRations(-getCurrentPlayer().foodRations);
                     currentPlayer.removeOneItemFromInventory();
                     break;
-                case 5:
+
+
+                case 5: //lose one ration
                     currentPlayer.changeFoodRations(-1);
                     break;
-                case 6:
+
+
+                case 6: //lose shield
                     currentPlayer.removeFromInventory(allItems.get(15)); // index starter på 0 vi starter på 1 i db
                     break;
-                case 7:
+
+
+                case 7: // roll 2 dies, take that amount of dmg and lose two luck
                     currentPlayer.changeHealth(-dieRoll()+dieRoll());
                     currentPlayer.changeLuck(-2);
                     break;
+
                 case 8:
                     cfx.getGTButton1().setVisible(false);
                     if (currentPlayer.getInventory().contains(allItems.get(33))) {
