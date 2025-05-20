@@ -595,7 +595,6 @@ public class ControllerFX {
         displayDescription(actionPointID);// dnfw.... srsly
         setStatsAmount();
         setActionPointToGUI();
-//        setStatsAmount();
         displayInventory();
 
 
