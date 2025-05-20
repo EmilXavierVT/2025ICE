@@ -1136,7 +1136,7 @@ public class ControllerFX {
         alert.setContentText("");
 
         ButtonType leftButton = new ButtonType("Evnedrik!");
-        ButtonType middleButton = new ButtonType("Udholdenhedsdrik!");
+        ButtonType middleButton = new ButtonType("Udholdenhedrik!");
         ButtonType rightButton = new ButtonType("Helddrik!");
         alert.getButtonTypes().setAll(leftButton, middleButton, rightButton);
         Optional<ButtonType> result = alert.showAndWait();
