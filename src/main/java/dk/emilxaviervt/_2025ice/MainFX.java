@@ -9,11 +9,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
+import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class MainFX extends Application {
+    private final double designWidth = 700;
+    private final double designHeight = 480;
+
     @Override
     public void start(Stage stage) throws IOException {
 
@@ -24,7 +28,7 @@ public class MainFX extends Application {
         controller.setAdventure(new Adventure());
         fxmlLogin.setController(controller);
         fxmlLoader.setController(controller);
-        Scene scene2 = new Scene(fxmlLogin.load(), 700, 450);
+
 
         Parent rootGame = fxmlLoader.load();
         Parent root = fxmlLogin.load();
@@ -34,9 +38,8 @@ public class MainFX extends Application {
         Scene sceneGame = new Scene(rootGame, designWidth, designHeight);
 
         stage.setTitle("Dødens Labyrint");
-
-
-        stage.setScene(scene2);
+        stage.setScene(sceneLogin);
+        stage.setResizable(false);
         stage.show();
 
         controller.loginCompletedProperty().addListener((observable, oldValue, newValue) -> {
@@ -49,6 +52,7 @@ public class MainFX extends Application {
 
     }
 
-
-    public static void main(String[] args) {launch();}
+    public static void main(String[] args) {
+        launch();
+    }
 }

@@ -427,10 +427,10 @@ public class ControllerFX {
 
 
     public void setPlayersStarterPointVFX(int potionID) {
-        
-            attackPotionMenuItem.setVisible(false);
-            healthPotionMenuItem.setVisible(false);
-            luckPotionMenuItem.setVisible(false);
+
+        attackPotionMenuItem.setVisible(false);
+        healthPotionMenuItem.setVisible(false);
+        luckPotionMenuItem.setVisible(false);
 
         if (potionID == 1) {
             attackPotionMenuItem.setVisible(true);
@@ -650,7 +650,6 @@ public class ControllerFX {
         goldAmount.setText(adventure.getCurrentPlayer().getGoldCoins() + "");
         foodAmount.setText(adventure.getCurrentPlayer().getFoodRations() + "");
         setPlayersStarterPointVFX(adventure.getCurrentPlayer().getStarterPotion());
-        
 
 
     }
@@ -848,7 +847,7 @@ public class ControllerFX {
     }
 
     private boolean rollForLuckBloodBeast() {
-                return (rollForLuck() < adventure.getCurrentPlayer().getCurrentLuck());
+        return (rollForLuck() < adventure.getCurrentPlayer().getCurrentLuck());
 
     }
 
@@ -864,14 +863,16 @@ public class ControllerFX {
                 combatBloodBeast();
             } else if (creatureEvent.getId() == 24) {
                 combatMirrorDemon();
-           // } else if (creatureEvent.getId() == 1) {
+                // } else if (creatureEvent.getId() == 1) {
                 //canFlee
                 //remove 2 health TBD
-            } else if (creatureEvent.getId() == 19) {combatImitator();
+            } else if (creatureEvent.getId() == 19) {
+                combatImitator();
             } else regularCombat();
+        }
     }
-    }
-    public void combatImitator(){
+
+    public void combatImitator() {
 
 
         for (Creature imitator : adventure.getAp().getContainedCreatures()) {
@@ -891,10 +892,65 @@ public class ControllerFX {
                 if (playerAttack > imitatorAttack) {
                     notWonARound = false;
                 }
-                if(adventure.getCurrentPlayer().getCurrentHealth()<0){showDeathPopUp();}
+                if (adventure.getCurrentPlayer().getCurrentHealth() < 0) {
+                    showDeathPopUp();
+                }
 
             }
             int actionPointID = 314;
+
+            setDiceInvisible();
+            setVisibilityOnGTButtons();
+            adventure.setAp(actionPointID);
+            displayDescription(actionPointID);
+            setStatsAmount();
+            setActionPointToGUI();
+
+            displayInventory();
+
+        }
+    }
+
+    private void combatBloodBeast() {
+
+
+        for (Creature bloodBeast : adventure.getAp().getContainedCreatures()) {
+            setCombatSwordImagetoVisable();
+
+            boolean notWonARound = true;
+
+            while (notWonARound) {
+                //while (adventure.getCurrentPlayer().getCurrentHealth() > 0 && bloodBeast.getCurrentHealth() > 0) {
+                int playerAttack = adventure.getCurrentPlayer().getCurrentAttack() + adventure.dieRoll();
+                int bloodBeastAttack = bloodBeast.getCurrentAttack() + adventure.dieRoll();
+
+                if (bloodBeastAttack > playerAttack) {
+                    adventure.getCurrentPlayer().changeHealth(-2);
+
+                }
+                if (playerAttack > bloodBeastAttack) {
+                    notWonARound = false;
+                }
+                if (adventure.getCurrentPlayer().getCurrentHealth() < 0) {
+                    showDeathPopUp();
+                }
+
+            }
+
+
+            if (rollForLuckBloodBeast()) {
+
+                int actionPointID = 97;
+
+                setDiceInvisible();
+                setVisibilityOnGTButtons();
+                adventure.setAp(actionPointID);
+                displayDescription(actionPointID);
+                setStatsAmount();
+                setActionPointToGUI();
+                displayInventory();
+            } else {
+                int actionPointID = 21;
 
                 setDiceInvisible();
                 setVisibilityOnGTButtons();
@@ -904,64 +960,12 @@ public class ControllerFX {
                 setActionPointToGUI();
 
                 displayInventory();
-
-        }
-    }
-
-   private void combatBloodBeast() {
-
-
-        for (Creature bloodBeast : adventure.getAp().getContainedCreatures()) {
-            setCombatSwordImagetoVisable();
-
-            boolean notWonARound = true;
-
-            while (notWonARound) {
-               //while (adventure.getCurrentPlayer().getCurrentHealth() > 0 && bloodBeast.getCurrentHealth() > 0) {
-                    int playerAttack = adventure.getCurrentPlayer().getCurrentAttack() + adventure.dieRoll();
-                    int bloodBeastAttack = bloodBeast.getCurrentAttack() + adventure.dieRoll();
-
-                    if (bloodBeastAttack > playerAttack) {
-                        adventure.getCurrentPlayer().changeHealth(-2);
-
-                    }
-                    if (playerAttack > bloodBeastAttack) {
-                        notWonARound = false;
-                    }
-                    if(adventure.getCurrentPlayer().getCurrentHealth()<0){showDeathPopUp();}
-
             }
 
 
-                if (rollForLuckBloodBeast()) {
-
-                    int actionPointID = 97;
-
-                    setDiceInvisible();
-                    setVisibilityOnGTButtons();
-                    adventure.setAp(actionPointID);
-                    displayDescription(actionPointID);
-                    setStatsAmount();
-                    setActionPointToGUI();
-                    displayInventory();
-                } else {
-                    int actionPointID = 21;
-
-                    setDiceInvisible();
-                    setVisibilityOnGTButtons();
-                    adventure.setAp(actionPointID);
-                    displayDescription(actionPointID);
-                    setStatsAmount();
-                    setActionPointToGUI();
-
-                    displayInventory();
-                }
-
-
-
-
         }
     }
+
     public void combatBloodBeast2() {
 
 
@@ -1016,11 +1020,11 @@ public class ControllerFX {
     }
 
 
-    private void combatMirrorDemon(){
+    private void combatMirrorDemon() {
         ActionPoint ap = adventure.getAp();
         Player currentPlayer = adventure.getCurrentPlayer();
 
-        for (Creature mirrorDemon: ap.getContainedCreatures()) {
+        for (Creature mirrorDemon : ap.getContainedCreatures()) {
             setCombatSwordImagetoVisable();
 
             int mirrorDemonHP = mirrorDemon.getCurrentHealth();
@@ -1044,12 +1048,14 @@ public class ControllerFX {
                     displayInventory();
 
                 } else if (mirrorDemonAttack == playerAttack) {
-                } else { mirrorDemonHP -= 2;
+                } else {
+                    mirrorDemonHP -= 2;
                 }
             }
         }
     }
-    private void combatGiantScorpion(){
+
+    private void combatGiantScorpion() {
         ActionPoint ap = adventure.getAp();
         Player currentPlayer = adventure.getCurrentPlayer();
 
@@ -1068,7 +1074,9 @@ public class ControllerFX {
                 } else if (creatureAttack > playerAttack || creatureAttack1 > playerAttack) {
                     currentPlayer.changeHealth(-2);
 
-                }else if(currentPlayer.getCurrentHealth()<=0){showDeathPopUp();}
+                } else if (currentPlayer.getCurrentHealth() <= 0) {
+                    showDeathPopUp();
+                }
 
                 if (creatureAttack + creatureAttack1 == 22) {
                     int actionPointID = 2;
@@ -1089,6 +1097,7 @@ public class ControllerFX {
             }
         }
     }
+
     private void regularCombat() {
 
         ActionPoint ap = adventure.getAp();
@@ -1096,32 +1105,32 @@ public class ControllerFX {
 
         ArrayList<Creature> creatures = ap.getContainedCreatures();
         setCombatSwordImagetoVisable();
-            for (Creature creature : creatures){
+        for (Creature creature : creatures) {
 
 
-                while (currentPlayer.getCurrentHealth() > 0 && creature.getCurrentHealth() > 0) {
-                    //setCombatSwordImagetoVisable()
+            while (currentPlayer.getCurrentHealth() > 0 && creature.getCurrentHealth() > 0) {
+                //setCombatSwordImagetoVisable()
 
-                    // Player attack
-                    int playerAttack = currentPlayer.getCurrentAttack() + adventure.dieRoll();
-                    int creatureAttack = creature.getCurrentAttack() + adventure.dieRoll();
+                // Player attack
+                int playerAttack = currentPlayer.getCurrentAttack() + adventure.dieRoll();
+                int creatureAttack = creature.getCurrentAttack() + adventure.dieRoll();
 
-                    if (playerAttack > creatureAttack) {
-                        creature.changeCurrentHealth(-2);
-                    } else if (creatureAttack > playerAttack) {
-                        currentPlayer.changeHealth(-2);
-                    } else if (currentPlayer.getCurrentHealth() <= 0) {
-                        showDeathPopUp();
-                    }
-                    if(creature.getCurrentHealth() <= 0){ //Has error, but game runs anyway
-                        creatures.remove(creature);
-                    }
+                if (playerAttack > creatureAttack) {
+                    creature.changeCurrentHealth(-2);
+                } else if (creatureAttack > playerAttack) {
+                    currentPlayer.changeHealth(-2);
+                } else if (currentPlayer.getCurrentHealth() <= 0) {
+                    showDeathPopUp();
+                }
+                if (creature.getCurrentHealth() <= 0) { //Has error, but game runs anyway
+                    creatures.remove(creature);
                 }
             }
         }
+    }
 
 
-    private void choosePotion(){
+    private void choosePotion() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("vælg en starterdrik!");
         alert.setContentText("");
@@ -1129,37 +1138,31 @@ public class ControllerFX {
         ButtonType leftButton = new ButtonType("Evnedrik!");
         ButtonType middleButton = new ButtonType("Udholdenhedsdrik!");
         ButtonType rightButton = new ButtonType("Helddrik!");
-        alert.getButtonTypes().setAll(leftButton,middleButton,rightButton);
+        alert.getButtonTypes().setAll(leftButton, middleButton, rightButton);
         Optional<ButtonType> result = alert.showAndWait();
 
-        if(result.isPresent()){
-            if(result.get() == leftButton){
+        if (result.isPresent()) {
+            if (result.get() == leftButton) {
                 adventure.getCurrentPlayer().setStarterPotion(1);
 
 
+            }
+
+            if (result.get() == middleButton) {
+                adventure.getCurrentPlayer().setStarterPotion(2);
+
 
             }
 
-                if(result.get() == middleButton){
-                    adventure.getCurrentPlayer().setStarterPotion(2);
+            if (result.get() == rightButton) {
 
 
-                }
-
-                    if(result.get() == rightButton){
-                        
-                        
-                        adventure.getCurrentPlayer().setStarterPotion(3);
-                    }
-
+                adventure.getCurrentPlayer().setStarterPotion(3);
             }
-        setPlayersStarterPointVFX(adventure.getCurrentPlayer().getStarterPotion());
+
         }
-
-
-
-
-
+        setPlayersStarterPointVFX(adventure.getCurrentPlayer().getStarterPotion());
+    }
 
 
     private void showDeathPopUp() {
@@ -1188,7 +1191,5 @@ public class ControllerFX {
                 Platform.exit();
             }
         }
-
-
     }
 }

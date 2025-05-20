@@ -21,7 +21,6 @@ public class Player {
     int starterPotion;
 
 
-
     //player inventory
     boolean isEquipped;
     ArrayList<Item> inventory = new ArrayList<>();
@@ -44,10 +43,10 @@ public class Player {
 //
 //    }
     //constructor used when player is loaded
-   public Player (String name, int health, int attack, int luck,
-            int maxHealth, int maxAttack, int maxLuck,
-            boolean isEquipped, String inventoryReference, int location,
-                  int goldCoins, int foodRations, int starterPotion){
+    public Player(String name, int health, int attack, int luck,
+                  int maxHealth, int maxAttack, int maxLuck,
+                  boolean isEquipped, String inventoryReference, int location,
+                  int goldCoins, int foodRations, int starterPotion) {
         this.name = name;
         this.currentHealth = health;
         this.currentAttack = attack;
@@ -62,62 +61,65 @@ public class Player {
         this.foodRations = foodRations;
         this.starterPotion = starterPotion;
     }
+
     //used to change player health value
-    public void changeHealth(int change){
+    public void changeHealth(int change) {
         currentHealth += change;
     }
+
     //used to change player attack value
-    public void changeAttack(int change){
+    public void changeAttack(int change) {
         currentAttack += change;
     }
 
 
     // luck change when luck is used
-    public void useLuck(){
-        currentLuck -=1;
+    public void useLuck() {
+        currentLuck -= 1;
     }
 
 
     //luck change when luck is alternated
-    public void changeLuck(int change){
+    public void changeLuck(int change) {
         currentLuck += change;
     }
 
 
     //add an item to the players inventory
-    public void addToInventory(Item item){
-       if (inventory != null) {
-           inventory.add(item);
-       }
+    public void addToInventory(Item item) {
+        if (inventory != null) {
+            inventory.add(item);
+        }
     }
 
 
     //remove an item from the players inventory
-    public void removeFromInventory(Item item){
+    public void removeFromInventory(Item item) {
         inventory.remove(item);
     }
 
 
     //change gold coins
-    public void changeGoldCoins(int goldCoins) {this.goldCoins += goldCoins;}
+    public void changeGoldCoins(int goldCoins) {
+        this.goldCoins += goldCoins;
+    }
 
 
     //change foodRations
     public void changeFoodRations(int newFoodRations) {
-       this.foodRations += newFoodRations;
+        this.foodRations += newFoodRations;
 //       if (foodRations >= 100){
 //           this.foodRations = 0;
 //       }
 
 
+    }
 
-   }
-    public void removeOneItemFromInventory(){
-       Random random = new Random();
+    public void removeOneItemFromInventory() {
+        Random random = new Random();
         int rdm = random.nextInt(1, inventory.size());
-            inventory.remove(rdm);
-        }
-
+        inventory.remove(rdm);
+    }
 
 
     public void giveHealthBoost() {
@@ -126,7 +128,8 @@ public class Player {
 
             this.changeFoodRations(-1);
             this.changeHealth(4);
-        }  if (this.getCurrentHealth() > this.getMaxHealth()) {
+        }
+        if (this.getCurrentHealth() > this.getMaxHealth()) {
 
             this.setCurrentHealth(this.getMaxHealth());
 
@@ -135,11 +138,9 @@ public class Player {
     }
 
 
-
-
 //    public void consumeItem(Consumable potion){
 //
- //     int potionID = potion.getID();
+    //     int potionID = potion.getID();
 //        //health potion
 //        if (potionID == 3) {
 //            this.currentHealth = this.maxHealth;
@@ -184,9 +185,11 @@ public class Player {
     public int getCurrentLuck() {
         return currentLuck;
     }
-    public void changeCurrentLuck(int luckChange){
-       this.currentLuck+=luckChange;
+
+    public void changeCurrentLuck(int luckChange) {
+        this.currentLuck += luckChange;
     }
+
     public void setCurrentLuck(int currentLuck) {
         this.currentLuck = currentLuck;
     }
@@ -239,14 +242,21 @@ public class Player {
         this.playerLocation = playerLocation;
     }
 
-    public int getGoldCoins() {return goldCoins;}
+    public int getGoldCoins() {
+        return goldCoins;
+    }
 
-    public int getFoodRations() {return foodRations;}
+    public int getFoodRations() {
+        return foodRations;
+    }
 
-    public int getStarterPotion() {return starterPotion;}
+    public int getStarterPotion() {
+        return starterPotion;
+    }
 
-    public void setStarterPotion(int starterPotion) {this.starterPotion = starterPotion;}
-
+    public void setStarterPotion(int starterPotion) {
+        this.starterPotion = starterPotion;
+    }
 
 
 }

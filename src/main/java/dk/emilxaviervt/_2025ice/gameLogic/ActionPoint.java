@@ -21,11 +21,10 @@ public class ActionPoint {
     private int changeHealthPoints;
     private boolean dieRoll;
     private int event;
-    private ArrayList<Integer> actionPointList= new ArrayList<>();
+    private ArrayList<Integer> actionPointList = new ArrayList<>();
     private ArrayList<Creature> containedCreatures = new ArrayList<>();
 
     Connection con;
-
 
 
     public ActionPoint(int ID, String description, Item containItem, int itemNeeded, int goldCoins,
@@ -66,8 +65,7 @@ public class ActionPoint {
             }
         }
         return actionPointList;
-  }
-
+    }
 
 
 //    private ArrayList<Creature> creatureListFromString(String list) {
@@ -92,10 +90,6 @@ public class ActionPoint {
 //    }
 
 
-
-
-
-
     //console test
 
     public void printDescription() {
@@ -109,45 +103,65 @@ public class ActionPoint {
     }
 
 
-
-
 //
 
 
+    //              GETTERS AND SETTERS
+    public int getID() {
+        return ID;
+    }
 
+    public String getDescription() {
+        return description;
+    }
 
+    public Item getContainItem() {
+        return containItem;
+    }
 
+    public int getItemNeeded() {
+        return itemNeeded;
+    }
 
+    public int getGoldCoins() {
+        return goldCoins;
+    }
 
-//              GETTERS AND SETTERS
-    public int getID() {return ID;}
+    public String getAvailableActionPoints() {
+        return availableActionPoints;
+    }
 
-    public String getDescription() {return description;}
+    public ArrayList<Creature> getContainedCreatures() {
+        return containedCreatures;
+    }
 
-    public Item getContainItem() {return containItem;}
+    public boolean getIsFinal() {
+        return isFinal;
+    }
 
-    public int getItemNeeded() {return itemNeeded;}
+    public boolean getWinnerActionPoint() {
+        return winnerActionPoint;
+    }
 
-    public int getGoldCoins() {return goldCoins;}
+    public boolean getLuckRoll() {
+        return luckRoll;
+    }
 
-    public String getAvailableActionPoints() {return availableActionPoints;}
+    public int getChangeAttackPoints() {
+        return changeAttackPoints;
+    }
 
-    public ArrayList<Creature> getContainedCreatures() {return containedCreatures;}
+    public int getChangeHealthPoints() {
+        return changeHealthPoints;
+    }
 
-    public boolean getIsFinal() {return isFinal;}
+    public boolean getDieRoll() {
+        return dieRoll;
+    }
 
-    public boolean getWinnerActionPoint() {return winnerActionPoint;}
-
-    public boolean getLuckRoll() {return luckRoll;}
-
-    public int getChangeAttackPoints() {return changeAttackPoints;}
-
-    public int getChangeHealthPoints() {return changeHealthPoints;}
-
-    public boolean getDieRoll() {return dieRoll;}
-
-    public int getEvent() {return event;}
-
+    public int getEvent() {
+        return event;
+    }
 
 
     public ArrayList<Integer> getActionPointList() {

@@ -24,13 +24,12 @@ public class Adventure {
     private ActionPoint ap;
     private DatabaseManager dm = new DatabaseManager();
     private ControllerFX cfx;
-    
-    
-    
+
+
     ArrayList<Item> allItems = dm.getAllItemsInArrayList();
-    
+
     public Adventure() {
-        this.currentPlayer = new Player("test13", health, attack, luck,health, attack, luck, true, "Emil", 1,0,10,2);
+        this.currentPlayer = new Player("test13", health, attack, luck, health, attack, luck, true, "Emil", 1, 0, 10, 2);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/clienter/activeGameScreen.fxml"));
         loader.setController(new ControllerFX());
 
@@ -40,7 +39,7 @@ public class Adventure {
             throw new RuntimeException(e);
         }
 
-        this.cfx =loader.getController();
+        this.cfx = loader.getController();
 
         this.cfx.setAdventure(this);
         this.ap = dm.selectActionPoints(401);
@@ -52,13 +51,13 @@ public class Adventure {
     }
 
 
-    public void createNewPlayer(){
+    public void createNewPlayer() {
 
         int newHealth = rollHealth();
         int newAttack = rollAttackAndLuck();
         int newLuck = rollAttackAndLuck();
 
-        this.currentPlayer = new Player(currentPlayer.getName(), newHealth, newAttack, newLuck, newHealth, newAttack, newLuck, true, currentPlayer.getName(), 1,0,10,2);
+        this.currentPlayer = new Player(currentPlayer.getName(), newHealth, newAttack, newLuck, newHealth, newAttack, newLuck, true, currentPlayer.getName(), 1, 0, 10, 2);
     }
 
     public void actionPointEvents() {
@@ -101,7 +100,7 @@ public class Adventure {
 
 
                 case 7: // roll 2 dies, take that amount of dmg and lose two luck
-                    currentPlayer.changeHealth(-dieRoll()+dieRoll());
+                    currentPlayer.changeHealth(-dieRoll() + dieRoll());
                     currentPlayer.changeLuck(-2);
                     break;
 
@@ -190,7 +189,7 @@ public class Adventure {
                     break;
                 case 21:
 
-                     cfx.combatBloodBeast2();
+                    cfx.combatBloodBeast2();
 //                    Jeg tror ikke der skal ske noget her ? det er kun case 157 der bruger den og den skal ikke bruge en metode?
 //                    currentPlayer.addToInventory(allItems.get(31));
 //                    currentPlayer.changeLuck(1);
@@ -265,14 +264,10 @@ public class Adventure {
     }
 
 
-
-
-
-
-public void setAp(int id) {
-        this.ap = dm.selectActionPoints(id);;
-}
-
+    public void setAp(int id) {
+        this.ap = dm.selectActionPoints(id);
+        ;
+    }
 
 
 // metode til at skabe nye spilere
@@ -281,7 +276,7 @@ public void setAp(int id) {
         Random random = new Random();
         int rs = random.nextInt(1, 7);
         int rs2 = random.nextInt(1, 7);
-        return rs +rs2+ 12;
+        return rs + rs2 + 12;
     }
 
     private int rollAttackAndLuck() {
@@ -290,23 +285,14 @@ public void setAp(int id) {
         return rs + 6;
     }
 
-    public int dieRoll(){
+    public int dieRoll() {
         Random random = new Random();
         int rs = random.nextInt(1, 7);
         return rs;
     }
 
 
-
 // vi får lavet en start værdei på spileren gennem en metode og en dertil liggende værdi som vi kan give spilleren
-
-
-
-
-
-
-
-
 
 
     public Player getCurrentPlayer() {

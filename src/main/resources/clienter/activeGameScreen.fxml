@@ -1,248 +1,270 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <ImageView fitHeight="396.0" fitWidth="700.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" scaleY="1.3">
-         <image>
-            <Image url="@../images/Pillar.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="45.0" fitWidth="98.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true" scaleY="10.5">
-         <image>
-            <Image url="@../images/Pillar.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="65.0" fitWidth="80.0" layoutX="620.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true" scaleY="10.5">
-         <image>
-            <Image url="@../images/Pillar.jpg" />
-         </image>
-      </ImageView>
-      <StackPane layoutX="630.0" layoutY="341.0" prefHeight="54.0" prefWidth="62.0" translateY="-20.0">
-         <children>
-            <ImageView fx:id="dice1" fitHeight="54.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../images/inverted-dice-1.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="dice2" fitHeight="54.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../images/inverted-dice-2.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="dice3" fitHeight="54.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../images/inverted-dice-3.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="dice4" fitHeight="62.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../images/inverted-dice-4.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="dice5" fitHeight="77.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../images/inverted-dice-5.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="dice6" fitHeight="63.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../images/inverted-dice-6.png" />
-               </image>
-            </ImageView>
-         </children></StackPane>
-      <StackPane layoutX="640.0" layoutY="351.0" prefHeight="54.0" prefWidth="62.0" translateX="-10.0" translateY="32.0">
-         <children>
-            <ImageView fx:id="dice7" fitHeight="54.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../images/inverted-dice-1.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="dice8" fitHeight="54.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../images/inverted-dice-2.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="dice9" fitHeight="54.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../images/inverted-dice-3.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="dice10" fitHeight="62.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../images/inverted-dice-4.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="dice11" fitHeight="77.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../images/inverted-dice-5.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="dice12" fitHeight="63.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../images/inverted-dice-6.png" />
-               </image>
-            </ImageView>
-         </children>
-      </StackPane>
-      <ScrollPane hbarPolicy="NEVER" hmax="0.0" layoutX="80.0" layoutY="-2.0" pannable="true" prefHeight="294.0" prefWidth="539.0" style="-fx-background-color: black; -fx-border-color: black;" translateX="1.0" vbarPolicy="NEVER" vmax="5.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="552.0" style="-fx-background-color: black; -fx-border-color: black;">
-               <children>
-                  <StackPane alignment="TOP_LEFT" prefWidth="543.0" style="-fx-background-color: black; -fx-border-color: black;">
-                     <children>
-                        <ImageView fitHeight="305.0" fitWidth="546.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/Gameplane.jpg" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="descriptionLabel" alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="1254.0" prefWidth="535.0" text="Byen Hugtand ligger ved floden Kok, og til trods for sit navnvar byen i gamle dage blot en ganske almindelig købstad iden nordlige provins Chiang Mai. Byens placering ved flodengjorde den til et passende stoppested for købmænd og andrerejsende det meste af året, og der lå ofte nogle få opankredepramme, tømmerflåder og endda større sejlbåde ved havneni Hugtand.Sådan var det i gamle dage, men det er længe siden nu, længefør Heltenes Prøve blev skabt. Nu om stunder bliver floden éngang om året fyldt med så mange både, at man dårligt kanse vandet. Folk kommer rejsende langvejs fra i håbet om atopleve en gammel tradition blive brudt, og måske få et glimtaf en heldig sejrherre i Heltenes Prøve.Første dag i blæstens måned samles krigere og heltei Hugtand for at dyste i den ultimative udfordring.Sandsynligheden for at man overlever er ringe, men alligeveltager mange chancen, for belønningen enorm - en præmie på 10.000 guldmønter og nøglen til byen Chiang Mai. Det erdog ingen smal sag at blive udråbt som vinder.For nogle år siden besluttede den magtfulde baron Sukumvitat opfinde denne ultimative udfordring for at skabeopmærksomhed omkring sin lille by Hugtand. Med hjælpfra byens indbyggere konstruerede han en drabelig labyrintinde i bakkerne i nærheden af Hugtand, og han sørgede forat der kun var én vej ud. Baronen fyldte sin labyrint med alleslags dødbringende fælder og faldgruber, og han indkøbteog fangede blodtørstige uhyrer, som blev ført ned i mørket.Baron Sukumvit sikrede sig at labyrinten blev indrettetmeget omhyggeligt efter alle kunstens regler, så enhveraf prøvens deltagere skulle bruge alle rådige midler, samtfremvise eminente kampevner for at gennemføre labyrinten. Da baronen til sidst var tilfreds, besluttede han at afprøvelabyrinten. Han udvalgte ti af sine dygtigste livvagter,udstyrede dem med de bedste våben og sendte dem derpåind i mørket. Ingen hørte nogensinde fra dem igen. Historienom de forsvundne livvagter spredte sig gennem Allansia, ogSukumvit besluttede at det var tid at offentliggøre HeltenesPrøve. Budbringere og bulletiner bragte baronens udfordringtil alle egne og kroge af landet, fra Zengis til Salamonis -10.000 guldmønter og nøglen til Chiang Mai til enhver, som formåede at overleve den dødbringende labyrint i Hugtand.Det første år meldte sytten modige krigere sig til vandringen,som udfordringen herefter blev kaldt. De sytten blev opslugtaf labyrintens mørke og forsvandt sporløst.Heltenes Prøve blev herefter afholdt hvert forår, og forhver gang tiltrak begivenheden flere og flere deltagere ogtilskuere. Alle disse gæster fik Hugtand til at vokse, oghele byen forberedte sig i flere måneder op til vandringen.Byen blev udsmykket, telte blev rejst, spisesale blev bygget,og man kunne opleve musikere, dansere, ildslugere ogtryllekunstnere, alt imens de håbefulde lykkejægere blevskrevet op til vandringen. I den sidste uge af såningensmåned var Hugtand omdrejningspunkt for en kæmpemæssigfest, som foregik i døgndrift. Alle sang, drak, dansede og loindtil daggry den første dag i blæstens måned. Da bevægedehele byen sig til labyrintens port for at se årets førsteudfordrer træde frem for at gå sin skæbne i møde i HeltenesPrøve.Du har selv set baron Sukumvits udfordring sømmet op pået træ, og har besluttet at forsøge at gennemføre vandringeni år. Du har følt dig draget til udfordringen de seneste femår, ikke så meget for pengepræmien, men mere fordi ingenendnu er kommet ud af labyrintens modsatte ende. Du har besluttet at der skal findes en vinder i år! Du samler noglefå ejendele og drager straks afsted mod Hugtand. Efter todages rejse til fods i vestlig retning kommer du til kysten,og herfra drager du ind i den skæbnesvangre by SortsandHavn. Du spilder ikke tiden i tyvenes by, og skynder dig atkøbe en overfart på en lille båd som sejler nordpå til detsted, hvor floden Kok løber ud i havet. Derfra sejler du medtømmerflåde op ad floden i fire dage, indtil du omsider nårHugtand.Heltenes Prøve starter om tre dage, og stemningen ibyen er næsten hysterisk opstemt. Du spørger om vej tilregistranten for at blive skrevet op til prøven. Her får duudleveret et purpurfarvet tørklæde, som du skal binde omarmen. På denne måde sender du et klart signal til alle omat du deltager i Heltenes Prøve. I de næste dage nyder duHugtands ypperste gæstfrihed og bliver behandlet som enhalvgud. Alle nydelser bliver stillet til rådighed. I løbet afdenne langstrakte fest glemmer du næsten formålet meddit ophold i Hugtand, men dagen før vandringen fyldes dinetanker med omfanget af din beslutning. Om aftenen bliverdu ført til et særligt gæstehus, hvor du får anvist et værelse.Sengen er fyrsteligt udsmykket med udskårne stolper i hverthjørne, og satin-betrækket indbyder dig til at hvile. Men derer ikke meget tid at sove i. Kort før daggry vækkes du af en trompet, som afbryderdine drømme om flammende faldgruber og kæmpemæssigesorte edderkopper. Kort efter banker det på døren, og duhører en mands stemme: “Din udfordring venter. Vær klarom ti minutter.” Du stiger ud af sengen, går over til vinduetog åbner skodderne. Folk er allerede tæt pakket i gaderneog maser sig gennem morgendisen - mange af dem erutvivlsomt publikum, som håber at få et glimt af deltagerne.Du vender dig væk fra vinduet og går hen til et træbord,hvor dit trofaste sværd ligger. Du samler det op og kløverluften med et mægtigt hug, mens du spekulerer over hvilkeuhyrer der snart skal smage det kolde stål. Derpå tager du dinrygsæk og dit skjold, og åbner døren ud til gangen. Der ståren lav mand med skæve øjne, og han bukker da du kommerud af sovekammeret. “Følg venligst mig,” siger han og drejertil venstre, hvorefter han går hurtigt hen mod trappen forenden af gangen.I forlader gæstehuset og manden skynder sig ind i en smalgyde mellem husene, så du må småløbe for at følge med. Snarttræder I ud på en bred grusvej, hvor det hujende publikumstår på begge sider. Så snart de får øje på dit purpurfarvedetørklæde, jubler de endnu højere og overdænger dig medblomster. Folkemængdens lange skygger bliver mindreforan dig i takt med at den klare gule sol stiger op på morgenhimlen. Da du står overfor den larmende og oplivedeskare, føler du dig pludselig underligt alene overfor denudfordring, du har meldt dig til. Pludselig mærker du nogen,som trækker dig i ærmet - det er din lille vejviser, som bederdig om at følge med. Længere fremme ser du en ildevarslendebakkeskråning, og du får øje på en dyster tunnelåbning,som fører ind i det ukendte mørke. Da du kommer nærmere,bemærker du to mægtige stensøjler på hver side af tunnelen.Søjlerne er udsmykket med udskæringer som forestillerdæmoner, guddomme og snoende slanger. Hver især laderde til at udstøde en tavs advarsel til enhver, som passerer.Baron Sukumvit står i egen høje person ved indgangen,hvor han hilser på årets deltagere i Heltenes Prøve. Dutæller fem ranke personer, som står på række med synligepurpurfarvede tørklæder. Der er to barbarer klædt i skind ogmed bart bryst. De står fuldstændigt roligt med let spredteben, mens de hviler hænderne på skaftet af deres brutalestridsøkser. Ved siden af dem står en slank elverkvinde medgyldent hår og grønne, katteagtige øjne. Hun er i færd medat tilpasse et krydsbånd med kasteknive, som hun bærer oversin læderrustning. Manden ved siden af er klædt fra top tiltå i fuld pladerustning. En fjerdusk pryder hjelmen, og hansskjold bærer et adelsmærke. Den sidste mand er klædt i enmørk kåbe, og det eneste synlige ved ansigtet er hans skarpe øjne. Fra bæltet hænger lange knive og en kvælertråd, samtandre af snigmorderens dødbringende og tavse våben. Defem deltagere nikker anerkendende til dig, og du vender digen sidste gang mod de jublende tilskuere. Pludselig falder endyb stilhed over forsamlingen, da baron Sukumvit træderfrem mod jer med seks bambusrør i hånden. Du trækker et frahans fremstrakte hånd og læser ordet femte på det. Derefterstarter prøven.Ridderen går først. Han hilser forsamlingen med en fornemgestus, og forsvinder derefter ind i tunnelen. En halv timesenere følger elverkvinden. Så er turen kommet til denene barbar, og derefter den mørke snigmorder. Nu er detdin tur, og du hilser mængden af tilskuere. Du holder ditpurpurfarvede tørklæde højt over hovedet, tager en sidstemundfuld af den kølige og friske luft, og vender dig modindgangen mellem de to stensøjler. Sukumvits gravalvorlige udfordring ligger foran dig, og du må overvinde alle de ukendte farer for at gennemføre vandringen gennem Dødens Labyrint." textFill="WHITE" translateY="5.0" wrapText="true">
-                           <font>
-                              <Font name="Times New Roman Bold" size="15.0" />
-                           </font></Label>
-                        <StackPane prefHeight="150.0" prefWidth="200.0" />
-                     </children>
-                  </StackPane>
-               </children>
-            </AnchorPane>
-        </content>
-      </ScrollPane>
-      <Button fx:id="eatButton" layoutX="13.0" layoutY="13.0" mnemonicParsing="false" onAction="#eatOneFood" prefHeight="26.0" prefWidth="54.0" text="🍎">
-         <textFill>
-            <LinearGradient endX="1.0" startX="0.9962121498855678" startY="1.0">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="0.4526315927505493" green="0.08717349171638489" blue="0.08717349171638489" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="0.8631578683853149" green="0.3900195062160492" blue="0.3900195062160492" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
-      </Button>
-      <MenuButton layoutX="13.0" layoutY="51.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="54.0" text="🧪">
-        <items>
-          <MenuItem fx:id="healthPotionMenuItem" mnemonicParsing="false" onAction="#healthPotionPress" text="udholdenhed" visible="false" />
-          <MenuItem fx:id="attackPotionMenuItem" mnemonicParsing="false" onAction="#attackPotionPress" text="Evne" visible="false" />
-            <MenuItem fx:id="luckPotionMenuItem" mnemonicParsing="false" onAction="#luckPotionPress" text="Lykke" visible="false" />
-        </items>
-      </MenuButton>
-      <Button fx:id="runButton" layoutX="13.0" layoutY="89.0" mnemonicParsing="false" onAction="#runFromFight" prefHeight="26.0" prefWidth="54.0" text="🏃" />
-      <Label fx:id="goldLabel" layoutX="7.0" layoutY="260.0" prefHeight="26.0" prefWidth="37.0" text="Guld" textFill="WHITE">
-         <font>
-            <Font name="Times New Roman Bold" size="15.0" />
-         </font></Label>
-      <Button fx:id="exitButton" layoutX="8.0" layoutY="436.0" mnemonicParsing="false" onAction="#exit" prefHeight="26.0" prefWidth="54.0" text="❌" />
-      <StackPane layoutX="86.0" layoutY="311.0" prefHeight="138.0" prefWidth="531.0">
-         <children>
-            <Button fx:id="GTButton1" mnemonicParsing="false" onAction="#pressOfGoto" prefHeight="26.0" prefWidth="126.0" text="1" translateX="-200.0" translateY="-50.0" />
-            <Button fx:id="GTButton2" layoutX="212.0" layoutY="66.0" mnemonicParsing="false" onAction="#pressOfGoto" prefHeight="26.0" prefWidth="126.0" translateY="-50.0" visible="false" />
-            <Button fx:id="GTButton3" layoutX="212.0" layoutY="66.0" mnemonicParsing="false" onAction="#pressOfGoto" prefHeight="26.0" prefWidth="126.0" translateX="200.0" translateY="-50.0" visible="false" />
-            <Button fx:id="GTButton4" graphicTextGap="0.0" layoutX="212.0" layoutY="66.0" mnemonicParsing="false" onAction="#pressOfGoto" prefHeight="26.0" prefWidth="126.0" translateX="-200.0" translateY="50.0" visible="false" />
-            <Button fx:id="GTButton5" graphicTextGap="0.0" layoutX="212.0" layoutY="66.0" mnemonicParsing="false" onAction="#pressOfGoto" prefHeight="26.0" prefWidth="126.0" translateY="50.0" visible="false">
-               <textFill>
-                  <LinearGradient endX="1.0" endY="1.0" startX="0.9962121498855678" startY="1.0">
-                     <stops>
+<AnchorPane fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <ImageView fitHeight="396.0" fitWidth="700.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" scaleY="1.3">
+            <image>
+                <Image url="@../images/Pillar.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="45.0" fitWidth="80.0" layoutX="4.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" scaleY="10.5" translateY="195.0">
+            <image>
+                <Image url="@../images/Pillar.jpg" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="165.0" fitWidth="286.0" layoutX="624.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true" scaleX="0.3" scaleY="3.0" translateX="-110.0">
+            <image>
+                <Image url="@../images/Pillar.jpg" />
+            </image>
+        </ImageView>
+        <StackPane layoutX="630.0" layoutY="341.0" prefHeight="54.0" prefWidth="62.0" translateY="-20.0">
+            <children>
+                <ImageView fx:id="dice1" fitHeight="54.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                    <image>
+                        <Image url="@../images/inverted-dice-1.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="dice2" fitHeight="54.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                    <image>
+                        <Image url="@../images/inverted-dice-2.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="dice3" fitHeight="54.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                    <image>
+                        <Image url="@../images/inverted-dice-3.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="dice4" fitHeight="62.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                    <image>
+                        <Image url="@../images/inverted-dice-4.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="dice5" fitHeight="77.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                    <image>
+                        <Image url="@../images/inverted-dice-5.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="dice6" fitHeight="63.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                    <image>
+                        <Image url="@../images/inverted-dice-6.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </StackPane>
+        <StackPane layoutX="640.0" layoutY="351.0" prefHeight="54.0" prefWidth="62.0" translateX="-10.0" translateY="32.0">
+            <children>
+                <ImageView fx:id="dice7" fitHeight="54.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                    <image>
+                        <Image url="@../images/inverted-dice-1.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="dice8" fitHeight="54.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                    <image>
+                        <Image url="@../images/inverted-dice-2.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="dice9" fitHeight="54.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                    <image>
+                        <Image url="@../images/inverted-dice-3.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="dice10" fitHeight="62.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                    <image>
+                        <Image url="@../images/inverted-dice-4.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="dice11" fitHeight="77.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                    <image>
+                        <Image url="@../images/inverted-dice-5.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="dice12" fitHeight="63.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                    <image>
+                        <Image url="@../images/inverted-dice-6.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </StackPane>
+        <ScrollPane hbarPolicy="NEVER" hmax="0.0" layoutX="80.0" layoutY="-2.0" pannable="true" prefHeight="294.0" prefWidth="539.0" style="-fx-background-color: black; -fx-border-color: black;" translateX="1.0" vbarPolicy="NEVER" vmax="5.0">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="552.0" style="-fx-background-color: black; -fx-border-color: black;">
+                    <children>
+                        <StackPane alignment="TOP_LEFT" prefWidth="543.0" style="-fx-background-color: black; -fx-border-color: black;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <ImageView fitHeight="305.0" fitWidth="546.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/Gameplane.jpg" />
+                                    </image>
+                                </ImageView>
+                                <Label fx:id="descriptionLabel" alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="1254.0" prefWidth="535.0" text="Byen Hugtand ligger ved floden Kok, og til trods for sit navnvar byen i gamle dage blot en ganske almindelig købstad iden nordlige provins Chiang Mai. Byens placering ved flodengjorde den til et passende stoppested for købmænd og andrerejsende det meste af året, og der lå ofte nogle få opankredepramme, tømmerflåder og endda større sejlbåde ved havneni Hugtand.Sådan var det i gamle dage, men det er længe siden nu, længefør Heltenes Prøve blev skabt. Nu om stunder bliver floden éngang om året fyldt med så mange både, at man dårligt kanse vandet. Folk kommer rejsende langvejs fra i håbet om atopleve en gammel tradition blive brudt, og måske få et glimtaf en heldig sejrherre i Heltenes Prøve.Første dag i blæstens måned samles krigere og heltei Hugtand for at dyste i den ultimative udfordring.Sandsynligheden for at man overlever er ringe, men alligeveltager mange chancen, for belønningen enorm - en præmie på 10.000 guldmønter og nøglen til byen Chiang Mai. Det erdog ingen smal sag at blive udråbt som vinder.For nogle år siden besluttede den magtfulde baron Sukumvitat opfinde denne ultimative udfordring for at skabeopmærksomhed omkring sin lille by Hugtand. Med hjælpfra byens indbyggere konstruerede han en drabelig labyrintinde i bakkerne i nærheden af Hugtand, og han sørgede forat der kun var én vej ud. Baronen fyldte sin labyrint med alleslags dødbringende fælder og faldgruber, og han indkøbteog fangede blodtørstige uhyrer, som blev ført ned i mørket.Baron Sukumvit sikrede sig at labyrinten blev indrettetmeget omhyggeligt efter alle kunstens regler, så enhveraf prøvens deltagere skulle bruge alle rådige midler, samtfremvise eminente kampevner for at gennemføre labyrinten. Da baronen til sidst var tilfreds, besluttede han at afprøvelabyrinten. Han udvalgte ti af sine dygtigste livvagter,udstyrede dem med de bedste våben og sendte dem derpåind i mørket. Ingen hørte nogensinde fra dem igen. Historienom de forsvundne livvagter spredte sig gennem Allansia, ogSukumvit besluttede at det var tid at offentliggøre HeltenesPrøve. Budbringere og bulletiner bragte baronens udfordringtil alle egne og kroge af landet, fra Zengis til Salamonis -10.000 guldmønter og nøglen til Chiang Mai til enhver, som formåede at overleve den dødbringende labyrint i Hugtand.Det første år meldte sytten modige krigere sig til vandringen,som udfordringen herefter blev kaldt. De sytten blev opslugtaf labyrintens mørke og forsvandt sporløst.Heltenes Prøve blev herefter afholdt hvert forår, og forhver gang tiltrak begivenheden flere og flere deltagere ogtilskuere. Alle disse gæster fik Hugtand til at vokse, oghele byen forberedte sig i flere måneder op til vandringen.Byen blev udsmykket, telte blev rejst, spisesale blev bygget,og man kunne opleve musikere, dansere, ildslugere ogtryllekunstnere, alt imens de håbefulde lykkejægere blevskrevet op til vandringen. I den sidste uge af såningensmåned var Hugtand omdrejningspunkt for en kæmpemæssigfest, som foregik i døgndrift. Alle sang, drak, dansede og loindtil daggry den første dag i blæstens måned. Da bevægedehele byen sig til labyrintens port for at se årets førsteudfordrer træde frem for at gå sin skæbne i møde i HeltenesPrøve.Du har selv set baron Sukumvits udfordring sømmet op pået træ, og har besluttet at forsøge at gennemføre vandringeni år. Du har følt dig draget til udfordringen de seneste femår, ikke så meget for pengepræmien, men mere fordi ingenendnu er kommet ud af labyrintens modsatte ende. Du har besluttet at der skal findes en vinder i år! Du samler noglefå ejendele og drager straks afsted mod Hugtand. Efter todages rejse til fods i vestlig retning kommer du til kysten,og herfra drager du ind i den skæbnesvangre by SortsandHavn. Du spilder ikke tiden i tyvenes by, og skynder dig atkøbe en overfart på en lille båd som sejler nordpå til detsted, hvor floden Kok løber ud i havet. Derfra sejler du medtømmerflåde op ad floden i fire dage, indtil du omsider nårHugtand.Heltenes Prøve starter om tre dage, og stemningen ibyen er næsten hysterisk opstemt. Du spørger om vej tilregistranten for at blive skrevet op til prøven. Her får duudleveret et purpurfarvet tørklæde, som du skal binde omarmen. På denne måde sender du et klart signal til alle omat du deltager i Heltenes Prøve. I de næste dage nyder duHugtands ypperste gæstfrihed og bliver behandlet som enhalvgud. Alle nydelser bliver stillet til rådighed. I løbet afdenne langstrakte fest glemmer du næsten formålet meddit ophold i Hugtand, men dagen før vandringen fyldes dinetanker med omfanget af din beslutning. Om aftenen bliverdu ført til et særligt gæstehus, hvor du får anvist et værelse.Sengen er fyrsteligt udsmykket med udskårne stolper i hverthjørne, og satin-betrækket indbyder dig til at hvile. Men derer ikke meget tid at sove i. Kort før daggry vækkes du af en trompet, som afbryderdine drømme om flammende faldgruber og kæmpemæssigesorte edderkopper. Kort efter banker det på døren, og duhører en mands stemme: “Din udfordring venter. Vær klarom ti minutter.” Du stiger ud af sengen, går over til vinduetog åbner skodderne. Folk er allerede tæt pakket i gaderneog maser sig gennem morgendisen - mange af dem erutvivlsomt publikum, som håber at få et glimt af deltagerne.Du vender dig væk fra vinduet og går hen til et træbord,hvor dit trofaste sværd ligger. Du samler det op og kløverluften med et mægtigt hug, mens du spekulerer over hvilkeuhyrer der snart skal smage det kolde stål. Derpå tager du dinrygsæk og dit skjold, og åbner døren ud til gangen. Der ståren lav mand med skæve øjne, og han bukker da du kommerud af sovekammeret. “Følg venligst mig,” siger han og drejertil venstre, hvorefter han går hurtigt hen mod trappen forenden af gangen.I forlader gæstehuset og manden skynder sig ind i en smalgyde mellem husene, så du må småløbe for at følge med. Snarttræder I ud på en bred grusvej, hvor det hujende publikumstår på begge sider. Så snart de får øje på dit purpurfarvedetørklæde, jubler de endnu højere og overdænger dig medblomster. Folkemængdens lange skygger bliver mindreforan dig i takt med at den klare gule sol stiger op på morgenhimlen. Da du står overfor den larmende og oplivedeskare, føler du dig pludselig underligt alene overfor denudfordring, du har meldt dig til. Pludselig mærker du nogen,som trækker dig i ærmet - det er din lille vejviser, som bederdig om at følge med. Længere fremme ser du en ildevarslendebakkeskråning, og du får øje på en dyster tunnelåbning,som fører ind i det ukendte mørke. Da du kommer nærmere,bemærker du to mægtige stensøjler på hver side af tunnelen.Søjlerne er udsmykket med udskæringer som forestillerdæmoner, guddomme og snoende slanger. Hver især laderde til at udstøde en tavs advarsel til enhver, som passerer.Baron Sukumvit står i egen høje person ved indgangen,hvor han hilser på årets deltagere i Heltenes Prøve. Dutæller fem ranke personer, som står på række med synligepurpurfarvede tørklæder. Der er to barbarer klædt i skind ogmed bart bryst. De står fuldstændigt roligt med let spredteben, mens de hviler hænderne på skaftet af deres brutalestridsøkser. Ved siden af dem står en slank elverkvinde medgyldent hår og grønne, katteagtige øjne. Hun er i færd medat tilpasse et krydsbånd med kasteknive, som hun bærer oversin læderrustning. Manden ved siden af er klædt fra top tiltå i fuld pladerustning. En fjerdusk pryder hjelmen, og hansskjold bærer et adelsmærke. Den sidste mand er klædt i enmørk kåbe, og det eneste synlige ved ansigtet er hans skarpe øjne. Fra bæltet hænger lange knive og en kvælertråd, samtandre af snigmorderens dødbringende og tavse våben. Defem deltagere nikker anerkendende til dig, og du vender digen sidste gang mod de jublende tilskuere. Pludselig falder endyb stilhed over forsamlingen, da baron Sukumvit træderfrem mod jer med seks bambusrør i hånden. Du trækker et frahans fremstrakte hånd og læser ordet femte på det. Derefterstarter prøven.Ridderen går først. Han hilser forsamlingen med en fornemgestus, og forsvinder derefter ind i tunnelen. En halv timesenere følger elverkvinden. Så er turen kommet til denene barbar, og derefter den mørke snigmorder. Nu er detdin tur, og du hilser mængden af tilskuere. Du holder ditpurpurfarvede tørklæde højt over hovedet, tager en sidstemundfuld af den kølige og friske luft, og vender dig modindgangen mellem de to stensøjler. Sukumvits gravalvorlige udfordring ligger foran dig, og du må overvinde alle de ukendte farer for at gennemføre vandringen gennem Dødens Labyrint." textFill="WHITE" translateY="5.0" wrapText="true">
+                                    <font>
+                                        <Font name="Times New Roman Bold" size="15.0" />
+                                    </font>
+                                </Label>
+                                <StackPane prefHeight="150.0" prefWidth="200.0" />
+                            </children>
+                        </StackPane>
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+        <Button fx:id="eatButton" layoutX="13.0" layoutY="13.0" mnemonicParsing="false" onAction="#eatOneFood" prefHeight="26.0" prefWidth="54.0" text="🍎">
+            <textFill>
+                <LinearGradient endX="1.0" startX="0.9962121498855678" startY="1.0">
+                    <stops>
                         <Stop>
-                           <color>
-                              <Color red="0.4526315927505493" green="0.08717349171638489" blue="0.08717349171638489" />
-                           </color>
+                            <color>
+                                <Color red="0.4526315927505493" green="0.08717349171638489" blue="0.08717349171638489" />
+                            </color>
                         </Stop>
                         <Stop offset="1.0">
-                           <color>
-                              <Color />
-                           </color>
+                            <color>
+                                <Color red="0.8631578683853149" green="0.3900195062160492" blue="0.3900195062160492" />
+                            </color>
                         </Stop>
-                     </stops>
-                  </LinearGradient>
-               </textFill>
-            </Button>
-            <Button fx:id="GTButton6" graphicTextGap="0.0" layoutX="212.0" layoutY="66.0" mnemonicParsing="false" onAction="#pressOfGoto" prefHeight="26.0" prefWidth="126.0" translateX="200.0" translateY="50.0" visible="false" />
-            <ImageView fx:id="combatSwordImage" fitHeight="45.0" fitWidth="51.0" onMouseClicked="#combatSwordPress" pickOnBounds="true" preserveRatio="true" translateX="220.0" translateY="-25.0" visible="false">
-               <image>
-                  <Image url="@../images/thunder-blade-removebg-preview.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="combatSwordImage1" fitHeight="45.0" fitWidth="51.0" layoutX="253.0" layoutY="57.0" onMousePressed="#combatSwordPress" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../images/thunder-blade-removebg-preview.png" />
-               </image>
-            </ImageView>
-         </children>
-      </StackPane>
-      <Label alignment="TOP_LEFT" layoutX="625.0" layoutY="19.0" prefHeight="450.0" prefWidth="70.0" text="INVENTORY" textFill="WHITE" wrapText="true">
-         <font>
-            <Font name="Optima Bold Italic" size="11.0" />
-         </font></Label>
-      <Label layoutX="7.0" layoutY="127.0" prefHeight="42.0" prefWidth="80.0" text="Stamina" textFill="WHITE" wrapText="true">
-         <font>
-            <Font name="Times New Roman Bold" size="15.0" />
-         </font></Label>
-      <Label layoutX="7.0" layoutY="169.0" prefHeight="42.0" prefWidth="54.0" text="Evne" textFill="WHITE" wrapText="true">
-         <font>
-            <Font name="Times New Roman Bold" size="15.0" />
-         </font></Label>
-      <Label layoutX="7.0" layoutY="211.0" prefHeight="42.0" prefWidth="54.0" text="Held" textFill="WHITE" wrapText="true">
-         <font>
-            <Font name="Times New Roman Bold" size="15.0" />
-         </font></Label>
-      <Button layoutX="633.0" layoutY="381.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="62.0" text="Test Invisible" visible="false" wrapText="true" />
-      <Button fx:id="dice1Button" layoutX="9.0" layoutY="356.0" mnemonicParsing="false" onAction="#dice1ButtonPress" prefHeight="26.0" prefWidth="52.0" text="1 Dice">
-         <font>
-            <Font name="Times New Roman" size="12.0" />
-         </font></Button>
-      <Button fx:id="dice2Button" layoutX="9.0" layoutY="391.0" mnemonicParsing="false" onAction="#dice2ButtonPress" prefHeight="26.0" prefWidth="52.0" text="2 Dice">
-         <font>
-            <Font name="Times New Roman" size="12.0" />
-         </font></Button>
-      <Label fx:id="healthAmount" layoutX="11.0" layoutY="165.0" prefHeight="17.0" prefWidth="37.0" scaleY="1.2" textFill="#37a82d">
-         <font>
-            <Font name="System Bold Italic" size="13.0" />
-         </font></Label>
-      <Label fx:id="attackAmount" layoutX="11.0" layoutY="206.0" prefHeight="17.0" prefWidth="37.0" scaleY="1.2" textFill="#da283d">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font></Label>
-      <Label fx:id="luckAmount" layoutX="11.0" layoutY="248.0" prefHeight="17.0" prefWidth="37.0" scaleY="1.2" textFill="#b273f2">
-         <font>
-            <Font name="System Bold Italic" size="13.0" />
-         </font></Label>
-      <Label fx:id="goldAmount" layoutX="11.0" layoutY="288.0" prefHeight="17.0" prefWidth="37.0" scaleY="1.2" textFill="#f2de4b">
-         <font>
-            <Font name="System Bold Italic" size="13.0" />
-         </font></Label>
-      <StackPane layoutX="630.0" layoutY="38.0" prefHeight="257.0" prefWidth="70.0">
-         <children>
-            <Label fx:id="itemLabel6" alignment="TOP_LEFT" text="Label" textFill="#89ceff" translateX="-15.0" visible="false" />
-            <Label fx:id="itemLabel5" alignment="TOP_LEFT" text="Label" textFill="#89ceff" translateX="-15.0" translateY="-20.0" visible="false" />
-            <Label fx:id="itemLabel4" alignment="TOP_LEFT" text="Label" textFill="#89ceff" translateX="-15.0" translateY="-40.0" visible="false" />
-            <Label fx:id="itemLabel1" alignment="TOP_LEFT" text="Label" textFill="#89ceff" translateX="-15.0" translateY="-100.0" visible="false" />
-            <Label fx:id="itemLabel0" alignment="TOP_LEFT" text="Label" textFill="#89ceff" translateX="-15.0" translateY="-120.0" visible="false" />
-            <Label fx:id="itemLabel2" alignment="TOP_LEFT" text="Label" textFill="#89ceff" translateX="-15.0" translateY="-100.0" visible="false" />
-            <Label fx:id="itemLabel3" alignment="TOP_LEFT" text="Label" textFill="#89ceff" translateX="-15.0" translateY="-60.0" visible="false" />
-            <Label fx:id="itemLabel7" alignment="TOP_LEFT" text="Label" textFill="#89ceff" translateX="-15.0" translateY="20.0" visible="false" />
-            <Label fx:id="itemLabel8" alignment="TOP_LEFT" text="Label" textFill="#89ceff" translateX="-15.0" translateY="40.0" visible="false" />
-            <Label fx:id="itemLabel9" alignment="TOP_LEFT" text="Label" textFill="#89ceff" translateX="-15.0" translateY="60.0" visible="false" />
-         </children>
-      </StackPane>
-      <Label fx:id="goldLabel1" layoutX="7.0" layoutY="302.0" prefHeight="26.0" prefWidth="37.0" text="Mad" textFill="WHITE">
-         <font>
-            <Font name="Times New Roman Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label fx:id="foodAmount" layoutX="11.0" layoutY="331.0" prefHeight="17.0" prefWidth="37.0" scaleY="1.2" textFill="#f2de4b">
-         <font>
-            <Font name="System Bold Italic" size="13.0" />
-         </font></Label>
-   </children>
+                    </stops>
+                </LinearGradient>
+            </textFill>
+        </Button>
+        <MenuButton layoutX="13.0" layoutY="51.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="54.0" text="🧪">
+            <items>
+                <MenuItem fx:id="healthPotionMenuItem" mnemonicParsing="false" onAction="#healthPotionPress" text="udholdenhed" visible="false" />
+                <MenuItem fx:id="attackPotionMenuItem" mnemonicParsing="false" onAction="#attackPotionPress" text="Evne" visible="false" />
+                <MenuItem fx:id="luckPotionMenuItem" mnemonicParsing="false" onAction="#luckPotionPress" text="Lykke" visible="false" />
+            </items>
+        </MenuButton>
+        <Button fx:id="runButton" layoutX="13.0" layoutY="89.0" mnemonicParsing="false" onAction="#runFromFight" prefHeight="26.0" prefWidth="54.0" text="🏃" />
+        <Label fx:id="goldLabel" layoutX="7.0" layoutY="260.0" prefHeight="26.0" prefWidth="37.0" text="Guld" textFill="WHITE">
+            <font>
+                <Font name="Times New Roman Bold" size="15.0" />
+            </font>
+        </Label>
+        <Button fx:id="exitButton" layoutX="8.0" layoutY="436.0" mnemonicParsing="false" onAction="#exit" prefHeight="26.0" prefWidth="54.0" text="❌" />
+        <StackPane layoutX="86.0" layoutY="311.0" prefHeight="138.0" prefWidth="531.0">
+            <children>
+                <Button fx:id="GTButton1" mnemonicParsing="false" onAction="#pressOfGoto" prefHeight="26.0" prefWidth="126.0" text="1" translateX="-200.0" translateY="-50.0" />
+                <Button fx:id="GTButton2" layoutX="212.0" layoutY="66.0" mnemonicParsing="false" onAction="#pressOfGoto" prefHeight="26.0" prefWidth="126.0" translateY="-50.0" visible="false" />
+                <Button fx:id="GTButton3" layoutX="212.0" layoutY="66.0" mnemonicParsing="false" onAction="#pressOfGoto" prefHeight="26.0" prefWidth="126.0" translateX="200.0" translateY="-50.0" visible="false" />
+                <Button fx:id="GTButton4" graphicTextGap="0.0" layoutX="212.0" layoutY="66.0" mnemonicParsing="false" onAction="#pressOfGoto" prefHeight="26.0" prefWidth="126.0" translateX="-200.0" translateY="50.0" visible="false" />
+                <Button fx:id="GTButton5" graphicTextGap="0.0" layoutX="212.0" layoutY="66.0" mnemonicParsing="false" onAction="#pressOfGoto" prefHeight="26.0" prefWidth="126.0" translateY="50.0" visible="false">
+                    <textFill>
+                        <LinearGradient endX="1.0" endY="1.0" startX="0.9962121498855678" startY="1.0">
+                            <stops>
+                                <Stop>
+                                    <color>
+                                        <Color red="0.4526315927505493" green="0.08717349171638489" blue="0.08717349171638489" />
+                                    </color>
+                                </Stop>
+                                <Stop offset="1.0">
+                                    <color>
+                                        <Color />
+                                    </color>
+                                </Stop>
+                            </stops>
+                        </LinearGradient>
+                    </textFill>
+                </Button>
+                <Button fx:id="GTButton6" graphicTextGap="0.0" layoutX="212.0" layoutY="66.0" mnemonicParsing="false" onAction="#pressOfGoto" prefHeight="26.0" prefWidth="126.0" translateX="200.0" translateY="50.0" visible="false" />
+                <ImageView fx:id="combatSwordImage" fitHeight="45.0" fitWidth="51.0" onMouseClicked="#combatSwordPress" pickOnBounds="true" preserveRatio="true" translateX="220.0" translateY="-25.0" visible="false">
+                    <image>
+                        <Image url="@../images/thunder-blade-removebg-preview.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="combatSwordImage1" fitHeight="45.0" fitWidth="51.0" layoutX="253.0" layoutY="57.0" onMousePressed="#combatSwordPress" pickOnBounds="true" preserveRatio="true" visible="false">
+                    <image>
+                        <Image url="@../images/thunder-blade-removebg-preview.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </StackPane>
+        <Label alignment="TOP_LEFT" layoutX="626.0" layoutY="8.0" prefHeight="450.0" prefWidth="70.0" text="INVENTORY" textFill="WHITE" wrapText="true">
+            <font>
+                <Font name="Optima Bold Italic" size="11.0" />
+            </font>
+        </Label>
+        <Label layoutX="7.0" layoutY="127.0" prefHeight="42.0" prefWidth="80.0" text="Stamina" textFill="WHITE" wrapText="true">
+            <font>
+                <Font name="Times New Roman Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label layoutX="7.0" layoutY="169.0" prefHeight="42.0" prefWidth="54.0" text="Evne" textFill="WHITE" wrapText="true">
+            <font>
+                <Font name="Times New Roman Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label layoutX="7.0" layoutY="211.0" prefHeight="42.0" prefWidth="54.0" text="Held" textFill="WHITE" wrapText="true">
+            <font>
+                <Font name="Times New Roman Bold" size="15.0" />
+            </font>
+        </Label>
+        <Button layoutX="633.0" layoutY="381.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="62.0" text="Test Invisible" visible="false" wrapText="true" />
+        <Button fx:id="dice1Button" layoutX="9.0" layoutY="356.0" mnemonicParsing="false" onAction="#dice1ButtonPress" prefHeight="26.0" prefWidth="52.0" text="1 Dice">
+            <font>
+                <Font name="Times New Roman" size="12.0" />
+            </font>
+        </Button>
+        <Button fx:id="dice2Button" layoutX="9.0" layoutY="391.0" mnemonicParsing="false" onAction="#dice2ButtonPress" prefHeight="26.0" prefWidth="52.0" text="2 Dice">
+            <font>
+                <Font name="Times New Roman" size="12.0" />
+            </font>
+        </Button>
+        <Label fx:id="healthAmount" layoutX="11.0" layoutY="165.0" prefHeight="17.0" prefWidth="37.0" scaleY="1.2" textFill="#37a82d">
+            <font>
+                <Font name="System Bold Italic" size="13.0" />
+            </font>
+        </Label>
+        <Label fx:id="attackAmount" layoutX="11.0" layoutY="206.0" prefHeight="17.0" prefWidth="37.0" scaleY="1.2" textFill="#da283d">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Label>
+        <Label fx:id="luckAmount" layoutX="11.0" layoutY="248.0" prefHeight="17.0" prefWidth="37.0" scaleY="1.2" textFill="#b273f2">
+            <font>
+                <Font name="System Bold Italic" size="13.0" />
+            </font>
+        </Label>
+        <Label fx:id="goldAmount" layoutX="11.0" layoutY="288.0" prefHeight="17.0" prefWidth="37.0" scaleY="1.2" textFill="#f2de4b">
+            <font>
+                <Font name="System Bold Italic" size="13.0" />
+            </font>
+        </Label>
+        <StackPane layoutX="627.0" layoutY="39.0" prefHeight="256.0" prefWidth="70.0">
+            <children>
+                <Label fx:id="itemLabel1" alignment="TOP_LEFT" text="Label" textFill="#89ceff" translateX="-15.0" translateY="-100.0" visible="false" />
+                <Label fx:id="itemLabel6" alignment="TOP_LEFT" text="Label" textFill="#89ceff" translateX="-15.0" visible="false" />
+                <Label fx:id="itemLabel5" alignment="TOP_LEFT" text="Label" textFill="#89ceff" translateX="-15.0" translateY="-20.0" visible="false" />
+                <Label fx:id="itemLabel4" alignment="TOP_LEFT" text="Label" textFill="#89ceff" translateX="-15.0" translateY="-40.0" visible="false" />
+                <Label fx:id="itemLabel0" alignment="TOP_LEFT" text="Label" textFill="#89ceff" translateX="-15.0" translateY="-120.0" visible="false" />
+                <Label fx:id="itemLabel2" alignment="TOP_LEFT" text="Label" textFill="#89ceff" translateX="-15.0" translateY="-100.0" visible="false" />
+                <Label fx:id="itemLabel3" alignment="TOP_LEFT" text="Label" textFill="#89ceff" translateX="-15.0" translateY="-60.0" visible="false" />
+                <Label fx:id="itemLabel7" alignment="TOP_LEFT" text="Label" textFill="#89ceff" translateX="-15.0" translateY="20.0" visible="false" />
+                <Label fx:id="itemLabel8" alignment="TOP_LEFT" text="Label" textFill="#89ceff" translateX="-15.0" translateY="40.0" visible="false" />
+                <Label fx:id="itemLabel9" alignment="TOP_LEFT" text="Label" textFill="#89ceff" translateX="-15.0" translateY="60.0" visible="false" />
+            </children>
+        </StackPane>
+        <Label fx:id="goldLabel1" layoutX="7.0" layoutY="302.0" prefHeight="26.0" prefWidth="37.0" text="Mad" textFill="WHITE">
+            <font>
+                <Font name="Times New Roman Bold" size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="foodAmount" layoutX="11.0" layoutY="331.0" prefHeight="17.0" prefWidth="37.0" scaleY="1.2" textFill="#f2de4b">
+            <font>
+                <Font name="System Bold Italic" size="13.0" />
+            </font>
+        </Label>
+    </children>
 </AnchorPane>

@@ -6,7 +6,7 @@ public class Creature {
     private int currentHealth;
     private int currentAttack;
 
-    public Creature(int id, String name, int currentHealth, int currentAttack){
+    public Creature(int id, String name, int currentHealth, int currentAttack) {
         this.id = id;
         this.creatureName = name;
         this.currentHealth = currentHealth;

@@ -9,8 +9,8 @@ import java.sql.*;
 import java.util.ArrayList;
 
 
-public class DatabaseManager  {
-    Connection con ;
+public class DatabaseManager {
+    Connection con;
 
     public DatabaseManager() {
         connect();
@@ -38,7 +38,7 @@ public class DatabaseManager  {
             ResultSet rs = statement.executeQuery(query);
 
             while (rs.next()) {
-                if(rs.getString("name").equals(name) ){
+                if (rs.getString("name").equals(name)) {
                     return new Player(rs.getString("name"),
                             rs.getInt("currentHealth"),
                             rs.getInt("currentAttack"),
@@ -62,6 +62,7 @@ public class DatabaseManager  {
         }
         return null;
     }
+
     public void savePlayerToDatabase(Player player) {
 //        connect();
         final String query = "INSERT INTO Players(name,currentHealth,currentAttack,currentLuck,maxHealth,maxAttack,maxLuck,isEquipped,inventory_id,currentActionPoint,goldCoin,foodRation,starterPotion) " +
@@ -109,8 +110,6 @@ public class DatabaseManager  {
 //     senere skal du lave en metode som kalder denne metode i adventure eller actionPoint class og laver en Array liste som vi kan manipulere i adventure eller actionPoint class.
 
 
-
-
     public Item selectItems(int id) {
         String query = "SELECT * FROM ItemList";
 
@@ -121,7 +120,7 @@ public class DatabaseManager  {
 
             while (rs.next()) {
                 if (rs.getInt("id") == id) {
-                   return new Item(
+                    return new Item(
                             rs.getInt("id"),
                             rs.getString("description"),
                             rs.getString("name"),
@@ -150,17 +149,17 @@ public class DatabaseManager  {
 
             while (rs.next()) {
 
-                    Item item = new Item(
-                            rs.getInt("id"),
-                            rs.getString("description"),
-                            rs.getString("name"),
-                            rs.getBoolean("consumable"),
-                            rs.getBoolean("equipable"),
-                            rs.getBoolean("potions"),
-                            rs.getInt("potency")
-                    );
-                    itemArrayList.add(item);
-                }
+                Item item = new Item(
+                        rs.getInt("id"),
+                        rs.getString("description"),
+                        rs.getString("name"),
+                        rs.getBoolean("consumable"),
+                        rs.getBoolean("equipable"),
+                        rs.getBoolean("potions"),
+                        rs.getInt("potency")
+                );
+                itemArrayList.add(item);
+            }
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -188,6 +187,7 @@ public class DatabaseManager  {
         }
 
     }
+
     public ActionPoint selectActionPoints(int caseId) {
         String query = "SELECT * FROM ActionPoints";
         try {
@@ -195,8 +195,8 @@ public class DatabaseManager  {
 
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
-                if(rs.getInt("id") == caseId ){
-               return new ActionPoint(
+                if (rs.getInt("id") == caseId) {
+                    return new ActionPoint(
                             rs.getInt("id"),
                             rs.getString("description"),
                             selectItem(rs.getInt("containedItem")),
@@ -213,13 +213,12 @@ public class DatabaseManager  {
                             rs.getInt("event"));
 
 
-
                 }
 
             }
 
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
         return null;
@@ -233,7 +232,7 @@ public class DatabaseManager  {
 
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
-                if(rs.getInt("id") == caseId ){
+                if (rs.getInt("id") == caseId) {
 
 
                     return new Creature(
@@ -245,12 +244,11 @@ public class DatabaseManager  {
             }
 
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
         return null;
     }
-
 
 
     private ArrayList<Creature> creatureListFromString(String list) {
@@ -274,19 +272,14 @@ public class DatabaseManager  {
     }
 
 
-
-
-
-
-
-    public Item selectItem(int caseID){
+    public Item selectItem(int caseID) {
         String query = "SELECT * FROM ITEMLIST";
         try {
             Statement statement = con.createStatement();
 
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
-                if(rs.getInt("id") == caseID ){
+                if (rs.getInt("id") == caseID) {
 
                     return new Item(
                             rs.getInt("id"),
@@ -300,13 +293,11 @@ public class DatabaseManager  {
 
             }
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
         return null;
     }
-
-
 
 
 }

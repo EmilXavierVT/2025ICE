@@ -13,8 +13,8 @@ public class Main {
 //        db.savePlayerToDatabase(player);
 //        ActionPoint ap = db.selectActionPoints(400);
 //        ap.printDescription();
-        for(int i = 0; i <= db.getAllItemsInArrayList().size()-1; i++)
-        System.out.println(i +" "+ db.getAllItemsInArrayList().get(i).getName());
+        for (int i = 0; i <= db.getAllItemsInArrayList().size() - 1; i++)
+            System.out.println(i + " " + db.getAllItemsInArrayList().get(i).getName());
     }
 }
 
