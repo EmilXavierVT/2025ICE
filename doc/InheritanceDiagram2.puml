@@ -1,0 +1,222 @@
+@startuml
+!pragma layout smetana
+'https://plantuml.com/class-diagram
+
+
+class Main{
+-double final designWidth
+-double final designHeight
++ FXMLLoader fxmlLoader
++ FXMLLoader fxmlLogin
++ ControllerFX controller
++ Scene sceneLogin
++ Scene sceneGame
+
++ start()
++ static void main(String[] args)
++ launch()
+
+}
+
+class Creature{
+- int id
+- String creatureName
+-int currentHealth
+-int currentAttack
+
+getters og setters
+
+}
+class Adventure{
+- ActionPoint ap
+- DatabaseManager dm
+-ClientFX clientFX
+- Player currentPlayer
+- int health
+- int attack
+- int luck
+
++ createNewPlayer()
++ actionPointEvent()
++ rollHealth()
++ rollAttackLuck()
++ dieRoll()
++ savePlayerFromAdventure()
+
+}
+class Player{
+-String name
+-int currentHealth
+-int currentAttack
+- int currentLuck
+-int maxHealth
+-int maxAttack
+-int maxLuck
+- int goldCoins
+- int foodRations
+- int starterPotion
+-boolean isEquipped
+-ArrayList<Item> Inventory
+- String inventoryReference
+- int playerLocation
+
++ changeHealth()
++ changeAttack()
++ useLuck()
++ changeLuck()
++ addToInventory()
++ removeFromInventory()
++ changeGoldCoins()
++ changeFoodRations()
++ removeOneItemFromInventory()
++ giveHealthBoost()
+}
+
+class Item{
+- int id
+- String name
+- String description
+- boolean consumable
+- boolean equippable
+- boolean potion
+- int potency
+
+getters og setters
+}
+
+class ActionPoint{
+- int ID
+- String description
+- Item containItem
+- int itemNeeded
+- int goldCoins
+- String availableActionPoints
+- boolean isFinal
+- boolean winnerActionPoint
+- boolean luckRoll
+- int changeAttackPoints
+- int changeHealthPoints
+- boolean dieRoll
+- int event
+- ArrayList<Integer> actionPointList
+- ArrayList<Creature> containedCreature
+- Connection con
+
++ actionPointList(String list)
+
+getters og setters
+
+ }
+
+
+
+package util{
+class DatabaseManager{
+- Connection con
+
++ connect()
++ selectPlayer()
++ savePlayerToDatabase()
++ selectItem()
++ getAllItemsInArrayList()
++ createInventory()
++ selectActionPoint()
++ selectCreature()
++ creatureListFromString()
+
+
+}
+}
+
+class ClientControllerFX{
+- Button loginButton
+- Button createNewPlayerButton
+- TextField loginTextField
+- Button eatButton
+- Button exitButton
+- Button runButton
+- Button GTButton1 - 6
+- Label descriptionLabel
+- ImageView dice1 - 12
+- Label healthAmount
+- Label attackAmount
+- Label luckAmount
+- Label goldAmount
+- Label foodAmount
+- Label itemLabel0 - 9
+- Button dice1Button
+- Button dice2Button
+- MenuItem attackPotionMenuItem
+- MenuItem healthPotionMenuItem
+- MenuItem luckPotionMenuItem
+- boolean propertyLoginIsCompleted
+- String playerName
+- ActionPoint actionPoint
+- Adventure adventure
+
+- eatOneFood()
+- exit()
+- runFromFight()
+- login()
+- createNewPlayer()
+- handleTextField()
+- dice1ButtonPress()
+- dice2ButtonPress()
+- healthPotionPress()
+- luckPotionPress()
+- attackPotionPress()
+- changeGT1visibility()
+- combatSwordPress()
+- rollDice()
+- showDice()
+- showTwoDice()
+- setPlayerStarterPointVFX()
+- displayInventory()
+- displayItemLabel()
+- setItemLabelInvisible()
+- setDiceInvisible()
+- animateDiceRoll()
+- animateTwoDiceRoll()
+- loginCompletedProperty()
+- pressOfGoto()
+- getPressedApId()
+- setCombatSwordToVisible()
+- displayDescription()
+- setStatsAmount()
+- setScrollPaneText()
+- setNameOfGTButtons()
+- setButtonName()
+- setVisibilityOfGTButtons()
+- animateDescription()
+- typingAnimation()
+- getGTButton1()
+- getGTButton2()
+- getAdventure()
+- setAdventure()
+- setActionPointToGUI()
+- rollForLuck()
+- rollForLuckBloodBeast()
+- combat()
+- combatImitator()
+- combatBloodBeast()
+- combatBloodBeast2()
+- combatMirrorDemon()
+- combatGiantScorpion()
+- regularCombat()
+- choosePotion()
+- showDeathPopUp()
+}
+
+
+
+
+Main *-- Adventure
+Adventure *-left- Player
+DatabaseManager *-- ClientControllerFX
+ActionPoint *-- Item
+ActionPoint -up-* Adventure
+"util" -right- Adventure
+Adventure *-right- ClientControllerFX
+Creature -up-* Adventure
+
+@enduml
