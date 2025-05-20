@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+autonumber
+Main -> FXMLLoader: Fxmlloader(Login)
+Main -> FXMLLoader: Fxmlloader(Game)
+Main -> ControllerFX: ControllerFX()
+Main -> ControllerFX: setAdventure(new Adventure)
+Adventure <- ControllerFX: Adventure()
+Adventure -> Player: Player()
+Adventure <-- Player: return
+ControllerFX -> Adventure: getAp()
+Adventure --> ControllerFX: return
+Main -> FXMLLoader: setController(controller)
+Main -> FXMLLoader: setController(controller)
+Main -> FXMLLoader: load(login)
+Main -> FXMLLoader: load(Game)
+Main -> Scene: Scene(sceneLogin)
+Main -> Stage: setTitle("Dødens Labyrint")
+Main -> Stage: setScene(sceneLogin)
+Main -> Stage: setResizable(false)
+Main -> Stage: show()
+ControllerFX -> ControllerFX: Login()
+
+activate ControllerFX
+ControllerFX --> Adventure: getCurrentPlayer()
+Adventure --> Player: setName(name)
+Main <- ControllerFX: loginCompletedProperty()
+deactivate ControllerFX
+
+Main -> Scene: Scene(sceneGame)
+Main -> Stage: show()
+'her skal label -> ny description
+
+
+
+
+@enduml

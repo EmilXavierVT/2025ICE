@@ -1,0 +1,81 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+ControllerFX -> ControllerFX: getPressedAPID()
+activate ControllerFX
+ControllerFX -> Button: getSource()
+activate Button
+Button --> ControllerFX: return sourceButton
+ControllerFX -> Button: getText()
+Button --> ControllerFX: return apId = getText()
+deactivate Button
+deactivate ControllerFX
+ControllerFX -> ControllerFX: choosePotion()
+activate ControllerFX
+ControllerFX -> Adventure: getCurrentPlayer()
+activate Adventure
+Adventure -> Player: setStartPotion()
+deactivate Adventure
+deactivate ControllerFX
+ControllerFX -> ControllerFX: setDiceInvisible()
+ControllerFX -> ControllerFX: setVisibilityOnGTButtons()
+ControllerFX -> Adventure: setAp(apId)
+activate Adventure
+Adventure -> DatabaseManager: selectActionPointId(apId)
+activate DatabaseManager
+Database database as db
+DatabaseManager -> db: selectActionPoint()
+activate db
+db --> DatabaseManager: return ActionPoint row
+deactivate db
+DatabaseManager --> Adventure: return ActionPoint object
+deactivate DatabaseManager
+deactivate Adventure
+ControllerFX -> ControllerFX: displayDescription(apId)
+activate ControllerFX
+ControllerFX -> Adventure: getDm()
+activate Adventure
+Adventure -> DatabaseManager: selectActionPointId()
+activate DatabaseManager
+DatabaseManager -> db: selectActionPoint()
+activate db
+db --> DatabaseManager: return ActionPoint row
+deactivate db
+DatabaseManager --> Adventure: return ActionPoint Object
+deactivate DatabaseManager
+Adventure --> ControllerFX: return ActionPoint Object
+deactivate Adventure
+ControllerFX -> ControllerFX: setScrollPaneText()
+ControllerFX -> ControllerFX: setNameOfGTButtons()
+deactivate ControllerFX
+ControllerFX -> ControllerFX: setStatsAmount()
+activate ControllerFX
+ControllerFX -> Adventure: getCurrentPlayer()
+activate Adventure
+Adventure -> Player: getCurrentHealth()
+Adventure -> Player: getCurrentAttack()
+Adventure -> Player: getCurrentLuck()
+Adventure -> Player: getGoldCoins()
+Adventure -> Player: getFoodRations()
+Adventure -> Player: getStarterPotion()
+deactivate Adventure
+deactivate ControllerFX
+ControllerFX -> ControllerFX: setActionPointToGUI()
+activate ControllerFX
+ControllerFX -> Adventure: getActionPoint()
+activate Adventure
+Adventure --> ControllerFX: return ActionPoint
+ControllerFX -> Adventure: getCurrentPlayer()
+Adventure --> ControllerFX: return currentPlayer()
+deactivate Adventure
+ControllerFX -> ActionPoint: getChangeHealth(), getChangeAttackPoints(), getContainedCreature(), getLuckRoll(), getGoldCoins(), getDieRoll(), getIsFinal(), getWinnerActionPoint()
+activate ActionPoint
+ActionPoint --> ControllerFX: return 38
+deactivate ActionPoint
+deactivate ControllerFX
+ControllerFX -> ControllerFX: displayInventory()
+
+
+@enduml
