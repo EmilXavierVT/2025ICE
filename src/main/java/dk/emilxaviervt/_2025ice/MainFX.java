@@ -44,7 +44,7 @@ public class MainFX extends Application {
 
         controller.loginCompletedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
-                controller.setLoadedPlayer();
+//                controller.setLoadedPlayer();
                 stage.setScene(sceneGame);
 
             }

@@ -197,34 +197,13 @@ public class ControllerFX {
     private void runFromFight(ActionEvent event) {
 
     }
-    public Player newPlayer;
 
-    public void setLoadedPlayer(){
-
-            int actionPointID = adventure.getAp().getID();
-            setDiceInvisible();
-            setVisibilityOnGTButtons();
-            adventure.setAp(actionPointID);
-            System.out.println(actionPointID);
-            displayDescription(actionPointID);// dnfw.... srsly
-            setStatsAmount();
-            setActionPointToGUI();
-//        setStatsAmount();
-            displayInventory();
-            loginIsCompleted.set(true);
-
-
-
-    }
 
     @FXML
     private void login(ActionEvent event) {
         String name = handleTextField(event);
-        newPlayer = adventure.getDm().selectPlayers(name);
 
-
-//        adventure.getCurrentPlayer().setName(name);
-//
+        adventure.getCurrentPlayer().setName(name);
         loginIsCompleted.set(true);
 
     }
@@ -573,10 +552,6 @@ public class ControllerFX {
     }
 
 
-    public String returnTextLogin() {
-
-        return playerName;
-    }
 
 
     @FXML
@@ -595,7 +570,7 @@ public class ControllerFX {
         displayDescription(actionPointID);// dnfw.... srsly
         setStatsAmount();
         setActionPointToGUI();
-        displayInventory();
+//        displayDescription(actionPointID);
 
 
     }
@@ -758,16 +733,9 @@ public class ControllerFX {
         return GTButton1;
     }
 
-    public void setGTButton1(Button GTButton1) {
-        this.GTButton1 = GTButton1;
-    }
 
     public Button getGTButton2() {
         return GTButton2;
-    }
-
-    public void setGTButton2(Button GTButton2) {
-        this.GTButton2 = GTButton2;
     }
 
 

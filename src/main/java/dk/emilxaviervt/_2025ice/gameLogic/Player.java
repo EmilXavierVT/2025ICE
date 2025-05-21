@@ -138,25 +138,7 @@ public class Player {
     }
 
 
-//    public void consumeItem(Consumable potion){
-//
-    //     int potionID = potion.getID();
-//        //health potion
-//        if (potionID == 3) {
-//            this.currentHealth = this.maxHealth;
-//        }
-//        //power potion
-//        else if (potionID == 4){
-//            this.currentAttack = this.maxAttack;
-//            }
-//        //luck potion
-//        else if (potionID == 2){
-//            maxLuck++;
-//            this.currentLuck = this.maxLuck;
-//        }
-//        inventory.remove(potion);
-//
-//    }
+
 
     public String getName() {
         return name;
